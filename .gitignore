@@ -3,3 +3,10 @@
 
 # Windows
 Thumbs.db
+
+# Android Studio
+/**/build/
+/**/*.iml
+/.gradle/
+/.idea/
+/local.properties
