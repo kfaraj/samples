@@ -4,6 +4,7 @@
     package="com.kfaraj.samples.dark.theme">
 
     <application
+        android:name=".DarkThemeApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
