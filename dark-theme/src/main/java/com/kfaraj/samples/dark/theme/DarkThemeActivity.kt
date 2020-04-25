@@ -3,6 +3,7 @@ package com.kfaraj.samples.dark.theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -16,16 +17,22 @@ class DarkThemeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dark_theme)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar))
         initFab()
     }
 
+    /**
+     * Initializes the FAB.
+     */
     private fun initFab() {
-        fab = findViewById(R.id.fab)
+        fab = ActivityCompat.requireViewById(this, R.id.fab)
         val mode = AppCompatDelegate.getDefaultNightMode()
         initFab(mode)
     }
 
+    /**
+     * Initializes the FAB with the given night [mode].
+     */
     private fun initFab(mode: Int) {
         when (mode) {
             AppCompatDelegate.MODE_NIGHT_NO -> {
@@ -43,6 +50,9 @@ class DarkThemeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sets the default night [mode].
+     */
     private fun setNightMode(mode: Int) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()

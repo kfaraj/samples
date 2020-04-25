@@ -15,6 +15,9 @@ class DarkThemeApplication : Application() {
         setNightMode()
     }
 
+    /**
+     * Sets the default night mode.
+     */
     private fun setNightMode() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val mode = prefs.getInt(Settings.NIGHT_MODE, Settings.MODE_NIGHT_DEFAULT)

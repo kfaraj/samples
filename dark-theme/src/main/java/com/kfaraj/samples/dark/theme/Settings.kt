@@ -16,7 +16,6 @@ object Settings {
     /**
      * Night mode which uses the recommended default option.
      */
-    @JvmField
     val MODE_NIGHT_DEFAULT = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
     } else {
