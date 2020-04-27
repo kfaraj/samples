@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge" />
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="Base.Theme.App" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#ff009688</item>
+        <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
+        <item name="colorAccent">?attr/colorSecondary</item>
+        <item name="colorPrimaryVariant">#ff00796B</item>
+        <item name="colorOnPrimary">#ffffffff</item>
+        <item name="colorSecondary">#ff607d8b</item>
+        <item name="colorSecondaryVariant">#ff455a64</item>
+        <item name="colorOnSecondary">#ffffffff</item>
     </style>
+    <style name="Theme.App" parent="Base.Theme.App" />
 </resources>
