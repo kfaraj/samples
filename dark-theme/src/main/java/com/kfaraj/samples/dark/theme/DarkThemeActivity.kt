@@ -18,22 +18,18 @@ class DarkThemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dark_theme)
         setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar))
-        initFab()
-    }
-
-    /**
-     * Initializes the FAB.
-     */
-    private fun initFab() {
         fab = ActivityCompat.requireViewById(this, R.id.fab)
         val mode = AppCompatDelegate.getDefaultNightMode()
-        initFab(mode)
+        setNightMode(mode)
     }
 
     /**
-     * Initializes the FAB with the given night [mode].
+     * Sets the default night [mode].
      */
-    private fun initFab(mode: Int) {
+    private fun setNightMode(mode: Int) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()
+        AppCompatDelegate.setDefaultNightMode(mode)
         when (mode) {
             AppCompatDelegate.MODE_NIGHT_NO -> {
                 fab.setImageResource(R.drawable.ic_mode_night_no_black_24dp)
@@ -48,16 +44,6 @@ class DarkThemeActivity : AppCompatActivity() {
                 fab.setOnClickListener { setNightMode(AppCompatDelegate.MODE_NIGHT_NO) }
             }
         }
-    }
-
-    /**
-     * Sets the default night [mode].
-     */
-    private fun setNightMode(mode: Int) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()
-        AppCompatDelegate.setDefaultNightMode(mode)
-        initFab(mode)
     }
 
 }
