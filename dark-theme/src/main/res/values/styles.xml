@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Widget.App.Toolbar.Primary" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Widget.App.Toolbar.Primary" parent="Base.Widget.App.Toolbar.Primary" />
+    <style name="Base.Widget.App.Toolbar.Surface" parent="Widget.MaterialComponents.Toolbar.Surface">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Widget.App.Toolbar.Surface" parent="Base.Widget.App.Toolbar.Surface" />
+    <style name="Widget.App.Toolbar.PrimarySurface" parent="Widget.App.Toolbar.Primary" />
+</resources>

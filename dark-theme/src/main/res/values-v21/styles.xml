@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.App.Toolbar.Primary" parent="Base.Widget.App.Toolbar.Primary">
+        <item name="android:elevation">0dp</item>
+    </style>
+</resources>
