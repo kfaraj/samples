@@ -1,9 +1,7 @@
-Samples
-=======
+# Samples
 
-Samples for Android
+This project is a collection of samples for Android.
 
-dark-theme
-----------
+## dark-theme
 
-This sample demonstrates how to implement a [dark theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme).
+This sample app demonstrates how to implement a [dark theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme).
