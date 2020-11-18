@@ -1,12 +1,12 @@
-# Mac OS X
+# macOS
 .DS_Store
 
-# Windows
+# Windows NT
 Thumbs.db
 
 # Android Studio
-/**/build/
-/**/*.iml
-/.gradle/
-/.idea/
-/local.properties
+*.iml
+.gradle/
+.idea/
+build/
+local.properties
