@@ -4,19 +4,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * Demonstrates how to implement a dark theme.
  */
-class DarkThemeActivity : AppCompatActivity() {
+class DarkThemeActivity : AppCompatActivity(R.layout.activity_dark_theme) {
 
     private lateinit var fab: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dark_theme)
         setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar))
         fab = ActivityCompat.requireViewById(this, R.id.fab)
         val mode = AppCompatDelegate.getDefaultNightMode()
@@ -28,7 +28,9 @@ class DarkThemeActivity : AppCompatActivity() {
      */
     private fun setNightMode(mode: Int) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()
+        prefs.edit {
+            putInt(Settings.NIGHT_MODE, mode)
+        }
         AppCompatDelegate.setDefaultNightMode(mode)
         when (mode) {
             AppCompatDelegate.MODE_NIGHT_NO -> {
