@@ -32,4 +32,15 @@ class SettingsFragment : PreferenceFragmentCompat(),
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
+    companion object {
+
+        /**
+         * Creates a new instance of this fragment class.
+         */
+        fun newInstance(): SettingsFragment {
+            return SettingsFragment()
+        }
+
+    }
+
 }
