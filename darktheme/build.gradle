@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.kfaraj.samples.darktheme"
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 31
         vectorDrawables.useSupportLibrary true
     }
     buildTypes {
