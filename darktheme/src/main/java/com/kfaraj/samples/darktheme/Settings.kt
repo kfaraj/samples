@@ -1,7 +1,6 @@
 package com.kfaraj.samples.darktheme
 
 import android.content.Context
-import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 
@@ -23,11 +22,7 @@ object Settings {
         return when (prefs.getString(THEME, THEME_DEFAULT)) {
             THEME_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
             THEME_DARK -> AppCompatDelegate.MODE_NIGHT_YES
-            else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            } else {
-                AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
-            }
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
     }
 
