@@ -7,7 +7,6 @@ import androidx.preference.PreferenceManager
 /**
  * Demonstrates how to implement a dark theme.
  */
-@Suppress("unused")
 class MainApplication : Application() {
 
     override fun onCreate() {

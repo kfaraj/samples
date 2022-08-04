@@ -1,0 +1,21 @@
+[versions]
+androidx-activity = "1.5.1"
+androidx-appcompat = "1.4.2"
+androidx-core = "1.8.0"
+androidx-fragment = "1.5.1"
+androidx-preference = "1.2.0"
+com-android-tools-build-gradle = "7.2.2"
+com-google-android-material = "1.6.1"
+org-jetbrains-kotlin = "1.7.10"
+
+[libraries]
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "androidx-preference" }
+com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
+
+[plugins]
+com-android-application = { id = "com.android.application", version.ref = "com-android-tools-build-gradle" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
