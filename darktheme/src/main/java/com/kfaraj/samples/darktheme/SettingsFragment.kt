@@ -28,19 +28,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
         val context = requireContext()
-        val mode = Settings.getNightMode(context)
-        AppCompatDelegate.setDefaultNightMode(mode)
-    }
-
-    companion object {
-
-        /**
-         * Creates a new instance of this fragment class.
-         */
-        fun newInstance(): SettingsFragment {
-            return SettingsFragment()
-        }
-
+        val nightMode = Settings.getNightMode(context)
+        AppCompatDelegate.setDefaultNightMode(nightMode)
     }
 
 }

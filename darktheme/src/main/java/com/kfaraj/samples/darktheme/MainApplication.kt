@@ -12,8 +12,8 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true)
-        val mode = Settings.getNightMode(this)
-        AppCompatDelegate.setDefaultNightMode(mode)
+        val nightMode = Settings.getNightMode(this)
+        AppCompatDelegate.setDefaultNightMode(nightMode)
     }
 
 }
