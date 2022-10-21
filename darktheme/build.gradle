@@ -4,12 +4,15 @@ plugins {
 }
 
 android {
+    namespace 'com.kfaraj.samples.darktheme'
     compileSdk 33
     defaultConfig {
         applicationId "com.kfaraj.samples.darktheme"
         minSdk 14
         targetSdk 33
-        vectorDrawables.useSupportLibrary true
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
     buildTypes {
         release {
@@ -23,6 +26,7 @@ android {
 dependencies {
     implementation libs.androidx.activity.ktx
     implementation libs.androidx.appcompat
+    implementation libs.androidx.coordinatorlayout
     implementation libs.androidx.core.ktx
     implementation libs.androidx.fragment.ktx
     implementation libs.androidx.preference.ktx
