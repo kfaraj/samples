@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.App.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_40</item>
+        <item name="colorOnPrimary">@color/primary_100</item>
+        <item name="colorPrimaryInverse">@color/primary_80</item>
+        <item name="colorPrimaryContainer">@color/primary_90</item>
+        <item name="colorOnPrimaryContainer">@color/primary_10</item>
+        <item name="colorSecondary">@color/secondary_40</item>
+        <item name="colorOnSecondary">@color/secondary_100</item>
+        <item name="colorSecondaryContainer">@color/secondary_90</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_10</item>
+        <item name="colorTertiary">@color/tertiary_40</item>
+        <item name="colorOnTertiary">@color/tertiary_100</item>
+        <item name="colorTertiaryContainer">@color/tertiary_90</item>
+        <item name="colorOnTertiaryContainer">@color/tertiary_10</item>
+        <item name="android:colorBackground">@color/neutral_99</item>
+        <item name="colorOnBackground">@color/neutral_10</item>
+        <item name="colorSurface">@color/neutral_99</item>
+        <item name="colorOnSurface">@color/neutral_10</item>
+        <item name="colorSurfaceVariant">@color/neutral_variant_90</item>
+        <item name="colorOnSurfaceVariant">@color/neutral_variant_30</item>
+        <item name="colorSurfaceInverse">@color/neutral_20</item>
+        <item name="colorOnSurfaceInverse">@color/neutral_95</item>
+        <item name="colorOutline">@color/neutral_variant_50</item>
+    </style>
+    <style name="Theme.App.Light" parent="Base.Theme.App.Light">
+        <item name="android:statusBarColor">?attr/scrimBackground</item>
+        <item name="android:navigationBarColor">?attr/scrimBackground</item>
+    </style>
+    <style name="Base.Theme.App.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary_80</item>
+        <item name="colorOnPrimary">@color/primary_20</item>
+        <item name="colorPrimaryInverse">@color/primary_40</item>
+        <item name="colorPrimaryContainer">@color/primary_30</item>
+        <item name="colorOnPrimaryContainer">@color/primary_90</item>
+        <item name="colorSecondary">@color/secondary_80</item>
+        <item name="colorOnSecondary">@color/secondary_20</item>
+        <item name="colorSecondaryContainer">@color/secondary_30</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_90</item>
+        <item name="colorTertiary">@color/tertiary_80</item>
+        <item name="colorOnTertiary">@color/tertiary_20</item>
+        <item name="colorTertiaryContainer">@color/tertiary_30</item>
+        <item name="colorOnTertiaryContainer">@color/tertiary_90</item>
+        <item name="android:colorBackground">@color/neutral_10</item>
+        <item name="colorOnBackground">@color/neutral_90</item>
+        <item name="colorSurface">@color/neutral_10</item>
+        <item name="colorOnSurface">@color/neutral_90</item>
+        <item name="colorSurfaceVariant">@color/neutral_variant_30</item>
+        <item name="colorOnSurfaceVariant">@color/neutral_variant_80</item>
+        <item name="colorSurfaceInverse">@color/neutral_90</item>
+        <item name="colorOnSurfaceInverse">@color/neutral_20</item>
+        <item name="colorOutline">@color/neutral_variant_60</item>
+    </style>
+    <style name="Theme.App.Dark" parent="Base.Theme.App.Dark">
+        <item name="android:statusBarColor">?attr/scrimBackground</item>
+        <item name="android:navigationBarColor">?attr/scrimBackground</item>
+    </style>
+    <style name="Theme.App.DayNight" parent="Theme.App.Light" />
+</resources>

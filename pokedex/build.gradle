@@ -1,0 +1,68 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
+plugins {
+    alias libs.plugins.com.android.application
+    alias libs.plugins.org.jetbrains.kotlin.android
+}
+
+android {
+    namespace 'com.kfaraj.samples.pokedex'
+    compileSdk 33
+    defaultConfig {
+        applicationId "com.kfaraj.samples.pokedex"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "0.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+    signingConfigs {
+        release {
+            def storePath = findProperty('signingStorePath')
+            storeFile storePath ? file(storePath) : null
+            storePassword findProperty('signingStorePassword')
+            keyAlias findProperty('signingKeyAlias')
+            keyPassword findProperty('signingKeyPassword')
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources true
+        }
+        managedDevices {
+            devices {
+                pixel2api33(ManagedVirtualDevice) {
+                    device 'Pixel 2'
+                    apiLevel 33
+                    systemImageSource 'google'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.coordinatorlayout
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.fragment.ktx
+    implementation libs.com.google.android.material
+    testImplementation libs.androidx.test.core.ktx
+    testImplementation libs.junit
+    testImplementation libs.org.robolectric
+    androidTestImplementation libs.androidx.test.core.ktx
+    androidTestImplementation libs.androidx.test.rules
+    androidTestImplementation libs.androidx.test.runner
+}
