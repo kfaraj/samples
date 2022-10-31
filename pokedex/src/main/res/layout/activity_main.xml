@@ -18,6 +18,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:name="com.kfaraj.samples.pokedex.ui.PokedexFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

@@ -3,6 +3,8 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 plugins {
     alias libs.plugins.com.android.application
     alias libs.plugins.org.jetbrains.kotlin.android
+    alias libs.plugins.org.jetbrains.kotlin.kapt
+    alias libs.plugins.com.google.dagger.hilt.android
 }
 
 android {
@@ -17,6 +19,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
+        }
+        kapt {
+            arguments {
+                arg "room.schemaLocation", "$projectDir/schemas"
+            }
         }
     }
     signingConfigs {
@@ -35,6 +42,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+    }
+    kotlinOptions {
+        freeCompilerArgs += [
+                "-opt-in=androidx.paging.ExperimentalPagingApi",
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        ]
     }
     testOptions {
         unitTests {
@@ -58,9 +71,26 @@ dependencies {
     implementation libs.androidx.coordinatorlayout
     implementation libs.androidx.core.ktx
     implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.paging.runtime
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.room.ktx
+    implementation libs.androidx.room.paging
+    implementation libs.androidx.room.runtime
+    kapt libs.androidx.room.compiler
+    implementation libs.com.github.bumptech.glide
     implementation libs.com.google.android.material
+    implementation libs.com.google.dagger.hilt.android
+    kapt libs.com.google.dagger.hilt.compiler
+    implementation libs.com.squareup.retrofit
+    implementation libs.com.squareup.retrofit.converter.gson
+    implementation libs.org.jetbrains.kotlinx.coroutines.android
     testImplementation libs.androidx.test.core.ktx
     testImplementation libs.junit
+    testImplementation libs.org.jetbrains.kotlinx.coroutines.test
+    testImplementation libs.org.mockito.inline
+    testImplementation libs.org.mockito.kotlin
     testImplementation libs.org.robolectric
     androidTestImplementation libs.androidx.test.core.ktx
     androidTestImplementation libs.androidx.test.rules

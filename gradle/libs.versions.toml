@@ -4,14 +4,24 @@ androidx-appcompat = "1.5.1"
 androidx-coordinatorlayout = "1.2.0"
 androidx-core = "1.9.0"
 androidx-fragment = "1.5.3"
+androidx-lifecycle = "2.5.1"
+androidx-paging = "3.1.1"
 androidx-preference = "1.2.0"
+androidx-recyclerview = "1.2.1"
+androidx-room = "2.4.3"
 androidx-test-core = "1.5.0-beta01"
 androidx-test-rules = "1.4.0"
 androidx-test-runner = "1.4.0"
 com-android-tools-build-gradle = "7.3.1"
+com-github-bumptech-glide = "4.14.2"
 com-google-android-material = "1.7.0"
+com-google-dagger = "2.44"
+com-squareup-retrofit = "2.9.0"
 junit = "4.13.2"
 org-jetbrains-kotlin = "1.7.20"
+org-jetbrains-kotlinx-coroutines = "1.6.4"
+org-mockito = "4.8.0"
+org-mockito-kotlin = "4.0.0"
 org-robolectric = "4.9"
 
 [libraries]
@@ -20,14 +30,33 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "androidx-coordinatorlayout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "androidx-preference" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidx-room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test-core" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-rules" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
+com-github-bumptech-glide = { module = "com.github.bumptech.glide:glide", version.ref = "com-github-bumptech-glide" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
+com-google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "com-google-dagger" }
+com-google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "com-google-dagger" }
+com-squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "com-squareup-retrofit" }
+com-squareup-retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "com-squareup-retrofit" }
 junit = { module = "junit:junit", version.ref = "junit" }
+org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines" }
+org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines" }
+org-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "org-mockito" }
+org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
 org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-robolectric" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-tools-build-gradle" }
+com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "com-google-dagger" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin" }
