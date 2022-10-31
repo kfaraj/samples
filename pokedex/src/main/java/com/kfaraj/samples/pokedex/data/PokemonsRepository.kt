@@ -22,6 +22,13 @@ class PokemonsRepository @Inject constructor(
 ) {
 
     /**
+     * Returns Pokémon data for the given [id].
+     */
+    suspend fun get(id: Int): Pokemon {
+        return pokemonsLocalDataSource.get(id).toPokemon()
+    }
+
+    /**
      * Returns the stream of paged Pokémon data.
      */
     fun getPagingDataStream(config: PagingConfig): Flow<PagingData<Pokemon>> {

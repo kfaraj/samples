@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pokedex">
+    <fragment
+        android:id="@+id/pokedex"
+        android:name="com.kfaraj.samples.pokedex.ui.PokedexFragment"
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/action_pokedex_to_pokemon"
+            app:destination="@id/pokemon" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemon"
+        android:name="com.kfaraj.samples.pokedex.ui.PokemonFragment"
+        android:label="@string/empty">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

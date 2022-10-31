@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kfaraj.samples.pokedex.R
@@ -30,6 +32,14 @@ class PokedexItemViewHolder(
      * Binds the [item] with the view.
      */
     fun bind(item: PokedexItemUiState?) {
+        itemView.transitionName = item?.id?.toString()
+        itemView.setOnClickListener { v ->
+            item?.id?.let {
+                val action = PokedexFragmentDirections.actionPokedexToPokemon(it)
+                val extras = FragmentNavigatorExtras(itemView to "container")
+                v.findNavController().navigate(action, extras)
+            }
+        }
         Glide.with(itemView)
             .load(item?.sprite)
             .into(mediaView)

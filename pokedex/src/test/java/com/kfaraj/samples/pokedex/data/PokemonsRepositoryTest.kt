@@ -24,6 +24,20 @@ class PokemonsRepositoryTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     @Test
+    fun get() = runTest {
+        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
+        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
+            whenever(get(1)).thenReturn(BULBASAUR_ENTITY)
+        }
+        val pokemonsRepository = PokemonsRepository(
+            pokemonsRemoteDataSource,
+            pokemonsLocalDataSource
+        )
+        val result = pokemonsRepository.get(1)
+        assertEquals(BULBASAUR, result)
+    }
+
+    @Test
     fun getPagingDataStream() = runTest {
         val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
         val pagingSource = TestPagingSource<Int, PokemonEntity>(listOf(BULBASAUR_ENTITY))

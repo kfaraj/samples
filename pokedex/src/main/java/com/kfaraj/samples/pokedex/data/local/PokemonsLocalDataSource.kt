@@ -18,6 +18,13 @@ class PokemonsLocalDataSource @Inject constructor(
     }
 
     /**
+     * Returns the Pokémon entity for the given [id].
+     */
+    suspend fun get(id: Int): PokemonEntity {
+        return pokemonDao.get(id)
+    }
+
+    /**
      * Returns the source of paged Pokémon entities.
      */
     fun getPagingSource(): PagingSource<Int, PokemonEntity> {

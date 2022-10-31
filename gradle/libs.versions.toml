@@ -5,6 +5,7 @@ androidx-coordinatorlayout = "1.2.0"
 androidx-core = "1.9.0"
 androidx-fragment = "1.5.3"
 androidx-lifecycle = "2.5.1"
+androidx-navigation = "2.5.2"
 androidx-paging = "3.1.1"
 androidx-preference = "1.2.0"
 androidx-recyclerview = "1.2.1"
@@ -32,6 +33,9 @@ androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "androidx-preference" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
@@ -56,6 +60,7 @@ org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref
 org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-robolectric" }
 
 [plugins]
+androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidx-navigation" }
 com-android-application = { id = "com.android.application", version.ref = "com-android-tools-build-gradle" }
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "com-google-dagger" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }

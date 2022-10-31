@@ -20,6 +20,12 @@ interface PokemonDao {
     suspend fun insertAll(pokemons: List<PokemonEntity>)
 
     /**
+     * Returns the Pokémon entity for the given [id].
+     */
+    @Query("SELECT * FROM pokemons WHERE id = :id")
+    suspend fun get(id: Int): PokemonEntity
+
+    /**
      * Returns the source of paged Pokémon entities.
      */
     @Query("SELECT * FROM pokemons")

@@ -22,6 +22,18 @@ class PokemonsLocalDataSourceTest {
     }
 
     @Test
+    fun get() = runTest {
+        val pokemonDao = mock<PokemonDao>().apply {
+            whenever(get(1)).thenReturn(BULBASAUR_ENTITY)
+        }
+        val pokemonsLocalDataSource = PokemonsLocalDataSource(
+            pokemonDao
+        )
+        val result = pokemonsLocalDataSource.get(1)
+        assertEquals(BULBASAUR_ENTITY, result)
+    }
+
+    @Test
     fun getPagingSource() {
         val pagingSource = TestPagingSource<Int, PokemonEntity>(listOf(BULBASAUR_ENTITY))
         val pokemonDao = mock<PokemonDao>().apply {
