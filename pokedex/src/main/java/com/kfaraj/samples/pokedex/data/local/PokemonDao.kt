@@ -2,10 +2,9 @@ package com.kfaraj.samples.pokedex.data.local
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Room
+import androidx.room.Upsert
 
 /**
  * Exposes Pokémon data from a [Room] database.
@@ -14,10 +13,10 @@ import androidx.room.Room
 interface PokemonDao {
 
     /**
-     * Inserts or replaces Pokémon entities.
+     * Inserts or updates Pokémon entities.
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(pokemons: List<PokemonEntity>)
+    @Upsert
+    suspend fun upsertAll(pokemons: List<PokemonEntity>)
 
     /**
      * Returns the Pokémon entity for the given [id].

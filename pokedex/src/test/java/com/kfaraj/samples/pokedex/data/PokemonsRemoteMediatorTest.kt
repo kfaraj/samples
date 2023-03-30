@@ -35,7 +35,7 @@ class PokemonsRemoteMediatorTest {
         )
         val state = PagingState<Int, PokemonEntity>(emptyList(), null, PagingConfig(1), 0)
         val result = pokemonsRemoteMediator.load(LoadType.REFRESH, state)
-        verify(pokemonsLocalDataSource).insertAll(listOf(BULBASAUR_ENTITY))
+        verify(pokemonsLocalDataSource).upsertAll(listOf(BULBASAUR_ENTITY))
         assertTrue(result is MediatorResult.Success)
         assertTrue((result as MediatorResult.Success).endOfPaginationReached)
     }
@@ -55,7 +55,7 @@ class PokemonsRemoteMediatorTest {
         )
         val state = PagingState<Int, PokemonEntity>(emptyList(), null, PagingConfig(1), 0)
         val result = pokemonsRemoteMediator.load(LoadType.APPEND, state)
-        verify(pokemonsLocalDataSource).insertAll(emptyList())
+        verify(pokemonsLocalDataSource).upsertAll(emptyList())
         assertTrue(result is MediatorResult.Success)
         assertTrue((result as MediatorResult.Success).endOfPaginationReached)
     }

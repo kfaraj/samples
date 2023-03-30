@@ -85,6 +85,7 @@ dependencies {
     kapt libs.androidx.room.compiler
     implementation libs.com.github.bumptech.glide
     implementation libs.com.google.android.material
+    implementation libs.com.google.code.gson
     implementation libs.com.google.dagger.hilt.android
     kapt libs.com.google.dagger.hilt.compiler
     implementation libs.com.squareup.retrofit
@@ -93,7 +94,7 @@ dependencies {
     testImplementation libs.androidx.test.core.ktx
     testImplementation libs.junit
     testImplementation libs.org.jetbrains.kotlinx.coroutines.test
-    testImplementation libs.org.mockito.inline
+    testImplementation libs.org.mockito.core
     testImplementation libs.org.mockito.kotlin
     testImplementation libs.org.robolectric
     androidTestImplementation libs.androidx.test.core.ktx

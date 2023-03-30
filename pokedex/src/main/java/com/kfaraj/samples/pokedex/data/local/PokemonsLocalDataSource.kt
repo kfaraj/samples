@@ -11,10 +11,10 @@ class PokemonsLocalDataSource @Inject constructor(
 ) {
 
     /**
-     * Inserts or replaces Pokémon entities.
+     * Inserts or updates Pokémon entities.
      */
-    suspend fun insertAll(pokemons: List<PokemonEntity>) {
-        pokemonDao.insertAll(pokemons)
+    suspend fun upsertAll(pokemons: List<PokemonEntity>) {
+        pokemonDao.upsertAll(pokemons)
     }
 
     /**

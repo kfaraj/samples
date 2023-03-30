@@ -23,6 +23,7 @@
         <item name="colorSurfaceInverse">@color/neutral_20</item>
         <item name="colorOnSurfaceInverse">@color/neutral_95</item>
         <item name="colorOutline">@color/neutral_variant_50</item>
+        <item name="colorOutlineVariant">@color/neutral_variant_80</item>
     </style>
     <style name="Theme.App.Light" parent="Base.Theme.App.Light">
         <item name="android:statusBarColor">?attr/scrimBackground</item>
@@ -51,6 +52,7 @@
         <item name="colorSurfaceInverse">@color/neutral_90</item>
         <item name="colorOnSurfaceInverse">@color/neutral_20</item>
         <item name="colorOutline">@color/neutral_variant_60</item>
+        <item name="colorOutlineVariant">@color/neutral_variant_30</item>
     </style>
     <style name="Theme.App.Dark" parent="Base.Theme.App.Dark">
         <item name="android:statusBarColor">?attr/scrimBackground</item>

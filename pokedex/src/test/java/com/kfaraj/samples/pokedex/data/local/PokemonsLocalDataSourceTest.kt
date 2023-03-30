@@ -11,14 +11,14 @@ import org.mockito.kotlin.whenever
 class PokemonsLocalDataSourceTest {
 
     @Test
-    fun insertAll() = runTest {
+    fun upsertAll() = runTest {
         val pokemons = listOf(BULBASAUR_ENTITY)
         val pokemonDao = mock<PokemonDao>()
         val pokemonsLocalDataSource = PokemonsLocalDataSource(
             pokemonDao
         )
-        pokemonsLocalDataSource.insertAll(pokemons)
-        verify(pokemonDao).insertAll(pokemons)
+        pokemonsLocalDataSource.upsertAll(pokemons)
+        verify(pokemonDao).upsertAll(pokemons)
     }
 
     @Test

@@ -35,7 +35,7 @@ class PokemonsRemoteMediator(
                 .map { result ->
                     result.toPokemonEntity()
                 }
-            pokemonsLocalDataSource.insertAll(pokemons)
+            pokemonsLocalDataSource.upsertAll(pokemons)
             MediatorResult.Success(response.next == null)
         } catch (e: IOException) {
             MediatorResult.Error(e)

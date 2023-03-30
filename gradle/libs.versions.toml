@@ -1,29 +1,30 @@
 [versions]
-androidx-activity = "1.6.0"
-androidx-appcompat = "1.5.1"
+androidx-activity = "1.7.0"
+androidx-appcompat = "1.6.1"
 androidx-coordinatorlayout = "1.2.0"
 androidx-core = "1.9.0"
-androidx-fragment = "1.5.3"
-androidx-lifecycle = "2.5.1"
-androidx-navigation = "2.5.2"
+androidx-fragment = "1.5.6"
+androidx-lifecycle = "2.6.1"
+androidx-navigation = "2.5.3"
 androidx-paging = "3.1.1"
 androidx-preference = "1.2.0"
-androidx-recyclerview = "1.2.1"
-androidx-room = "2.4.3"
-androidx-test-core = "1.5.0-beta01"
-androidx-test-rules = "1.4.0"
-androidx-test-runner = "1.4.0"
-com-android-tools-build-gradle = "7.3.1"
-com-github-bumptech-glide = "4.14.2"
-com-google-android-material = "1.7.0"
-com-google-dagger = "2.44"
+androidx-recyclerview = "1.3.0"
+androidx-room = "2.5.1"
+androidx-test-core = "1.5.0"
+androidx-test-rules = "1.5.0"
+androidx-test-runner = "1.5.2"
+com-android-tools-build-gradle = "7.4.2"
+com-github-bumptech-glide = "4.15.1"
+com-google-android-material = "1.8.0"
+com-google-code-gson = "2.10.1"
+com-google-dagger = "2.45"
 com-squareup-retrofit = "2.9.0"
 junit = "4.13.2"
-org-jetbrains-kotlin = "1.7.20"
+org-jetbrains-kotlin = "1.8.10"
 org-jetbrains-kotlinx-coroutines = "1.6.4"
-org-mockito = "4.8.0"
-org-mockito-kotlin = "4.0.0"
-org-robolectric = "4.9"
+org-mockito = "5.2.0"
+org-mockito-kotlin = "4.1.0"
+org-robolectric = "4.9.2"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
@@ -48,6 +49,7 @@ androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
 com-github-bumptech-glide = { module = "com.github.bumptech.glide:glide", version.ref = "com-github-bumptech-glide" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
+com-google-code-gson = { module = "com.google.code.gson:gson", version.ref = "com-google-code-gson" }
 com-google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "com-google-dagger" }
 com-google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "com-google-dagger" }
 com-squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "com-squareup-retrofit" }
@@ -55,7 +57,7 @@ com-squareup-retrofit-converter-gson = { module = "com.squareup.retrofit2:conver
 junit = { module = "junit:junit", version.ref = "junit" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines" }
 org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines" }
-org-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "org-mockito" }
+org-mockito-core = { module = "org.mockito:mockito-core", version.ref = "org-mockito" }
 org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
 org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-robolectric" }
 
