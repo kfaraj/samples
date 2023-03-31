@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     override fun onClick(v: View) {
         Snackbar.make(v, R.string.lorem_ipsum, Snackbar.LENGTH_SHORT)
+            .setAnchorView(R.id.fab)
             .show()
     }
 
