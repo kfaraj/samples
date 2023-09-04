@@ -1,6 +1,6 @@
 package com.kfaraj.samples.pokedex.data.local
 
-import com.kfaraj.samples.pokedex.testutils.TestPagingSource
+import androidx.paging.testing.asPagingSourceFactory
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -35,7 +35,8 @@ class PokemonsLocalDataSourceTest {
 
     @Test
     fun getPagingSource() {
-        val pagingSource = TestPagingSource<Int, PokemonEntity>(listOf(BULBASAUR_ENTITY))
+        val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
+        val pagingSource = pagingSourceFactory()
         val pokemonDao = mock<PokemonDao>().apply {
             whenever(getPagingSource()).thenReturn(pagingSource)
         }

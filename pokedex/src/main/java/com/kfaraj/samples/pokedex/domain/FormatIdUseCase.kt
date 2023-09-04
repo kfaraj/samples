@@ -1,6 +1,6 @@
 package com.kfaraj.samples.pokedex.domain
 
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 /**

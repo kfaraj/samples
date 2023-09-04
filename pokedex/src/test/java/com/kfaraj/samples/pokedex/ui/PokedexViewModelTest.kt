@@ -1,15 +1,13 @@
 package com.kfaraj.samples.pokedex.ui
 
-import androidx.paging.AsyncPagingDataDiffer
-import androidx.paging.PagingData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.testing.asPagingSourceFactory
+import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.domain.GetSpriteUseCase
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
-import com.kfaraj.samples.pokedex.testutils.TestItemCallback
-import com.kfaraj.samples.pokedex.testutils.TestListUpdateCallback
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -25,7 +23,12 @@ class PokedexViewModelTest {
 
     @Test
     fun pagingData() = runTest {
-        val pagingData = flowOf(PagingData.from(listOf(BULBASAUR)))
+        val pagingSourceFactory = listOf(BULBASAUR).asPagingSourceFactory()
+        val pagingData = Pager(
+            PagingConfig(1),
+            null,
+            pagingSourceFactory
+        ).flow
         val pokemonsRepository = mock<PokemonsRepository>().apply {
             whenever(getPagingDataStream(any())).thenReturn(pagingData)
         }
@@ -36,15 +39,8 @@ class PokedexViewModelTest {
             pokemonsRepository,
             getSpriteUseCase
         )
-        val result = viewModel.pagingData.first()
-        val differ = AsyncPagingDataDiffer(
-            TestItemCallback<PokedexItemUiState>(),
-            TestListUpdateCallback(),
-            mainDispatcherRule.testDispatcher,
-            mainDispatcherRule.testDispatcher
-        )
-        differ.submitData(result)
-        assertEquals(listOf(BULBASAUR_UI_STATE), differ.snapshot().items)
+        val result = viewModel.pagingData.asSnapshot()
+        assertEquals(listOf(BULBASAUR_UI_STATE), result)
     }
 
     companion object {

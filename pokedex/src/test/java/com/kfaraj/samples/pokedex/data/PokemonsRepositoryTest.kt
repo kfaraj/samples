@@ -1,16 +1,13 @@
 package com.kfaraj.samples.pokedex.data
 
-import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingConfig
+import androidx.paging.testing.asPagingSourceFactory
+import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.local.PokemonEntity
 import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
+import com.kfaraj.samples.pokedex.data.remote.NamedApiResourceList
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
-import com.kfaraj.samples.pokedex.testutils.TestItemCallback
-import com.kfaraj.samples.pokedex.testutils.TestListUpdateCallback
-import com.kfaraj.samples.pokedex.testutils.TestPagingSource
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -39,8 +36,12 @@ class PokemonsRepositoryTest {
 
     @Test
     fun getPagingDataStream() = runTest {
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
-        val pagingSource = TestPagingSource<Int, PokemonEntity>(listOf(BULBASAUR_ENTITY))
+        val response = NamedApiResourceList(1, null, "/", emptyList())
+        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
+            whenever(getPokemon(1, 1)).thenReturn(response)
+        }
+        val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
+        val pagingSource = pagingSourceFactory()
         val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
             whenever(getPagingSource()).thenReturn(pagingSource)
             whenever(getCount()).thenReturn(1)
@@ -49,18 +50,8 @@ class PokemonsRepositoryTest {
             pokemonsRemoteDataSource,
             pokemonsLocalDataSource
         )
-        val result = pokemonsRepository.getPagingDataStream(PagingConfig(1)).first()
-        val differ = AsyncPagingDataDiffer(
-            TestItemCallback<Pokemon>(),
-            TestListUpdateCallback(),
-            mainDispatcherRule.testDispatcher,
-            mainDispatcherRule.testDispatcher
-        )
-        val collectJob = launch(mainDispatcherRule.testDispatcher) {
-            differ.submitData(result)
-        }
-        assertEquals(listOf(BULBASAUR), differ.snapshot().items)
-        collectJob.cancel()
+        val result = pokemonsRepository.getPagingDataStream(PagingConfig(1)).asSnapshot()
+        assertEquals(listOf(BULBASAUR), result)
     }
 
     companion object {
