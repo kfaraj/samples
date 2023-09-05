@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = 'samples'
-include ':darktheme'
-include ':pokedex'
+include ':darktheme:app'
+include ':pokedex:app'
