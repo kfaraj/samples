@@ -1,12 +1,11 @@
 package com.kfaraj.samples.pokedex.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kfaraj.samples.pokedex.R
@@ -19,7 +18,8 @@ import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 class PokedexItemViewHolder(
     parent: ViewGroup,
     private val formatIdUseCase: FormatIdUseCase,
-    private val formatNameUseCase: FormatNameUseCase
+    private val formatNameUseCase: FormatNameUseCase,
+    onClick: (v: View, position: Int) -> Unit
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
 ) {
@@ -28,18 +28,17 @@ class PokedexItemViewHolder(
     private val titleView = ViewCompat.requireViewById<TextView>(itemView, R.id.title)
     private val bodyView = ViewCompat.requireViewById<TextView>(itemView, R.id.body)
 
+    init {
+        itemView.setOnClickListener { v ->
+            onClick(v, bindingAdapterPosition)
+        }
+    }
+
     /**
      * Binds the [item] with the view.
      */
     fun bind(item: PokedexItemUiState?) {
         itemView.transitionName = item?.id?.toString()
-        itemView.setOnClickListener { v ->
-            item?.id?.let {
-                val action = PokedexFragmentDirections.actionPokedexToPokemon(it)
-                val extras = FragmentNavigatorExtras(itemView to "container")
-                v.findNavController().navigate(action, extras)
-            }
-        }
         Glide.with(itemView)
             .load(item?.sprite)
             .into(mediaView)

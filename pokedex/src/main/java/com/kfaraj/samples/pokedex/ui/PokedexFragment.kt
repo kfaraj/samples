@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialElevationScale
 import com.kfaraj.samples.pokedex.R
@@ -43,7 +45,17 @@ class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = ViewCompat.requireViewById<RecyclerView>(view, android.R.id.list)
-        val adapter = PokedexItemAdapter(PokedexItemCallback(), formatIdUseCase, formatNameUseCase)
+        val adapter = PokedexItemAdapter(
+            PokedexItemCallback(),
+            formatIdUseCase,
+            formatNameUseCase
+        ) { v, item ->
+            item?.id?.let {
+                val action = PokedexFragmentDirections.actionPokedexToPokemon(it)
+                val extras = FragmentNavigatorExtras(v to "container")
+                v.findNavController().navigate(action, extras)
+            }
+        }
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         (view as? ViewGroup)?.isTransitionGroup = true
