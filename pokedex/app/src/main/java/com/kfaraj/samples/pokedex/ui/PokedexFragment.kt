@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +18,7 @@ import com.google.android.material.transition.MaterialElevationScale
 import com.kfaraj.samples.pokedex.R
 import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
 import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
+import com.kfaraj.samples.pokedex.util.applyWindowInsetsPadding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -58,6 +60,10 @@ class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
         }
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
+        recyclerView.applyWindowInsetsPadding(
+            WindowInsetsCompat.Type.systemBars(),
+            applyBottom = true
+        )
         (view as? ViewGroup)?.isTransitionGroup = true
         postponeEnterTransition()
         viewLifecycleOwner.lifecycleScope.launch {

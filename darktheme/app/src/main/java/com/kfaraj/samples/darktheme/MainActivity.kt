@@ -8,9 +8,12 @@ import android.view.View.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener
 import androidx.core.app.ActivityCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.kfaraj.samples.darktheme.util.applyWindowInsetsMargin
 
 /**
  * Demonstrates how to implement a dark theme.
@@ -21,9 +24,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         val toolbar = ActivityCompat.requireViewById<MaterialToolbar>(this, R.id.toolbar)
         val fab = ActivityCompat.requireViewById<FloatingActionButton>(this, R.id.fab)
         toolbar.setOnMenuItemClickListener(this)
+        toolbar.applyWindowInsetsMargin(
+            WindowInsetsCompat.Type.systemBars(),
+            applyLeft = true,
+            applyRight = true
+        )
         fab.setOnClickListener(this)
     }
 
