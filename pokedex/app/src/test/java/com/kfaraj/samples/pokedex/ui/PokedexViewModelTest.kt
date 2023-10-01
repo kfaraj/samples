@@ -1,13 +1,14 @@
 package com.kfaraj.samples.pokedex.ui
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.testing.asPagingSourceFactory
+import androidx.paging.LoadState
+import androidx.paging.LoadStates
+import androidx.paging.PagingData
 import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.domain.GetSpriteUseCase
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -23,12 +24,16 @@ class PokedexViewModelTest {
 
     @Test
     fun pagingData() = runTest {
-        val pagingSourceFactory = listOf(BULBASAUR).asPagingSourceFactory()
-        val pagingData = Pager(
-            PagingConfig(1),
-            null,
-            pagingSourceFactory
-        ).flow
+        val pagingData = flowOf(
+            PagingData.from(
+                listOf(BULBASAUR),
+                LoadStates(
+                    LoadState.NotLoading(true),
+                    LoadState.NotLoading(true),
+                    LoadState.NotLoading(true)
+                )
+            )
+        )
         val pokemonsRepository = mock<PokemonsRepository>().apply {
             whenever(getPagingDataStream(any())).thenReturn(pagingData)
         }
