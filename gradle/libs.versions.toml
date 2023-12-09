@@ -1,31 +1,31 @@
 [versions]
-androidx-activity = "1.7.2"
+androidx-activity = "1.8.1"
 androidx-appcompat = "1.6.1"
 androidx-coordinatorlayout = "1.2.0"
 androidx-core = "1.12.0"
-androidx-fragment = "1.6.1"
+androidx-fragment = "1.6.2"
 androidx-lifecycle = "2.6.2"
-androidx-navigation = "2.7.3"
+androidx-navigation = "2.7.5"
 androidx-paging = "3.2.1"
 androidx-preference = "1.2.1"
-androidx-recyclerview = "1.3.1"
-androidx-room = "2.5.2"
+androidx-recyclerview = "1.3.2"
+androidx-room = "2.6.1"
 androidx-test-core = "1.5.0"
 androidx-test-rules = "1.5.0"
 androidx-test-runner = "1.5.2"
-com-android-tools-build-gradle = "8.1.2"
+com-android-tools-build-gradle = "8.2.0"
 com-github-bumptech-glide = "4.16.0"
-com-google-android-material = "1.9.0"
+com-google-android-material = "1.10.0"
 com-google-code-gson = "2.10.1"
-com-google-dagger = "2.48"
-com-google-devtools-ksp = "1.9.10-1.0.13"
+com-google-dagger = "2.49"
+com-google-devtools-ksp = "1.9.21-1.0.15"
 com-squareup-retrofit = "2.9.0"
 junit = "4.13.2"
-org-jetbrains-kotlin = "1.9.10"
+org-jetbrains-kotlin = "1.9.21"
 org-jetbrains-kotlinx-coroutines = "1.7.3"
-org-mockito = "5.5.0"
-org-mockito-kotlin = "5.1.0"
-org-robolectric = "4.10.3"
+org-mockito = "5.8.0"
+org-mockito-kotlin = "5.2.1"
+org-robolectric = "4.11.1"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
@@ -65,6 +65,7 @@ org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-r
 
 [plugins]
 androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidx-navigation" }
+androidx-room = { id = "androidx.room", version.ref = "androidx-room" }
 com-android-application = { id = "com.android.application", version.ref = "com-android-tools-build-gradle" }
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "com-google-dagger" }
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "com-google-devtools-ksp" }

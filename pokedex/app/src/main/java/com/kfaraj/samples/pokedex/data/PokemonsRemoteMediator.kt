@@ -1,5 +1,6 @@
 package com.kfaraj.samples.pokedex.data
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
@@ -14,6 +15,7 @@ import java.io.IOException
 /**
  * Incrementally loads Pokémon data from a remote data source into a local data source.
  */
+@ExperimentalPagingApi
 class PokemonsRemoteMediator(
     private val pokemonsRemoteDataSource: PokemonsRemoteDataSource,
     private val pokemonsLocalDataSource: PokemonsLocalDataSource
