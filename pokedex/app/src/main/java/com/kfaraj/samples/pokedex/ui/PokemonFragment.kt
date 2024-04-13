@@ -2,23 +2,23 @@ package com.kfaraj.samples.pokedex.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.view.ViewCompat
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.bumptech.glide.Glide
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.MaterialContainerTransform
-import com.kfaraj.samples.pokedex.R
 import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
 import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
+import com.kfaraj.samples.pokedex.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +27,7 @@ import javax.inject.Inject
  * Displays the Pokémon UI state on the screen.
  */
 @AndroidEntryPoint
-class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
+class PokemonFragment : Fragment() {
 
     @Inject
     lateinit var formatIdUseCase: FormatIdUseCase
@@ -36,10 +36,6 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
     lateinit var formatNameUseCase: FormatNameUseCase
 
     private val viewModel by viewModels<PokemonViewModel>()
-
-    private lateinit var mediaView: ImageView
-    private lateinit var titleView: TextView
-    private lateinit var bodyView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +52,29 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val context = requireContext()
+        return ComposeView(context).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                AppTheme {
+                    val uiState = viewModel.uiState.collectAsState()
+                    PokemonScreen(
+                        media = uiState.value.sprite,
+                        title = uiState.value.id?.let { formatIdUseCase(it) } ?: "",
+                        body = uiState.value.name?.let { formatNameUseCase(it) } ?: ""
+                    )
+                }
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mediaView = ViewCompat.requireViewById(view, R.id.media)
-        titleView = ViewCompat.requireViewById(view, R.id.title)
-        bodyView = ViewCompat.requireViewById(view, R.id.body)
         view.transitionName = "container"
         postponeEnterTransition()
         viewLifecycleOwner.lifecycleScope.launch {
@@ -69,21 +83,9 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
                     (view.parent as? ViewGroup)?.doOnPreDraw {
                         startPostponedEnterTransition()
                     }
-                    bind(uiState)
                 }
             }
         }
-    }
-
-    /**
-     * Binds the [uiState] with the view.
-     */
-    private fun bind(uiState: PokemonUiState) {
-        Glide.with(this)
-            .load(uiState.sprite)
-            .into(mediaView)
-        titleView.text = uiState.id?.let { formatIdUseCase(it) }
-        bodyView.text = uiState.name?.let { formatNameUseCase(it) }
     }
 
 }
