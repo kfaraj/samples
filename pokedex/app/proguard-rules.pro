@@ -12,6 +12,3 @@
 -keepclassmembers,allowobfuscation,allowoptimization class <1> {
   <init>();
 }
-
-# Retrofit
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
