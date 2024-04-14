@@ -22,7 +22,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:name="com.kfaraj.samples.darktheme.MainFragment"
+        android:name="com.kfaraj.samples.darktheme.ui.MainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
