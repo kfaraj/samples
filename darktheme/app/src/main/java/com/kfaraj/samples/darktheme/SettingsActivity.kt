@@ -7,8 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
-import com.kfaraj.samples.darktheme.util.applyWindowInsetsMargin
+import com.kfaraj.samples.darktheme.util.applyWindowInsetsPadding
 
 /**
  * Contains settings.
@@ -21,9 +22,11 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings),
         super.onCreate(savedInstanceState)
         val toolbar = ActivityCompat.requireViewById<MaterialToolbar>(this, R.id.toolbar)
         toolbar.setNavigationOnClickListener(this)
-        toolbar.applyWindowInsetsMargin(
-            WindowInsetsCompat.Type.systemBars(),
+        (toolbar.parent as AppBarLayout).applyWindowInsetsPadding(
+            WindowInsetsCompat.Type.systemBars() or
+                    WindowInsetsCompat.Type.displayCutout(),
             applyLeft = true,
+            applyTop = true,
             applyRight = true
         )
     }
