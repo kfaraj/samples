@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.kfaraj.samples.darktheme"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.kfaraj.samples.darktheme"
         minSdk = 21
@@ -39,11 +39,11 @@ android {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.activity)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.ktx)

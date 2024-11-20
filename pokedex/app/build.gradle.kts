@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.com.google.dagger.hilt.android)
-    alias(libs.plugins.androidx.navigation.safeargs.kotlin)
     alias(libs.plugins.androidx.room)
 }
 
 android {
     namespace = "com.kfaraj.samples.pokedex"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.kfaraj.samples.pokedex"
         minSdk = 21
@@ -53,8 +53,8 @@ android {
         }
         managedDevices {
             localDevices {
-                register("pixel8Api34") {
-                    device = "Pixel 8"
+                register("pixel9Api34") {
+                    device = "Pixel 9"
                     apiLevel = 34
                     systemImageSource = "aosp-atd"
                 }
@@ -64,7 +64,7 @@ android {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 room {
@@ -72,16 +72,16 @@ room {
 }
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.activity)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.room.ktx)
@@ -96,6 +96,7 @@ dependencies {
     implementation(libs.com.squareup.retrofit)
     implementation(libs.com.squareup.retrofit.converter.gson)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
+    implementation(libs.org.jetbrains.kotlinx.serialization.json)
     testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.androidx.test.core.ktx)
     testImplementation(libs.junit)

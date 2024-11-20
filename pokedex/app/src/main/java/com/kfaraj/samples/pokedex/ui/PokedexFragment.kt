@@ -53,9 +53,8 @@ class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
             formatNameUseCase
         ) { v, item ->
             item?.id?.let {
-                val action = PokedexFragmentDirections.actionPokedexToPokemon(it)
                 val extras = FragmentNavigatorExtras(v to "container")
-                v.findNavController().navigate(action, extras)
+                v.findNavController().navigateToPokemonDestination(it, extras)
             }
         }
         recyclerView.setHasFixedSize(true)

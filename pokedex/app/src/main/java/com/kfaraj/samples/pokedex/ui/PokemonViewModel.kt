@@ -3,6 +3,7 @@ package com.kfaraj.samples.pokedex.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.domain.GetSpriteUseCase
@@ -31,7 +32,7 @@ class PokemonViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val id = PokemonFragmentArgs.fromSavedStateHandle(savedStateHandle).id
+            val id = savedStateHandle.toRoute<PokemonRoute>().id
             val pokemon = pokemonsRepository.get(id)
             _uiState.value = pokemon.toPokemonUiState(getSpriteUseCase)
         }
