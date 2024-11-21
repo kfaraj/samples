@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.kfaraj.samples.pokedex"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "0.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -53,9 +53,9 @@ android {
         }
         managedDevices {
             localDevices {
-                register("pixel9Api34") {
+                register("pixel9Api35") {
                     device = "Pixel 9"
-                    apiLevel = 34
+                    apiLevel = 35
                     systemImageSource = "aosp-atd"
                 }
             }
