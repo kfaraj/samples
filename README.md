@@ -2,7 +2,12 @@
 
 This project is a collection of samples for Android.
 
-It contains the following samples:
+## [Dark theme](darktheme)
 
-- [Dark theme](darktheme)
-- [Pokédex](pokedex)
+This sample demonstrates how to implement a
+[dark theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme).
+
+## [Pokédex](pokedex)
+
+This sample demonstrates best practices for
+[Modern Android Development](https://developer.android.com/modern-android-development).
