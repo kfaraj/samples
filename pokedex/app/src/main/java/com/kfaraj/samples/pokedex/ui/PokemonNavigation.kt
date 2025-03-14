@@ -1,11 +1,11 @@
 package com.kfaraj.samples.pokedex.ui
 
-import android.content.res.Resources
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.Navigator
-import androidx.navigation.fragment.fragment
-import com.kfaraj.samples.pokedex.R
+import androidx.navigation.compose.composable
+import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
+import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 import kotlinx.serialization.Serializable
 
 /**
@@ -20,10 +20,15 @@ data class PokemonRoute(
  * Adds the Pokémon destination.
  */
 fun NavGraphBuilder.pokemonDestination(
-    resources: Resources
+    formatIdUseCase: FormatIdUseCase,
+    formatNameUseCase: FormatNameUseCase
 ) {
-    fragment<PokemonFragment, PokemonRoute> {
-        label = resources.getString(R.string.empty)
+    composable<PokemonRoute> {
+        PokemonScreen(
+            viewModel = hiltViewModel(),
+            formatIdUseCase = formatIdUseCase,
+            formatNameUseCase = formatNameUseCase
+        )
     }
 }
 
@@ -31,9 +36,8 @@ fun NavGraphBuilder.pokemonDestination(
  * Navigates to the Pokémon destination.
  */
 fun NavController.navigateToPokemonDestination(
-    id: Int,
-    navigatorExtras: Navigator.Extras
+    id: Int
 ) {
     val route = PokemonRoute(id)
-    navigate(route, null, navigatorExtras)
+    navigate(route)
 }
