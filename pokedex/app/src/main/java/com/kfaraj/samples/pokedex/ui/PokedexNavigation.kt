@@ -1,9 +1,10 @@
 package com.kfaraj.samples.pokedex.ui
 
-import android.content.res.Resources
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.fragment.fragment
-import com.kfaraj.samples.pokedex.R
+import androidx.navigation.compose.composable
+import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
+import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 import kotlinx.serialization.Serializable
 
 /**
@@ -16,9 +17,16 @@ data object PokedexRoute
  * Adds the Pokédex destination.
  */
 fun NavGraphBuilder.pokedexDestination(
-    resources: Resources
+    formatIdUseCase: FormatIdUseCase,
+    formatNameUseCase: FormatNameUseCase,
+    onClick: (item: PokedexItemUiState?) -> Unit
 ) {
-    fragment<PokedexFragment, PokedexRoute> {
-        label = resources.getString(R.string.app_name)
+    composable<PokedexRoute> {
+        PokedexScreen(
+            viewModel = hiltViewModel(),
+            formatIdUseCase = formatIdUseCase,
+            formatNameUseCase = formatNameUseCase,
+            onClick = onClick
+        )
     }
 }
