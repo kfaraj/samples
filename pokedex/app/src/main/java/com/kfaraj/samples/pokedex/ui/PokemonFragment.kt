@@ -13,7 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.bumptech.glide.Glide
+import coil3.load
+import coil3.request.allowHardware
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.MaterialContainerTransform
 import com.kfaraj.samples.pokedex.R
@@ -79,9 +80,9 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
      * Binds the [uiState] with the view.
      */
     private fun bind(uiState: PokemonUiState) {
-        Glide.with(this)
-            .load(uiState.sprite)
-            .into(mediaView)
+        mediaView.load(uiState.sprite) {
+            allowHardware(false)
+        }
         titleView.text = uiState.id?.let { formatIdUseCase(it) }
         bodyView.text = uiState.name?.let { formatNameUseCase(it) }
     }

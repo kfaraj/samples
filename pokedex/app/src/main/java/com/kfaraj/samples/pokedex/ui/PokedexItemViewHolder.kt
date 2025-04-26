@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil3.load
+import coil3.request.allowHardware
 import com.kfaraj.samples.pokedex.R
 import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
 import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
@@ -39,9 +40,9 @@ class PokedexItemViewHolder(
      */
     fun bind(item: PokedexItemUiState?) {
         itemView.transitionName = item?.id?.toString()
-        Glide.with(itemView)
-            .load(item?.sprite)
-            .into(mediaView)
+        mediaView.load(item?.sprite) {
+            allowHardware(false)
+        }
         titleView.text = item?.id?.let { formatIdUseCase(it) }
         bodyView.text = item?.name?.let { formatNameUseCase(it) }
     }

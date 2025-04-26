@@ -14,12 +14,12 @@ androidx-test-core = "1.6.1"
 androidx-test-rules = "1.6.1"
 androidx-test-runner = "1.6.2"
 com-android-tools-build-gradle = "8.9.0"
-com-github-bumptech-glide = "4.16.0"
 com-google-android-material = "1.12.0"
 com-google-code-gson = "2.12.1"
 com-google-dagger = "2.55"
 com-google-devtools-ksp = "2.1.10-1.0.31"
 com-squareup-retrofit = "2.11.0"
+io-coil = "3.1.0"
 junit = "4.13.2"
 org-jetbrains-kotlin = "2.1.10"
 org-jetbrains-kotlinx-coroutines = "1.10.1"
@@ -50,13 +50,14 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test-core" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-rules" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
-com-github-bumptech-glide = { module = "com.github.bumptech.glide:glide", version.ref = "com-github-bumptech-glide" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
 com-google-code-gson = { module = "com.google.code.gson:gson", version.ref = "com-google-code-gson" }
 com-google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "com-google-dagger" }
 com-google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "com-google-dagger" }
 com-squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "com-squareup-retrofit" }
 com-squareup-retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "com-squareup-retrofit" }
+io-coil = { module = "io.coil-kt.coil3:coil", version.ref = "io-coil" }
+io-coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "io-coil" }
 junit = { module = "junit:junit", version.ref = "junit" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines" }
 org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines" }
