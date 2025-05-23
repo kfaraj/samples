@@ -1,13 +1,15 @@
 package com.kfaraj.samples.pokedex.data.remote
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Contains the named API resource.
  */
+@Serializable
 data class NamedApiResource(
-    @SerializedName("name") val name: String,
-    @SerializedName("url") val url: String
+    @SerialName("name") val name: String,
+    @SerialName("url") val url: String
 )
 
 /**
