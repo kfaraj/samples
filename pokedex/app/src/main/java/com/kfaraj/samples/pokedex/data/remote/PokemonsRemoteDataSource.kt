@@ -1,12 +1,16 @@
 package com.kfaraj.samples.pokedex.data.remote
 
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 import javax.inject.Inject
 
 /**
  * Exposes Pokémon data from a remote data source.
  */
 class PokemonsRemoteDataSource @Inject constructor(
-    private val pokeApiService: PokeApiService
+    private val httpClient: HttpClient
 ) {
 
     /**
@@ -16,7 +20,10 @@ class PokemonsRemoteDataSource @Inject constructor(
         limit: Int,
         offset: Int
     ): NamedApiResourceList {
-        return pokeApiService.getPokemon(limit, offset)
+        return httpClient.get("pokemon") {
+            parameter("limit", limit)
+            parameter("offset", offset)
+        }.body()
     }
 
 }

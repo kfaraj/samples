@@ -1,18 +1,18 @@
 package com.kfaraj.samples.pokedex.data.remote
 
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 class PokemonsRemoteDataSourceTest {
 
     @Test
     fun getPokemon() = runTest {
         val response = NamedApiResourceList(1, null, null, listOf(BULBASAUR_API_RESOURCE))
-        val pokeApiService = mock<PokeApiService>().apply {
-            whenever(getPokemon(1, 0)).thenReturn(response)
+        val pokeApiService = mock<HttpClient>().apply {
+            // FIXME: whenever(get("pokemon?limit=1&offset=0")).thenReturn(response)
         }
         val pokemonsRemoteDataSource = PokemonsRemoteDataSource(
             pokeApiService
