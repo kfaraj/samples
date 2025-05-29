@@ -9,7 +9,7 @@ import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResource
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
 import com.kfaraj.samples.pokedex.data.remote.id
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 import java.io.IOException
 
 /**
@@ -41,7 +41,7 @@ class PokemonsRemoteMediator(
             MediatorResult.Success(response.next == null)
         } catch (e: IOException) {
             MediatorResult.Error(e)
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             MediatorResult.Error(e)
         }
     }
