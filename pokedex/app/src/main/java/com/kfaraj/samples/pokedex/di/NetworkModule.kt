@@ -15,11 +15,11 @@ import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 /**
- * Provides bindings for Ktor.
+ * Provides bindings for the network.
  */
 @Module
 @InstallIn(SingletonComponent::class)
-object KtorModule {
+object NetworkModule {
 
     private val json = Json {
         encodeDefaults = true
