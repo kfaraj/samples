@@ -14,7 +14,7 @@
     <string-array name="theme_values" translatable="false">
         <item>light</item>
         <item>dark</item>
-        <item>default</item>
+        <item>system_default</item>
     </string-array>
-    <string name="theme_default" translatable="false">default</string>
+    <string name="theme_default" translatable="false">system_default</string>
 </resources>

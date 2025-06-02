@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceFragmentCompat
 import com.kfaraj.samples.darktheme.R
+import com.kfaraj.samples.darktheme.data.SettingsRepository
 import com.kfaraj.samples.darktheme.domain.GetNightModeUseCase
 import com.kfaraj.samples.darktheme.util.applyWindowInsetsPadding
 
@@ -22,7 +23,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val context = requireContext()
-        getNightModeUseCase = GetNightModeUseCase(context)
+        val settingsRepository = SettingsRepository.getInstance(context)
+        getNightModeUseCase = GetNightModeUseCase(settingsRepository)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

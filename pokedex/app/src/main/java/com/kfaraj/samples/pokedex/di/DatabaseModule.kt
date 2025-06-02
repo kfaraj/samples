@@ -12,11 +12,11 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * Provides bindings for [Room].
+ * Provides bindings for the database.
  */
 @Module
 @InstallIn(SingletonComponent::class)
-object RoomModule {
+object DatabaseModule {
 
     /**
      * Provides the [ApplicationDatabase] instance.

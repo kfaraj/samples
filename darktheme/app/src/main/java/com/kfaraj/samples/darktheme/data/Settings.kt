@@ -23,6 +23,6 @@ object Settings {
     /**
      * The theme is system default.
      */
-    const val THEME_DEFAULT = "default"
+    const val THEME_SYSTEM_DEFAULT = "system_default"
 
 }

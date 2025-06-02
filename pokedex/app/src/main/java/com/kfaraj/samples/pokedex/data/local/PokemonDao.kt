@@ -3,11 +3,10 @@ package com.kfaraj.samples.pokedex.data.local
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
-import androidx.room.Room
 import androidx.room.Upsert
 
 /**
- * Exposes Pokémon data from a [Room] database.
+ * Exposes Pokémon data from a database.
  */
 @Dao
 interface PokemonDao {

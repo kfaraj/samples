@@ -37,7 +37,7 @@ annotation class ApplicationScope
  */
 @Module
 @InstallIn(SingletonComponent::class)
-object CoroutineModule {
+object CoroutinesModule {
 
     /**
      * Provides the default [CoroutineDispatcher].

@@ -2,6 +2,7 @@ package com.kfaraj.samples.darktheme
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.kfaraj.samples.darktheme.data.SettingsRepository
 import com.kfaraj.samples.darktheme.domain.GetNightModeUseCase
 
 /**
@@ -13,7 +14,8 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        getNightModeUseCase = GetNightModeUseCase(this)
+        val settingsRepository = SettingsRepository.getInstance(this)
+        getNightModeUseCase = GetNightModeUseCase(settingsRepository)
         val nightMode = getNightModeUseCase()
         AppCompatDelegate.setDefaultNightMode(nightMode)
     }

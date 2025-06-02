@@ -1,7 +1,7 @@
 package com.kfaraj.samples.pokedex.data.remote
 
 /**
- * Exposes Pokémon data from a Ktor service.
+ * Exposes Pokémon data from an API service.
  */
 interface PokeApiService {
 
