@@ -10,13 +10,13 @@ class PokemonsRemoteDataSource @Inject constructor(
 ) {
 
     /**
-     * Returns the paginated list of Pokémon API resources.
+     * Returns the paginated list of Pokémon species API resources.
      */
-    suspend fun getPokemon(
+    suspend fun getPokemonSpecies(
         limit: Int,
         offset: Int
     ): NamedApiResourceList {
-        return pokeApiService.getPokemon(limit, offset)
+        return pokeApiService.getPokemonSpecies(limit, offset)
     }
 
 }

@@ -4,10 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Contains the named API resource.
+ * Contains the Pokémon sprites.
  */
 @Serializable
-data class NamedApiResource(
-    @SerialName("name") val name: String,
-    @SerialName("url") val url: String
+data class PokemonSprites(
+    @SerialName("front_default") val frontDefault: String
 )

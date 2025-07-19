@@ -52,7 +52,8 @@ class PokemonsRepository @Inject constructor(
     private fun PokemonEntity.toPokemon(): Pokemon {
         return Pokemon(
             id,
-            name
+            name,
+            sprite
         )
     }
 

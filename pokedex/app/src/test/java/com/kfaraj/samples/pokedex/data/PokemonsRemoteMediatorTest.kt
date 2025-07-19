@@ -22,9 +22,9 @@ class PokemonsRemoteMediatorTest {
 
     @Test
     fun load_refresh() = runTest {
-        val response = NamedApiResourceList(1, null, null, listOf(BULBASAUR_API_RESOURCE))
+        val response = NamedApiResourceList(1, null, null, listOf(BULBASAUR_SPECIES_API_RESOURCE))
         val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemon(1, 0)).thenReturn(response)
+            whenever(getPokemonSpecies(1, 0)).thenReturn(response)
         }
         val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
             whenever(getCount()).thenReturn(0)
@@ -44,7 +44,7 @@ class PokemonsRemoteMediatorTest {
     fun load_append() = runTest {
         val response = NamedApiResourceList(1, null, "/", emptyList())
         val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemon(1, 1)).thenReturn(response)
+            whenever(getPokemonSpecies(1, 1)).thenReturn(response)
         }
         val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
             whenever(getCount()).thenReturn(1)
@@ -89,8 +89,15 @@ class PokemonsRemoteMediatorTest {
     }
 
     companion object {
-        private val BULBASAUR_API_RESOURCE = NamedApiResource("bulbasaur", "/1/")
-        private val BULBASAUR_ENTITY = PokemonEntity(1, "bulbasaur")
+        private val BULBASAUR_SPECIES_API_RESOURCE = NamedApiResource(
+            "bulbasaur",
+            "https://pokeapi.co/api/v2/pokemon-species/1/"
+        )
+        private val BULBASAUR_ENTITY = PokemonEntity(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
     }
 
 }

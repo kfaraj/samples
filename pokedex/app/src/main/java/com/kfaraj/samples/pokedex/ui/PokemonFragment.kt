@@ -18,23 +18,14 @@ import coil3.request.allowHardware
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.MaterialContainerTransform
 import com.kfaraj.samples.pokedex.R
-import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
-import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * Displays the Pokémon UI state on the screen.
  */
 @AndroidEntryPoint
 class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
-
-    @Inject
-    lateinit var formatIdUseCase: FormatIdUseCase
-
-    @Inject
-    lateinit var formatNameUseCase: FormatNameUseCase
 
     private val viewModel by viewModels<PokemonViewModel>()
 
@@ -80,11 +71,12 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
      * Binds the [uiState] with the view.
      */
     private fun bind(uiState: PokemonUiState) {
+        val context = requireContext()
         mediaView.load(uiState.sprite) {
             allowHardware(false)
         }
-        titleView.text = uiState.id?.let { formatIdUseCase(it) }
-        bodyView.text = uiState.name?.let { formatNameUseCase(it) }
+        titleView.text = uiState.id?.let { context.getString(R.string.number, it) }
+        bodyView.text = uiState.name
     }
 
 }

@@ -10,17 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import coil3.request.allowHardware
 import com.kfaraj.samples.pokedex.R
-import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
-import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 
 /**
  * Displays the Pokédex item UI state on the screen.
  */
 class PokedexItemViewHolder(
     parent: ViewGroup,
-    private val formatIdUseCase: FormatIdUseCase,
-    private val formatNameUseCase: FormatNameUseCase,
-    onClick: (v: View, position: Int) -> Unit
+    onItemClick: (v: View, position: Int) -> Unit
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
 ) {
@@ -31,7 +27,7 @@ class PokedexItemViewHolder(
 
     init {
         itemView.setOnClickListener { v ->
-            onClick(v, bindingAdapterPosition)
+            onItemClick(v, bindingAdapterPosition)
         }
     }
 
@@ -39,12 +35,13 @@ class PokedexItemViewHolder(
      * Binds the [item] with the view.
      */
     fun bind(item: PokedexItemUiState?) {
+        val context = itemView.context
         itemView.transitionName = item?.id?.toString()
         mediaView.load(item?.sprite) {
             allowHardware(false)
         }
-        titleView.text = item?.id?.let { formatIdUseCase(it) }
-        bodyView.text = item?.name?.let { formatNameUseCase(it) }
+        titleView.text = item?.id?.let { context.getString(R.string.number, it) }
+        bodyView.text = item?.name
     }
 
 }

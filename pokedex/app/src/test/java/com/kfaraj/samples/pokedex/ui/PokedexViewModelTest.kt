@@ -6,7 +6,6 @@ import androidx.paging.PagingData
 import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
-import com.kfaraj.samples.pokedex.domain.GetSpriteUseCase
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -37,20 +36,24 @@ class PokedexViewModelTest {
         val pokemonsRepository = mock<PokemonsRepository>().apply {
             whenever(getPagingDataStream(any())).thenReturn(pagingData)
         }
-        val getSpriteUseCase = mock<GetSpriteUseCase>().apply {
-            whenever(invoke(1)).thenReturn("/1.png")
-        }
         val viewModel = PokedexViewModel(
-            pokemonsRepository,
-            getSpriteUseCase
+            pokemonsRepository
         )
         val result = viewModel.pagingData.asSnapshot()
         assertEquals(listOf(BULBASAUR_UI_STATE), result)
     }
 
     companion object {
-        private val BULBASAUR = Pokemon(1, "bulbasaur")
-        private val BULBASAUR_UI_STATE = PokedexItemUiState(1, "bulbasaur", "/1.png")
+        private val BULBASAUR = Pokemon(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
+        private val BULBASAUR_UI_STATE = PokedexItemUiState(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
     }
 
 }

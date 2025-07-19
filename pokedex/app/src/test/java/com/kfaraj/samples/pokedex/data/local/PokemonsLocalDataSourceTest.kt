@@ -60,7 +60,11 @@ class PokemonsLocalDataSourceTest {
     }
 
     companion object {
-        private val BULBASAUR_ENTITY = PokemonEntity(1, "bulbasaur")
+        private val BULBASAUR_ENTITY = PokemonEntity(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
     }
 
 }

@@ -16,25 +16,16 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialElevationScale
 import com.kfaraj.samples.pokedex.R
-import com.kfaraj.samples.pokedex.domain.FormatIdUseCase
-import com.kfaraj.samples.pokedex.domain.FormatNameUseCase
 import com.kfaraj.samples.pokedex.util.applyWindowInsetsPadding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * Displays the Pokédex UI state on the screen.
  */
 @AndroidEntryPoint
 class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
-
-    @Inject
-    lateinit var formatIdUseCase: FormatIdUseCase
-
-    @Inject
-    lateinit var formatNameUseCase: FormatNameUseCase
 
     private val viewModel by viewModels<PokedexViewModel>()
 
@@ -48,9 +39,7 @@ class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = ViewCompat.requireViewById<RecyclerView>(view, android.R.id.list)
         val adapter = PokedexItemAdapter(
-            PokedexItemCallback(),
-            formatIdUseCase,
-            formatNameUseCase
+            PokedexItemCallback()
         ) { v, item ->
             item?.id?.let {
                 val extras = FragmentNavigatorExtras(v to "container")

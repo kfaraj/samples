@@ -5,5 +5,6 @@ package com.kfaraj.samples.pokedex.data
  */
 data class Pokemon(
     val id: Int,
-    val name: String
+    val name: String,
+    val sprite: String
 )

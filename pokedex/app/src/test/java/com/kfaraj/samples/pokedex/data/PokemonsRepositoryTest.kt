@@ -38,7 +38,7 @@ class PokemonsRepositoryTest {
     fun getPagingDataStream() = runTest {
         val response = NamedApiResourceList(1, null, "/", emptyList())
         val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemon(1, 1)).thenReturn(response)
+            whenever(getPokemonSpecies(1, 1)).thenReturn(response)
         }
         val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
         val pagingSource = pagingSourceFactory()
@@ -55,8 +55,16 @@ class PokemonsRepositoryTest {
     }
 
     companion object {
-        private val BULBASAUR_ENTITY = PokemonEntity(1, "bulbasaur")
-        private val BULBASAUR = Pokemon(1, "bulbasaur")
+        private val BULBASAUR_ENTITY = PokemonEntity(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
+        private val BULBASAUR = Pokemon(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
     }
 
 }

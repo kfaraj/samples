@@ -9,11 +9,11 @@ internal class DefaultPokeApiService(
     private val httpClient: HttpClient
 ) : PokeApiService {
 
-    override suspend fun getPokemon(
+    override suspend fun getPokemonSpecies(
         limit: Int,
         offset: Int
     ): NamedApiResourceList {
-        return httpClient.get("pokemon/") {
+        return httpClient.get("pokemon-species/") {
             parameter("limit", limit)
             parameter("offset", offset)
         }.body()

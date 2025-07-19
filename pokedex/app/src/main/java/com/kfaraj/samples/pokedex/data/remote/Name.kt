@@ -4,10 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Contains the named API resource.
+ * Contains the name.
  */
 @Serializable
-data class NamedApiResource(
+data class Name(
     @SerialName("name") val name: String,
-    @SerialName("url") val url: String
+    @SerialName("language") val language: NamedApiResource
 )

@@ -7,8 +7,11 @@ import androidx.paging.RemoteMediator
 import com.kfaraj.samples.pokedex.data.local.PokemonEntity
 import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResource
+import com.kfaraj.samples.pokedex.data.remote.Pokemon.sprites
+import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.id
+import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.names
+import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.varieties
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
-import com.kfaraj.samples.pokedex.data.remote.id
 import io.ktor.client.plugins.ResponseException
 import java.io.IOException
 
@@ -31,7 +34,7 @@ class PokemonsRemoteMediator(
                 LoadType.PREPEND -> return MediatorResult.Success(true)
                 LoadType.APPEND -> pokemonsLocalDataSource.getCount()
             }
-            val response = pokemonsRemoteDataSource.getPokemon(state.config.pageSize, offset)
+            val response = pokemonsRemoteDataSource.getPokemonSpecies(state.config.pageSize, offset)
             val pokemons = response
                 .results
                 .map { result ->
@@ -60,7 +63,8 @@ class PokemonsRemoteMediator(
     private fun NamedApiResource.toPokemonEntity(): PokemonEntity {
         return PokemonEntity(
             id,
-            name
+            names.first().name,
+            varieties.first().pokemon.sprites.frontDefault
         )
     }
 

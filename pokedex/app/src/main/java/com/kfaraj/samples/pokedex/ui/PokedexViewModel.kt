@@ -7,7 +7,6 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
-import com.kfaraj.samples.pokedex.domain.GetSpriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -17,8 +16,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PokedexViewModel @Inject constructor(
-    pokemonsRepository: PokemonsRepository,
-    getSpriteUseCase: GetSpriteUseCase
+    pokemonsRepository: PokemonsRepository
 ) : ViewModel() {
 
     /**
@@ -27,7 +25,7 @@ class PokedexViewModel @Inject constructor(
     val pagingData = pokemonsRepository.getPagingDataStream(PagingConfig(PAGE_SIZE))
         .map { pagingData ->
             pagingData.map { pokemon ->
-                pokemon.toPokedexItemUiState(getSpriteUseCase)
+                pokemon.toPokedexItemUiState()
             }
         }
         .cachedIn(viewModelScope)
@@ -35,13 +33,11 @@ class PokedexViewModel @Inject constructor(
     /**
      * Converts the model from the data layer to the UI layer.
      */
-    private fun Pokemon.toPokedexItemUiState(
-        getSpriteUseCase: GetSpriteUseCase
-    ): PokedexItemUiState {
+    private fun Pokemon.toPokedexItemUiState(): PokedexItemUiState {
         return PokedexItemUiState(
             id,
             name,
-            getSpriteUseCase(id)
+            sprite
         )
     }
 

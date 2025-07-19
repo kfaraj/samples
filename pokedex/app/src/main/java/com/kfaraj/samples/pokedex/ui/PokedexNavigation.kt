@@ -7,7 +7,7 @@ import com.kfaraj.samples.pokedex.R
 import kotlinx.serialization.Serializable
 
 /**
- * Describes the Pokédex route.
+ * Identifies the Pokédex destination.
  */
 @Serializable
 data object PokedexRoute
