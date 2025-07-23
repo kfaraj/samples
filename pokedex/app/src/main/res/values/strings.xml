@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Pokédex</string>
-    <string name="empty" translatable="false" />
+    <string name="navigate_up">Navigate up</string>
     <string name="number">#%1$04d</string>
 </resources>

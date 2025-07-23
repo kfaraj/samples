@@ -1,92 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.App.Light" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary_40</item>
-        <item name="colorOnPrimary">@color/primary_100</item>
-        <item name="colorPrimaryInverse">@color/primary_80</item>
-        <item name="colorPrimaryContainer">@color/primary_90</item>
-        <item name="colorOnPrimaryContainer">@color/primary_10</item>
-        <item name="colorPrimaryFixed">@color/primary_90</item>
-        <item name="colorPrimaryFixedDim">@color/primary_80</item>
-        <item name="colorOnPrimaryFixed">@color/primary_10</item>
-        <item name="colorOnPrimaryFixedVariant">@color/primary_30</item>
-        <item name="colorSecondary">@color/secondary_40</item>
-        <item name="colorOnSecondary">@color/secondary_100</item>
-        <item name="colorSecondaryContainer">@color/secondary_90</item>
-        <item name="colorOnSecondaryContainer">@color/secondary_10</item>
-        <item name="colorSecondaryFixed">@color/secondary_90</item>
-        <item name="colorSecondaryFixedDim">@color/secondary_80</item>
-        <item name="colorOnSecondaryFixed">@color/secondary_10</item>
-        <item name="colorOnSecondaryFixedVariant">@color/secondary_30</item>
-        <item name="colorTertiary">@color/tertiary_40</item>
-        <item name="colorOnTertiary">@color/tertiary_100</item>
-        <item name="colorTertiaryContainer">@color/tertiary_90</item>
-        <item name="colorOnTertiaryContainer">@color/tertiary_10</item>
-        <item name="colorTertiaryFixed">@color/tertiary_90</item>
-        <item name="colorTertiaryFixedDim">@color/tertiary_80</item>
-        <item name="colorOnTertiaryFixed">@color/tertiary_10</item>
-        <item name="colorOnTertiaryFixedVariant">@color/tertiary_30</item>
+    <style name="Theme.App.Light" parent="android:Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/primary_40</item>
         <item name="android:colorBackground">@color/neutral_98</item>
-        <item name="colorOnBackground">@color/neutral_10</item>
-        <item name="colorSurface">@color/neutral_98</item>
-        <item name="colorOnSurface">@color/neutral_10</item>
-        <item name="colorSurfaceVariant">@color/neutral_variant_90</item>
-        <item name="colorOnSurfaceVariant">@color/neutral_variant_30</item>
-        <item name="colorSurfaceInverse">@color/neutral_20</item>
-        <item name="colorOnSurfaceInverse">@color/neutral_95</item>
-        <item name="colorSurfaceBright">@color/neutral_98</item>
-        <item name="colorSurfaceDim">@color/neutral_87</item>
-        <item name="colorSurfaceContainer">@color/neutral_94</item>
-        <item name="colorSurfaceContainerLow">@color/neutral_96</item>
-        <item name="colorSurfaceContainerHigh">@color/neutral_92</item>
-        <item name="colorSurfaceContainerLowest">@color/neutral_100</item>
-        <item name="colorSurfaceContainerHighest">@color/neutral_90</item>
-        <item name="colorOutline">@color/neutral_variant_50</item>
-        <item name="colorOutlineVariant">@color/neutral_variant_80</item>
     </style>
-    <style name="Theme.App.Dark" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/primary_80</item>
-        <item name="colorOnPrimary">@color/primary_20</item>
-        <item name="colorPrimaryInverse">@color/primary_40</item>
-        <item name="colorPrimaryContainer">@color/primary_30</item>
-        <item name="colorOnPrimaryContainer">@color/primary_90</item>
-        <item name="colorPrimaryFixed">@color/primary_90</item>
-        <item name="colorPrimaryFixedDim">@color/primary_80</item>
-        <item name="colorOnPrimaryFixed">@color/primary_10</item>
-        <item name="colorOnPrimaryFixedVariant">@color/primary_30</item>
-        <item name="colorSecondary">@color/secondary_80</item>
-        <item name="colorOnSecondary">@color/secondary_20</item>
-        <item name="colorSecondaryContainer">@color/secondary_30</item>
-        <item name="colorOnSecondaryContainer">@color/secondary_90</item>
-        <item name="colorSecondaryFixed">@color/secondary_90</item>
-        <item name="colorSecondaryFixedDim">@color/secondary_80</item>
-        <item name="colorOnSecondaryFixed">@color/secondary_10</item>
-        <item name="colorOnSecondaryFixedVariant">@color/secondary_30</item>
-        <item name="colorTertiary">@color/tertiary_80</item>
-        <item name="colorOnTertiary">@color/tertiary_20</item>
-        <item name="colorTertiaryContainer">@color/tertiary_30</item>
-        <item name="colorOnTertiaryContainer">@color/tertiary_90</item>
-        <item name="colorTertiaryFixed">@color/tertiary_90</item>
-        <item name="colorTertiaryFixedDim">@color/tertiary_80</item>
-        <item name="colorOnTertiaryFixed">@color/tertiary_10</item>
-        <item name="colorOnTertiaryFixedVariant">@color/tertiary_30</item>
+    <style name="Theme.App.Dark" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:colorPrimary">@color/primary_80</item>
         <item name="android:colorBackground">@color/neutral_6</item>
-        <item name="colorOnBackground">@color/neutral_90</item>
-        <item name="colorSurface">@color/neutral_6</item>
-        <item name="colorOnSurface">@color/neutral_90</item>
-        <item name="colorSurfaceVariant">@color/neutral_variant_30</item>
-        <item name="colorOnSurfaceVariant">@color/neutral_variant_80</item>
-        <item name="colorSurfaceInverse">@color/neutral_90</item>
-        <item name="colorOnSurfaceInverse">@color/neutral_20</item>
-        <item name="colorSurfaceBright">@color/neutral_24</item>
-        <item name="colorSurfaceDim">@color/neutral_6</item>
-        <item name="colorSurfaceContainer">@color/neutral_12</item>
-        <item name="colorSurfaceContainerLow">@color/neutral_10</item>
-        <item name="colorSurfaceContainerHigh">@color/neutral_17</item>
-        <item name="colorSurfaceContainerLowest">@color/neutral_4</item>
-        <item name="colorSurfaceContainerHighest">@color/neutral_22</item>
-        <item name="colorOutline">@color/neutral_variant_60</item>
-        <item name="colorOutlineVariant">@color/neutral_variant_30</item>
     </style>
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
 </resources>
