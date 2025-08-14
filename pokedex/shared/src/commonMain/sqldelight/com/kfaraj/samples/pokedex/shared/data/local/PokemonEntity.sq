@@ -1,0 +1,23 @@
+CREATE TABLE pokemonEntity (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  sprite TEXT NOT NULL
+);
+
+upsert:
+INSERT OR REPLACE INTO pokemonEntity
+VALUES ?;
+
+get:
+SELECT *
+FROM pokemonEntity
+WHERE id = ?;
+
+getPagingSource:
+SELECT *
+FROM pokemonEntity
+LIMIT :limit OFFSET :offset;
+
+getCount:
+SELECT COUNT(*)
+FROM pokemonEntity;
