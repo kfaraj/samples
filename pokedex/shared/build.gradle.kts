@@ -35,6 +35,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(libs.app.cash.sqldelight.androidx.paging.extensions)
                 implementation(libs.app.cash.sqldelight.coroutines.extensions)
                 implementation(libs.io.ktor.client.content.negotiation)
                 implementation(libs.io.ktor.client.core)

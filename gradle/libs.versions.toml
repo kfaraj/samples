@@ -61,6 +61,7 @@ androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "and
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-rules" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
 app-cash-sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "app-cash-sqldelight" }
+app-cash-sqldelight-androidx-paging-extensions = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "app-cash-sqldelight" }
 app-cash-sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "app-cash-sqldelight" }
 app-cash-sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "app-cash-sqldelight" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
