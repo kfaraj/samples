@@ -1,12 +1,13 @@
 package com.kfaraj.samples.pokedex.data.local
 
 import androidx.paging.PagingSource
-import javax.inject.Inject
+import org.koin.core.annotation.Factory
 
 /**
  * Exposes Pokémon data from a local data source.
  */
-class PokemonsLocalDataSource @Inject constructor(
+@Factory
+class PokemonsLocalDataSource(
     private val pokemonDao: PokemonDao
 ) {
 
