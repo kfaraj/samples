@@ -1,10 +1,8 @@
 package com.kfaraj.samples.pokedex.shared.di
 
-import androidx.room.RoomDatabase
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import app.cash.sqldelight.db.SqlDriver
 import com.kfaraj.samples.pokedex.shared.data.local.ApplicationDatabase
-import com.kfaraj.samples.pokedex.shared.data.local.PokemonDao
-import kotlinx.coroutines.CoroutineDispatcher
+import com.kfaraj.samples.pokedex.shared.data.local.PokemonEntityQueries
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
@@ -20,23 +18,21 @@ object DatabaseModule {
      */
     @Single
     fun provideApplicationDatabase(
-        builder: RoomDatabase.Builder<ApplicationDatabase>,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
+        sqlDriver: SqlDriver
     ): ApplicationDatabase {
-        return builder
-            .setDriver(BundledSQLiteDriver())
-            .setQueryCoroutineContext(ioDispatcher)
-            .build()
+        return ApplicationDatabase(
+            sqlDriver
+        )
     }
 
     /**
-     * Provides the [PokemonDao] instance.
+     * Provides the [PokemonEntityQueries] instance.
      */
     @Factory
-    fun providePokemonDao(
+    fun providePokemonQueries(
         applicationDatabase: ApplicationDatabase
-    ): PokemonDao {
-        return applicationDatabase.getPokemonDao()
+    ): PokemonEntityQueries {
+        return applicationDatabase.pokemonEntityQueries
     }
 
 }

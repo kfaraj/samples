@@ -68,7 +68,7 @@ class PokemonsRepository(
      */
     private fun NamedApiResource.toPokemonEntity(): PokemonEntity {
         return PokemonEntity(
-            id,
+            id.toLong(),
             names.first().name,
             varieties.first().pokemon.sprites.frontDefault
         )

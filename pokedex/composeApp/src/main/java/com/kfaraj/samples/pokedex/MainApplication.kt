@@ -5,7 +5,7 @@ import com.kfaraj.samples.pokedex.shared.di.CoroutinesModule
 import com.kfaraj.samples.pokedex.shared.di.DatabaseModule
 import com.kfaraj.samples.pokedex.shared.di.NetworkModule
 import com.kfaraj.samples.pokedex.shared.di.SharedModule
-import com.kfaraj.samples.pokedex.shared.di.DatabaseBuilderModule
+import com.kfaraj.samples.pokedex.shared.di.SqlModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.module
@@ -26,7 +26,7 @@ class MainApplication : Application() {
                 CoroutinesModule.module,
                 NetworkModule.module,
                 DatabaseModule.module,
-                DatabaseBuilderModule.module
+                SqlModule.module
             )
         }
     }
