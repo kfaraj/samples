@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.kfaraj.samples.darktheme"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         applicationId = "com.kfaraj.samples.darktheme"
         minSdk = 26
