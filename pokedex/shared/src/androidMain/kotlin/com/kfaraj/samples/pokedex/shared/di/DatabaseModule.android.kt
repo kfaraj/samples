@@ -1,17 +1,21 @@
 package com.kfaraj.samples.pokedex.shared.di
 
 import android.content.Context
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import app.cash.sqldelight.db.QueryResult
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.db.SqlSchema
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import org.koin.core.scope.Scope
 
-actual inline fun <reified T : RoomDatabase> databaseBuilder(
+actual fun sqlDriver(
+    schema: SqlSchema<QueryResult.Value<Unit>>,
     scope: Scope,
     name: String
-): RoomDatabase.Builder<T> {
+): SqlDriver {
     val applicationContext: Context = scope.get()
-    return Room.databaseBuilder(
+    return AndroidSqliteDriver(
+        schema = schema,
         context = applicationContext,
-        name = applicationContext.getDatabasePath(name).absolutePath
+        name = name
     )
 }

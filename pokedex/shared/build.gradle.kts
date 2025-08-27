@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.co.touchlab.skie)
     alias(libs.plugins.com.rickclephas.kmp.nativecoroutines)
-    alias(libs.plugins.androidx.room)
+    alias(libs.plugins.app.cash.sqldelight)
 }
 
 kotlin {
@@ -37,9 +37,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.androidx.room.paging)
-                implementation(libs.androidx.room.runtime)
-                implementation(libs.androidx.sqlite.bundled)
+                implementation(libs.app.cash.sqldelight.coroutines.extensions)
                 implementation(libs.io.insert.koin.androidx.compose)
                 implementation(libs.io.insert.koin.annotations)
                 implementation(libs.io.insert.koin.core)
@@ -67,6 +65,7 @@ kotlin {
         }
         androidMain {
             dependencies {
+                implementation(libs.app.cash.sqldelight.android.driver)
                 implementation(libs.io.ktor.client.okhttp)
             }
         }
@@ -84,6 +83,7 @@ kotlin {
         }
         iosMain {
             dependencies {
+                implementation(libs.app.cash.sqldelight.native.driver)
                 implementation(libs.io.ktor.client.darwin)
             }
         }
@@ -101,9 +101,6 @@ kotlin {
 }
 
 dependencies {
-    add("kspAndroid", libs.androidx.room.compiler)
-    add("kspIosArm64", libs.androidx.room.compiler)
-    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
     add("kspCommonMainMetadata", libs.io.insert.koin.ksp.compiler)
 }
 
@@ -127,6 +124,11 @@ skie {
     }
 }
 
-room {
-    schemaDirectory("$projectDir/schemas")
+sqldelight {
+    databases {
+        create("ApplicationDatabase") {
+            packageName.set("com.kfaraj.samples.pokedex.shared.data.local")
+            generateAsync.set(true)
+        }
+    }
 }

@@ -1,24 +1,18 @@
 package com.kfaraj.samples.pokedex.shared.di
 
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import app.cash.sqldelight.db.QueryResult
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.db.SqlSchema
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import org.koin.core.scope.Scope
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSFileManager
-import platform.Foundation.NSUserDomainMask
 
-actual inline fun <reified T : RoomDatabase> databaseBuilder(
+actual fun sqlDriver(
+    schema: SqlSchema<QueryResult.Value<Unit>>,
     scope: Scope,
     name: String
-): RoomDatabase.Builder<T> {
-    val databaseDirectory = NSFileManager.defaultManager.URLForDirectory(
-        directory = NSDocumentDirectory,
-        inDomain = NSUserDomainMask,
-        appropriateForURL = null,
-        create = false,
-        error = null
-    )
-    return Room.databaseBuilder(
-        name = "${databaseDirectory?.path}/$name"
+): SqlDriver {
+    return NativeSqliteDriver(
+        schema = schema,
+        name = name
     )
 }
