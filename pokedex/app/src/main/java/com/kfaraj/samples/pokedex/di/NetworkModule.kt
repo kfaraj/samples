@@ -2,24 +2,21 @@ package com.kfaraj.samples.pokedex.di
 
 import com.kfaraj.samples.pokedex.data.remote.DefaultPokeApiService
 import com.kfaraj.samples.pokedex.data.remote.PokeApiService
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import javax.inject.Singleton
+import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
 /**
  * Provides bindings for the network.
  */
 @Module
-@InstallIn(SingletonComponent::class)
-object NetworkModule {
+class NetworkModule {
 
     private val json = Json {
         encodeDefaults = true
@@ -30,8 +27,7 @@ object NetworkModule {
     /**
      * Provides the [HttpClient] instance.
      */
-    @Singleton
-    @Provides
+    @Single
     fun provideHttpClient(): HttpClient {
         return HttpClient(OkHttp) {
             defaultRequest {
@@ -47,7 +43,7 @@ object NetworkModule {
     /**
      * Provides the [PokeApiService] instance.
      */
-    @Provides
+    @Factory
     fun providePokeApiService(
         httpClient: HttpClient
     ): PokeApiService {
