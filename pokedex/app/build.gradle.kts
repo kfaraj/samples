@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.kfaraj.samples.pokedex"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         applicationId = "com.kfaraj.samples.pokedex"
         minSdk = 26
@@ -42,23 +42,15 @@ android {
     buildFeatures {
         compose = true
     }
-    kotlinOptions {
-        freeCompilerArgs += listOf(
-            "-opt-in=androidx.compose.animation.ExperimentalSharedTransitionApi",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=androidx.paging.ExperimentalPagingApi",
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-        )
-    }
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
         }
         managedDevices {
             localDevices {
-                register("pixel9Api35") {
-                    device = "Pixel 9"
-                    apiLevel = 35
+                register("mediumPhoneApi36") {
+                    device = "Medium Phone"
+                    apiLevel = 36
                     systemImageSource = "aosp-atd"
                 }
             }
@@ -68,6 +60,14 @@ android {
 
 kotlin {
     jvmToolchain(21)
+    compilerOptions {
+        optIn.addAll(
+            "androidx.compose.animation.ExperimentalSharedTransitionApi",
+            "androidx.compose.material3.ExperimentalMaterial3Api",
+            "androidx.paging.ExperimentalPagingApi",
+            "kotlinx.coroutines.ExperimentalCoroutinesApi"
+        )
+    }
 }
 
 room {
@@ -106,12 +106,14 @@ dependencies {
     implementation(libs.org.jetbrains.kotlinx.serialization.json)
     testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.androidx.test.core.ktx)
+    testImplementation(libs.androidx.test.ext.junit.ktx)
     testImplementation(libs.junit)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
     testImplementation(libs.org.mockito.core)
     testImplementation(libs.org.mockito.kotlin)
     testImplementation(libs.org.robolectric)
     androidTestImplementation(libs.androidx.test.core.ktx)
+    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.runner)
 }
