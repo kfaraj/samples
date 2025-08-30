@@ -1,6 +1,7 @@
 package com.kfaraj.samples.pokedex.ui
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
@@ -11,9 +12,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class PokemonViewModelTest {
 
     @get:Rule

@@ -1,32 +1,33 @@
 [versions]
 androidx-activity = "1.10.1"
-androidx-appcompat = "1.7.0"
-androidx-compose-bom = "2025.06.01"
+androidx-appcompat = "1.7.1"
+androidx-compose-bom = "2025.08.01"
 androidx-coordinatorlayout = "1.3.0"
-androidx-core = "1.16.0"
-androidx-fragment = "1.8.6"
+androidx-core = "1.17.0"
+androidx-fragment = "1.8.9"
 androidx-hilt-navigation-compose = "1.2.0"
-androidx-lifecycle = "2.9.0"
-androidx-navigation = "2.9.0"
+androidx-lifecycle = "2.9.3"
+androidx-navigation = "2.9.3"
 androidx-paging = "3.3.6"
 androidx-preference = "1.2.1"
-androidx-room = "2.7.1"
-androidx-test-core = "1.6.1"
-androidx-test-rules = "1.6.1"
-androidx-test-runner = "1.6.2"
-com-android-tools-build-gradle = "8.10.0"
+androidx-room = "2.7.2"
+androidx-test-core = "1.7.0"
+androidx-test-ext-junit = "1.3.0"
+androidx-test-rules = "1.7.0"
+androidx-test-runner = "1.7.0"
+com-android-tools-build-gradle = "8.12.2"
 com-google-android-material = "1.12.0"
-com-google-dagger = "2.56.2"
-com-google-devtools-ksp = "2.1.21-2.0.1"
-io-coil = "3.2.0"
-io-ktor = "3.1.3"
+com-google-dagger = "2.57.1"
+com-google-devtools-ksp = "2.2.10-2.0.2"
+io-coil = "3.3.0"
+io-ktor = "3.2.3"
 junit = "4.13.2"
-org-jetbrains-kotlin = "2.1.21"
+org-jetbrains-kotlin = "2.2.10"
 org-jetbrains-kotlinx-coroutines = "1.10.2"
-org-jetbrains-kotlinx-serialization = "1.8.1"
-org-mockito = "5.17.0"
-org-mockito-kotlin = "5.4.0"
-org-robolectric = "4.14.1"
+org-jetbrains-kotlinx-serialization = "1.9.0"
+org-mockito = "5.19.0"
+org-mockito-kotlin = "6.0.0"
+org-robolectric = "4.16"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "androidx-activity" }
@@ -54,6 +55,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidx-room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test-core" }
+androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-rules" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
