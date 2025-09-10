@@ -1,6 +1,6 @@
 # Samples
 
-This project is a collection of samples for Android.
+This repository contains a collection of samples for Android.
 
 ## [Dark theme](darktheme)
 
