@@ -72,7 +72,7 @@ private fun SharedTransitionScope.PokemonScreen(
                         onClick = onBackClick
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_arrow_back_black_24dp),
+                            painter = painterResource(R.drawable.ic_arrow_back),
                             contentDescription = stringResource(R.string.back)
                         )
                     }
