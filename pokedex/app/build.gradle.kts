@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
-    alias(libs.plugins.com.google.dagger.hilt.android)
     alias(libs.plugins.androidx.room)
 }
 
@@ -70,6 +69,10 @@ kotlin {
     }
 }
 
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
 }
@@ -82,7 +85,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
@@ -94,10 +96,12 @@ dependencies {
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-    implementation(libs.com.google.dagger.hilt.android)
-    ksp(libs.com.google.dagger.hilt.compiler)
     implementation(libs.io.coil.compose)
     implementation(libs.io.coil.network.ktor)
+    implementation(libs.io.insert.koin.android)
+    implementation(libs.io.insert.koin.androidx.compose)
+    implementation(libs.io.insert.koin.annotations)
+    ksp(libs.io.insert.koin.ksp.compiler)
     implementation(libs.io.ktor.client.content.negotiation)
     implementation(libs.io.ktor.client.core)
     implementation(libs.io.ktor.client.okhttp)
