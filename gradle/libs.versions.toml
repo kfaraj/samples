@@ -20,6 +20,8 @@ com-google-android-material = "1.13.0"
 com-google-dagger = "2.57.2"
 com-google-devtools-ksp = "2.3.2"
 io-coil = "3.3.0"
+io-insert-koin = "4.1.1"
+io-insert-koin-annotations = "2.3.1"
 io-ktor = "3.3.2"
 junit = "4.13.2"
 org-jetbrains-kotlin = "2.2.21"
@@ -63,6 +65,9 @@ com-google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", ve
 com-google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "com-google-dagger" }
 io-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "io-coil" }
 io-coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "io-coil" }
+io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "io-insert-koin" }
+io-insert-koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "io-insert-koin-annotations" }
+io-insert-koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "io-insert-koin-annotations" }
 io-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "io-ktor" }
 io-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "io-ktor" }
 io-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "io-ktor" }
