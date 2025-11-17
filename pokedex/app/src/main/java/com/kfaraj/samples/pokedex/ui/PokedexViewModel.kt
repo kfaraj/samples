@@ -7,15 +7,14 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
 /**
  * Exposes the Pokédex UI state.
  */
-@HiltViewModel
-class PokedexViewModel @Inject constructor(
+@KoinViewModel
+class PokedexViewModel(
     pokemonsRepository: PokemonsRepository
 ) : ViewModel() {
 

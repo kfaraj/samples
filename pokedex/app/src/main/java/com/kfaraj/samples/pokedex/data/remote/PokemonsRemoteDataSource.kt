@@ -1,11 +1,12 @@
 package com.kfaraj.samples.pokedex.data.remote
 
-import javax.inject.Inject
+import org.koin.core.annotation.Factory
 
 /**
  * Exposes Pokémon data from a remote data source.
  */
-class PokemonsRemoteDataSource @Inject constructor(
+@Factory
+class PokemonsRemoteDataSource(
     private val pokeApiService: PokeApiService
 ) {
 
