@@ -1,10 +1,16 @@
+import co.touchlab.skie.configuration.FlowInterop
+import co.touchlab.skie.configuration.SealedInterop
+import co.touchlab.skie.configuration.SuspendInterop
 import com.google.devtools.ksp.gradle.KspAATask
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.com.android.kotlin.multiplatform.library)
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.co.touchlab.skie)
+    alias(libs.plugins.com.rickclephas.kmp.nativecoroutines)
     alias(libs.plugins.androidx.room)
 }
 
@@ -18,6 +24,11 @@ kotlin {
     }
     iosArm64()
     iosSimulatorArm64()
+    targets.withType<KotlinNativeTarget>().configureEach {
+        binaries.framework {
+            baseName = "Shared"
+        }
+    }
     sourceSets {
         commonMain {
             dependencies {
@@ -32,6 +43,7 @@ kotlin {
                 implementation(libs.io.ktor.client.content.negotiation)
                 implementation(libs.io.ktor.client.core)
                 implementation(libs.io.ktor.serialization.kotlinx.json)
+                api(libs.com.rickclephas.kmp.observableviewmodel.core)
                 implementation(libs.org.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.org.jetbrains.kotlinx.serialization.json)
             }
@@ -66,6 +78,7 @@ kotlin {
         )
         optIn.addAll(
             "androidx.paging.ExperimentalPagingApi",
+            "kotlin.experimental.ExperimentalObjCName",
             "kotlinx.cinterop.ExperimentalForeignApi",
             "kotlinx.coroutines.ExperimentalCoroutinesApi"
         )
@@ -74,6 +87,16 @@ kotlin {
 
 ksp {
     arg("KOIN_CONFIG_CHECK", "true")
+}
+
+skie {
+    features {
+        group {
+            SealedInterop.Enabled(true)
+            SuspendInterop.Enabled(false)
+            FlowInterop.Enabled(false)
+        }
+    }
 }
 
 room {
