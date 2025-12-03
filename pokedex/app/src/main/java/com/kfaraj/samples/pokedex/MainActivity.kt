@@ -12,12 +12,10 @@ import com.kfaraj.samples.pokedex.ui.navigateToPokemonDestination
 import com.kfaraj.samples.pokedex.ui.pokedexDestination
 import com.kfaraj.samples.pokedex.ui.pokemonDestination
 import com.kfaraj.samples.pokedex.ui.theme.AppTheme
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Demonstrates best practices for Modern Android Development.
  */
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
