@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
@@ -17,7 +16,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         register("release") {
@@ -46,15 +44,6 @@ android {
         unitTests {
             isIncludeAndroidResources = true
         }
-        managedDevices {
-            localDevices {
-                register("mediumPhoneApi36") {
-                    device = "Medium Phone"
-                    apiLevel = 36
-                    systemImageSource = "aosp-atd"
-                }
-            }
-        }
     }
 }
 
@@ -62,7 +51,6 @@ kotlin {
     jvmToolchain(21)
     compilerOptions {
         optIn.addAll(
-            "androidx.compose.animation.ExperimentalSharedTransitionApi",
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.paging.ExperimentalPagingApi",
             "kotlinx.coroutines.ExperimentalCoroutinesApi"
@@ -112,8 +100,4 @@ dependencies {
     testImplementation(libs.org.mockito.core)
     testImplementation(libs.org.mockito.kotlin)
     testImplementation(libs.org.robolectric)
-    androidTestImplementation(libs.androidx.test.core.ktx)
-    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.androidx.test.runner)
 }
