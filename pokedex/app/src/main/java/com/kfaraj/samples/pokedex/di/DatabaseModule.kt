@@ -4,27 +4,24 @@ import android.content.Context
 import androidx.room.Room
 import com.kfaraj.samples.pokedex.data.local.ApplicationDatabase
 import com.kfaraj.samples.pokedex.data.local.PokemonDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.core.annotation.Configuration
+import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
 /**
  * Provides bindings for the database.
  */
 @Module
-@InstallIn(SingletonComponent::class)
+@Configuration
 object DatabaseModule {
 
     /**
      * Provides the [ApplicationDatabase] instance.
      */
-    @Singleton
-    @Provides
+    @Single
     fun provideApplicationDatabase(
-        @ApplicationContext applicationContext: Context
+        applicationContext: Context
     ): ApplicationDatabase {
         return Room.databaseBuilder(
             applicationContext,
@@ -36,7 +33,7 @@ object DatabaseModule {
     /**
      * Provides the [PokemonDao] instance.
      */
-    @Provides
+    @Factory
     fun providePokemonDao(
         applicationDatabase: ApplicationDatabase
     ): PokemonDao {

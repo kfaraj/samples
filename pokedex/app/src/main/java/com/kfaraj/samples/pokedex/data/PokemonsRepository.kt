@@ -9,14 +9,13 @@ import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 
 /**
  * Exposes Pokémon data.
  */
-@Singleton
-class PokemonsRepository @Inject constructor(
+@Single
+class PokemonsRepository(
     private val pokemonsRemoteDataSource: PokemonsRemoteDataSource,
     private val pokemonsLocalDataSource: PokemonsLocalDataSource
 ) {

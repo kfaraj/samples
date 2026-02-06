@@ -6,17 +6,16 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
 /**
  * Exposes the Pokémon UI state.
  */
-@HiltViewModel
-class PokemonViewModel @Inject constructor(
+@KoinViewModel
+class PokemonViewModel(
     savedStateHandle: SavedStateHandle,
     pokemonsRepository: PokemonsRepository
 ) : ViewModel() {
