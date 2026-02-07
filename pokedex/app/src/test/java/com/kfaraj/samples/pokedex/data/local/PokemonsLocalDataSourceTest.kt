@@ -1,30 +1,33 @@
 package com.kfaraj.samples.pokedex.data.local
 
 import androidx.paging.testing.asPagingSourceFactory
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 
 class PokemonsLocalDataSourceTest {
 
     @Test
     fun upsertAll() = runTest {
         val pokemons = listOf(BULBASAUR_ENTITY)
-        val pokemonDao = mock<PokemonDao>()
+        val pokemonDao = mockk<PokemonDao> {
+            coEvery { upsertAll(any()) } returns Unit
+        }
         val pokemonsLocalDataSource = PokemonsLocalDataSource(
             pokemonDao
         )
         pokemonsLocalDataSource.upsertAll(pokemons)
-        verify(pokemonDao).upsertAll(pokemons)
+        coVerify { pokemonDao.upsertAll(pokemons) }
     }
 
     @Test
     fun get() = runTest {
-        val pokemonDao = mock<PokemonDao>().apply {
-            whenever(get(1)).thenReturn(BULBASAUR_ENTITY)
+        val pokemonDao = mockk<PokemonDao> {
+            coEvery { get(1) } returns BULBASAUR_ENTITY
         }
         val pokemonsLocalDataSource = PokemonsLocalDataSource(
             pokemonDao
@@ -37,8 +40,8 @@ class PokemonsLocalDataSourceTest {
     fun getPagingSource() {
         val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
         val pagingSource = pagingSourceFactory()
-        val pokemonDao = mock<PokemonDao>().apply {
-            whenever(getPagingSource()).thenReturn(pagingSource)
+        val pokemonDao = mockk<PokemonDao> {
+            every { getPagingSource() } returns pagingSource
         }
         val pokemonsLocalDataSource = PokemonsLocalDataSource(
             pokemonDao
@@ -49,8 +52,8 @@ class PokemonsLocalDataSourceTest {
 
     @Test
     fun getCount() = runTest {
-        val pokemonDao = mock<PokemonDao>().apply {
-            whenever(getCount()).thenReturn(1)
+        val pokemonDao = mockk<PokemonDao> {
+            coEvery { getCount() } returns 1
         }
         val pokemonsLocalDataSource = PokemonsLocalDataSource(
             pokemonDao

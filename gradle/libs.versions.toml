@@ -19,12 +19,11 @@ io-coil = "3.3.0"
 io-insert-koin = "4.1.1"
 io-insert-koin-annotations = "2.3.1"
 io-ktor = "3.4.0"
+io-mockk = "1.14.9"
 junit = "4.13.2"
 org-jetbrains-kotlin = "2.3.0"
 org-jetbrains-kotlinx-coroutines = "1.10.2"
 org-jetbrains-kotlinx-serialization = "1.10.0"
-org-mockito = "5.21.0"
-org-mockito-kotlin = "6.2.3"
 org-robolectric = "4.16.1"
 
 [libraries]
@@ -64,12 +63,11 @@ io-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-neg
 io-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "io-ktor" }
 io-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "io-ktor" }
 io-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "io-ktor" }
+io-mockk = { module = "io.mockk:mockk", version.ref = "io-mockk" }
 junit = { module = "junit:junit", version.ref = "junit" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines" }
 org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines" }
 org-jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "org-jetbrains-kotlinx-serialization" }
-org-mockito-core = { module = "org.mockito:mockito-core", version.ref = "org-mockito" }
-org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
 org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-robolectric" }
 
 [plugins]
