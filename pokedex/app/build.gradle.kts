@@ -99,9 +99,8 @@ dependencies {
     testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.androidx.test.core.ktx)
     testImplementation(libs.androidx.test.ext.junit.ktx)
+    testImplementation(libs.io.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
-    testImplementation(libs.org.mockito.core)
-    testImplementation(libs.org.mockito.kotlin)
     testImplementation(libs.org.robolectric)
 }

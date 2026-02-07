@@ -7,14 +7,13 @@ import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 class PokedexViewModelTest {
 
@@ -33,8 +32,8 @@ class PokedexViewModelTest {
                 )
             )
         )
-        val pokemonsRepository = mock<PokemonsRepository>().apply {
-            whenever(getPagingDataStream(any())).thenReturn(pagingData)
+        val pokemonsRepository = mockk<PokemonsRepository> {
+            every { getPagingDataStream(any()) } returns pagingData
         }
         val viewModel = PokedexViewModel(
             pokemonsRepository

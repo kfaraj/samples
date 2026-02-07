@@ -5,13 +5,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.kfaraj.samples.pokedex.data.Pokemon
 import com.kfaraj.samples.pokedex.data.PokemonsRepository
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 @RunWith(AndroidJUnit4::class)
 class PokemonViewModelTest {
@@ -22,8 +22,8 @@ class PokemonViewModelTest {
     @Test
     fun uiState() = runTest {
         val savedStateHandle = SavedStateHandle(mapOf("id" to 1))
-        val pokemonsRepository = mock<PokemonsRepository>().apply {
-            whenever(get(1)).thenReturn(BULBASAUR)
+        val pokemonsRepository = mockk<PokemonsRepository> {
+            coEvery { get(1) } returns BULBASAUR
         }
         val viewModel = PokemonViewModel(
             savedStateHandle,

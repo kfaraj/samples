@@ -10,24 +10,25 @@ import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResourceList
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 
 class PokemonsRemoteMediatorTest {
 
     @Test
     fun load_refresh() = runTest {
         val response = NamedApiResourceList(1, null, null, listOf(BULBASAUR_SPECIES_API_RESOURCE))
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemonSpecies(1, 0)).thenReturn(response)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource> {
+            coEvery { getPokemonSpecies(1, 0) } returns response
         }
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(getCount()).thenReturn(0)
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { upsertAll(any()) } returns Unit
+            coEvery { getCount() } returns 0
         }
         val pokemonsRemoteMediator = PokemonsRemoteMediator(
             pokemonsRemoteDataSource,
@@ -35,7 +36,7 @@ class PokemonsRemoteMediatorTest {
         )
         val state = PagingState<Int, PokemonEntity>(emptyList(), null, PagingConfig(1), 0)
         val result = pokemonsRemoteMediator.load(LoadType.REFRESH, state)
-        verify(pokemonsLocalDataSource).upsertAll(listOf(BULBASAUR_ENTITY))
+        coVerify { pokemonsLocalDataSource.upsertAll(listOf(BULBASAUR_ENTITY)) }
         assertTrue(result is MediatorResult.Success)
         assertTrue((result as MediatorResult.Success).endOfPaginationReached)
     }
@@ -43,11 +44,12 @@ class PokemonsRemoteMediatorTest {
     @Test
     fun load_append() = runTest {
         val response = NamedApiResourceList(1, null, "/", emptyList())
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemonSpecies(1, 1)).thenReturn(response)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource> {
+            coEvery { getPokemonSpecies(1, 1) } returns response
         }
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(getCount()).thenReturn(1)
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { upsertAll(any()) } returns Unit
+            coEvery { getCount() } returns 1
         }
         val pokemonsRemoteMediator = PokemonsRemoteMediator(
             pokemonsRemoteDataSource,
@@ -55,16 +57,16 @@ class PokemonsRemoteMediatorTest {
         )
         val state = PagingState<Int, PokemonEntity>(emptyList(), null, PagingConfig(1), 0)
         val result = pokemonsRemoteMediator.load(LoadType.APPEND, state)
-        verify(pokemonsLocalDataSource).upsertAll(emptyList())
+        coVerify { pokemonsLocalDataSource.upsertAll(emptyList()) }
         assertTrue(result is MediatorResult.Success)
         assertTrue((result as MediatorResult.Success).endOfPaginationReached)
     }
 
     @Test
     fun initialize_launchInitialRefresh() = runTest {
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(getCount()).thenReturn(0)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource>()
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { getCount() } returns 0
         }
         val pokemonsRemoteMediator = PokemonsRemoteMediator(
             pokemonsRemoteDataSource,
@@ -76,9 +78,9 @@ class PokemonsRemoteMediatorTest {
 
     @Test
     fun initialize_skipInitialRefresh() = runTest {
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(getCount()).thenReturn(1)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource>()
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { getCount() } returns 1
         }
         val pokemonsRemoteMediator = PokemonsRemoteMediator(
             pokemonsRemoteDataSource,

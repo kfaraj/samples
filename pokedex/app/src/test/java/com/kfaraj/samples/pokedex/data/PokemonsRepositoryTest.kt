@@ -8,12 +8,13 @@ import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResourceList
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
+import io.mockk.coEvery
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 class PokemonsRepositoryTest {
 
@@ -22,9 +23,9 @@ class PokemonsRepositoryTest {
 
     @Test
     fun get() = runTest {
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>()
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(get(1)).thenReturn(BULBASAUR_ENTITY)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource>()
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { get(1) } returns BULBASAUR_ENTITY
         }
         val pokemonsRepository = PokemonsRepository(
             pokemonsRemoteDataSource,
@@ -37,14 +38,15 @@ class PokemonsRepositoryTest {
     @Test
     fun getPagingDataStream() = runTest {
         val response = NamedApiResourceList(1, null, "/", emptyList())
-        val pokemonsRemoteDataSource = mock<PokemonsRemoteDataSource>().apply {
-            whenever(getPokemonSpecies(1, 1)).thenReturn(response)
+        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource> {
+            coEvery { getPokemonSpecies(1, 1) } returns response
         }
         val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
         val pagingSource = pagingSourceFactory()
-        val pokemonsLocalDataSource = mock<PokemonsLocalDataSource>().apply {
-            whenever(getPagingSource()).thenReturn(pagingSource)
-            whenever(getCount()).thenReturn(1)
+        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+            coEvery { upsertAll(any()) } returns Unit
+            every { getPagingSource() } returns pagingSource
+            coEvery { getCount() } returns 1
         }
         val pokemonsRepository = PokemonsRepository(
             pokemonsRemoteDataSource,
