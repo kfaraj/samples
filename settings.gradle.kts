@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "samples"
 include(":darktheme:app")
-include(":pokedex:app")
+include(":pokedex:androidApp")
+include(":pokedex:shared")
