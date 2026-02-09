@@ -21,5 +21,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "samples"
+include(":compose:app")
 include(":darktheme:app")
 include(":pokedex:app")
