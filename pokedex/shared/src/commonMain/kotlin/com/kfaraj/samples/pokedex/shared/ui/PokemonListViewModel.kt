@@ -1,12 +1,12 @@
 package com.kfaraj.samples.pokedex.shared.ui
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.kfaraj.samples.pokedex.shared.data.Pokemon
 import com.kfaraj.samples.pokedex.shared.data.PokemonRepository
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.coroutineScope
 import kotlinx.coroutines.flow.map
 import org.koin.android.annotation.KoinViewModel
 
@@ -27,7 +27,7 @@ class PokemonListViewModel(
                 pokemon.toPokemonListItemUiState()
             }
         }
-        .cachedIn(viewModelScope)
+        .cachedIn(viewModelScope.coroutineScope)
 
     /**
      * Converts the model from the data layer to the UI layer.

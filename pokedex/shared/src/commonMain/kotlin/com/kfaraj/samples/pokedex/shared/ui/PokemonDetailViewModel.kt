@@ -1,13 +1,12 @@
 package com.kfaraj.samples.pokedex.shared.ui
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.kfaraj.samples.pokedex.shared.data.Pokemon
 import com.kfaraj.samples.pokedex.shared.data.PokemonRepository
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
 /**
@@ -19,7 +18,7 @@ class PokemonDetailViewModel(
     pokemonRepository: PokemonRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(PokemonDetailUiState())
+    private val _uiState = MutableStateFlow(viewModelScope, PokemonDetailUiState())
 
     /**
      * The stream of Pokémon detail UI state.

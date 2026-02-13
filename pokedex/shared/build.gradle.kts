@@ -1,4 +1,5 @@
 import com.google.devtools.ksp.gradle.KspAATask
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.com.android.kotlin.multiplatform.library)
@@ -18,6 +19,11 @@ kotlin {
     }
     iosArm64()
     iosSimulatorArm64()
+    targets.withType<KotlinNativeTarget>().configureEach {
+        binaries.framework {
+            baseName = "Shared"
+        }
+    }
     sourceSets {
         commonMain {
             dependencies {
@@ -32,6 +38,7 @@ kotlin {
                 implementation(libs.io.ktor.client.content.negotiation)
                 implementation(libs.io.ktor.client.core)
                 implementation(libs.io.ktor.serialization.kotlinx.json)
+                api(libs.com.rickclephas.kmp.observableviewmodel.core)
                 implementation(libs.org.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.org.jetbrains.kotlinx.serialization.json)
             }
