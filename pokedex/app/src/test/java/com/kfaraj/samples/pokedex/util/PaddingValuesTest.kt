@@ -9,12 +9,14 @@ import org.junit.Test
 class PaddingValuesTest {
 
     @Test
-    fun plus() {
-        val paddingValues = PaddingValues(24.dp) + PaddingValues(8.dp)
-        assertEquals(32.dp, paddingValues.calculateLeftPadding(LayoutDirection.Ltr))
-        assertEquals(32.dp, paddingValues.calculateTopPadding())
-        assertEquals(32.dp, paddingValues.calculateRightPadding(LayoutDirection.Ltr))
-        assertEquals(32.dp, paddingValues.calculateBottomPadding())
+    fun plusPaddingValues() {
+        val innerPadding = PaddingValues(24.dp)
+        val contentPadding = PaddingValues(8.dp)
+        val resultPadding = innerPadding + contentPadding
+        assertEquals(32.dp, resultPadding.calculateLeftPadding(LayoutDirection.Ltr))
+        assertEquals(32.dp, resultPadding.calculateTopPadding())
+        assertEquals(32.dp, resultPadding.calculateRightPadding(LayoutDirection.Ltr))
+        assertEquals(32.dp, resultPadding.calculateBottomPadding())
     }
 
 }

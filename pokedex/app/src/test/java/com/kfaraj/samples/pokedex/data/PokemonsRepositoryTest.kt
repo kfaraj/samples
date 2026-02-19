@@ -7,19 +7,14 @@ import com.kfaraj.samples.pokedex.data.local.PokemonEntity
 import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResourceList
 import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
-import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
-import org.junit.Rule
 import org.junit.Test
 
 class PokemonsRepositoryTest {
-
-    @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
 
     @Test
     fun get() = runTest {
