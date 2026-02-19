@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.App.Light" parent="android:Theme.DeviceDefault.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/primary_40</item>
-        <item name="android:colorBackground">@color/neutral_98</item>
-    </style>
-    <style name="Theme.App.Dark" parent="android:Theme.DeviceDefault.NoActionBar">
-        <item name="android:colorPrimary">@color/primary_80</item>
-        <item name="android:colorBackground">@color/neutral_6</item>
-    </style>
+    <style name="Theme.App.Light" parent="android:Theme.DeviceDefault.Light.NoActionBar" />
+    <style name="Theme.App.Dark" parent="android:Theme.DeviceDefault.NoActionBar" />
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
 </resources>
