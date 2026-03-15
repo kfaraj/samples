@@ -7,14 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.kfaraj.samples.pokedex.ui.PokedexRoute
-import com.kfaraj.samples.pokedex.ui.navigateToPokemonDestination
-import com.kfaraj.samples.pokedex.ui.pokedexDestination
-import com.kfaraj.samples.pokedex.ui.pokemonDestination
+import com.kfaraj.samples.pokedex.ui.PokemonListRoute
+import com.kfaraj.samples.pokedex.ui.navigateToPokemonDetailDestination
+import com.kfaraj.samples.pokedex.ui.pokemonDetailDestination
+import com.kfaraj.samples.pokedex.ui.pokemonListDestination
 import com.kfaraj.samples.pokedex.ui.theme.AppTheme
 
 /**
- * Demonstrates best practices for Modern Android Development.
+ * Contains the [NavHost].
  */
 class MainActivity : ComponentActivity() {
 
@@ -27,17 +27,17 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = PokedexRoute
+                        startDestination = PokemonListRoute
                     ) {
-                        pokedexDestination(
+                        pokemonListDestination(
                             sharedTransitionScope = this@SharedTransitionLayout,
-                            onItemClick = { item ->
-                                item?.id?.let {
-                                    navController.navigateToPokemonDestination(it)
+                            onItemClick = { itemId ->
+                                itemId?.let {
+                                    navController.navigateToPokemonDetailDestination(it)
                                 }
                             }
                         )
-                        pokemonDestination(
+                        pokemonDetailDestination(
                             sharedTransitionScope = this@SharedTransitionLayout,
                             onNavigateUp = {
                                 navController.navigateUp()

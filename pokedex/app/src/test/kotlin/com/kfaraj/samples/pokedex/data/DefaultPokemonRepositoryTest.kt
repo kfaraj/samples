@@ -4,9 +4,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.testing.asPagingSourceFactory
 import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.local.PokemonEntity
-import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
+import com.kfaraj.samples.pokedex.data.local.PokemonLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResourceList
-import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
+import com.kfaraj.samples.pokedex.data.remote.PokemonRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -14,40 +14,40 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class PokemonsRepositoryTest {
+class DefaultPokemonRepositoryTest {
 
     @Test
     fun get() = runTest {
-        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource>()
-        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+        val pokemonRemoteDataSource = mockk<PokemonRemoteDataSource>()
+        val pokemonLocalDataSource = mockk<PokemonLocalDataSource> {
             coEvery { get(1) } returns BULBASAUR_ENTITY
         }
-        val pokemonsRepository = PokemonsRepository(
-            pokemonsRemoteDataSource,
-            pokemonsLocalDataSource
+        val pokemonRepository = DefaultPokemonRepository(
+            pokemonRemoteDataSource,
+            pokemonLocalDataSource
         )
-        val result = pokemonsRepository.get(1)
+        val result = pokemonRepository.get(1)
         assertEquals(BULBASAUR, result)
     }
 
     @Test
     fun getPagingDataStream() = runTest {
         val response = NamedApiResourceList(1, null, "/", emptyList())
-        val pokemonsRemoteDataSource = mockk<PokemonsRemoteDataSource> {
+        val pokemonRemoteDataSource = mockk<PokemonRemoteDataSource> {
             coEvery { getPokemonSpecies(1, 1) } returns response
         }
         val pagingSourceFactory = listOf(BULBASAUR_ENTITY).asPagingSourceFactory()
         val pagingSource = pagingSourceFactory()
-        val pokemonsLocalDataSource = mockk<PokemonsLocalDataSource> {
+        val pokemonLocalDataSource = mockk<PokemonLocalDataSource> {
             coEvery { upsertAll(any()) } returns Unit
             every { getPagingSource() } returns pagingSource
             coEvery { getCount() } returns 1
         }
-        val pokemonsRepository = PokemonsRepository(
-            pokemonsRemoteDataSource,
-            pokemonsLocalDataSource
+        val pokemonRepository = DefaultPokemonRepository(
+            pokemonRemoteDataSource,
+            pokemonLocalDataSource
         )
-        val result = pokemonsRepository.getPagingDataStream(PagingConfig(1)).asSnapshot()
+        val result = pokemonRepository.getPagingDataStream(PagingConfig(1)).asSnapshot()
         assertEquals(listOf(BULBASAUR), result)
     }
 

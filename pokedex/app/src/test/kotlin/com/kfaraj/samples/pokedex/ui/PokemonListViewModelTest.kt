@@ -5,7 +5,7 @@ import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.Pokemon
-import com.kfaraj.samples.pokedex.data.PokemonsRepository
+import com.kfaraj.samples.pokedex.data.PokemonRepository
 import com.kfaraj.samples.pokedex.testutils.MainDispatcherRule
 import io.mockk.every
 import io.mockk.mockk
@@ -15,7 +15,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
-class PokedexViewModelTest {
+class PokemonListViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
@@ -32,11 +32,11 @@ class PokedexViewModelTest {
                 )
             )
         )
-        val pokemonsRepository = mockk<PokemonsRepository> {
+        val pokemonRepository = mockk<PokemonRepository> {
             every { getPagingDataStream(any()) } returns pagingData
         }
-        val viewModel = PokedexViewModel(
-            pokemonsRepository
+        val viewModel = PokemonListViewModel(
+            pokemonRepository
         )
         val result = viewModel.pagingData.asSnapshot()
         assertEquals(listOf(BULBASAUR_UI_STATE), result)
@@ -48,7 +48,7 @@ class PokedexViewModelTest {
             "Bulbasaur",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         )
-        private val BULBASAUR_UI_STATE = PokedexItemUiState(
+        private val BULBASAUR_UI_STATE = PokemonListItemUiState(
             1,
             "Bulbasaur",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"

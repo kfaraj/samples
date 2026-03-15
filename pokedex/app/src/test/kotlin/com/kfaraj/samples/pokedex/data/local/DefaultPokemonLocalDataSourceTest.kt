@@ -9,19 +9,19 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class PokemonsLocalDataSourceTest {
+class DefaultPokemonLocalDataSourceTest {
 
     @Test
     fun upsertAll() = runTest {
-        val pokemons = listOf(BULBASAUR_ENTITY)
+        val pokemonEntities = listOf(BULBASAUR_ENTITY)
         val pokemonDao = mockk<PokemonDao> {
             coEvery { upsertAll(any()) } returns Unit
         }
-        val pokemonsLocalDataSource = PokemonsLocalDataSource(
+        val pokemonLocalDataSource = DefaultPokemonLocalDataSource(
             pokemonDao
         )
-        pokemonsLocalDataSource.upsertAll(pokemons)
-        coVerify { pokemonDao.upsertAll(pokemons) }
+        pokemonLocalDataSource.upsertAll(pokemonEntities)
+        coVerify { pokemonDao.upsertAll(pokemonEntities) }
     }
 
     @Test
@@ -29,10 +29,10 @@ class PokemonsLocalDataSourceTest {
         val pokemonDao = mockk<PokemonDao> {
             coEvery { get(1) } returns BULBASAUR_ENTITY
         }
-        val pokemonsLocalDataSource = PokemonsLocalDataSource(
+        val pokemonLocalDataSource = DefaultPokemonLocalDataSource(
             pokemonDao
         )
-        val result = pokemonsLocalDataSource.get(1)
+        val result = pokemonLocalDataSource.get(1)
         assertEquals(BULBASAUR_ENTITY, result)
     }
 
@@ -43,10 +43,10 @@ class PokemonsLocalDataSourceTest {
         val pokemonDao = mockk<PokemonDao> {
             every { getPagingSource() } returns pagingSource
         }
-        val pokemonsLocalDataSource = PokemonsLocalDataSource(
+        val pokemonLocalDataSource = DefaultPokemonLocalDataSource(
             pokemonDao
         )
-        val result = pokemonsLocalDataSource.getPagingSource()
+        val result = pokemonLocalDataSource.getPagingSource()
         assertEquals(pagingSource, result)
     }
 
@@ -55,10 +55,10 @@ class PokemonsLocalDataSourceTest {
         val pokemonDao = mockk<PokemonDao> {
             coEvery { getCount() } returns 1
         }
-        val pokemonsLocalDataSource = PokemonsLocalDataSource(
+        val pokemonLocalDataSource = DefaultPokemonLocalDataSource(
             pokemonDao
         )
-        val result = pokemonsLocalDataSource.getCount()
+        val result = pokemonLocalDataSource.getCount()
         assertEquals(1, result)
     }
 

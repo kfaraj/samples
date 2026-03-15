@@ -8,23 +8,23 @@ import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 /**
- * Identifies the Pokémon destination.
+ * Identifies the Pokémon detail destination.
  */
 @Serializable
-data class PokemonRoute(
+data class PokemonDetailRoute(
     val id: Int
 )
 
 /**
- * Adds the Pokémon destination.
+ * Adds the Pokémon detail destination.
  */
-fun NavGraphBuilder.pokemonDestination(
+fun NavGraphBuilder.pokemonDetailDestination(
     sharedTransitionScope: SharedTransitionScope,
     onNavigateUp: () -> Unit
 ) {
-    composable<PokemonRoute> {
+    composable<PokemonDetailRoute> {
         with(sharedTransitionScope) {
-            PokemonScreen(
+            PokemonDetailScreen(
                 animatedVisibilityScope = this@composable,
                 viewModel = koinViewModel(),
                 onNavigateUp = onNavigateUp
@@ -34,11 +34,11 @@ fun NavGraphBuilder.pokemonDestination(
 }
 
 /**
- * Navigates to the Pokémon destination.
+ * Navigates to the Pokémon detail destination.
  */
-fun NavController.navigateToPokemonDestination(
+fun NavController.navigateToPokemonDetailDestination(
     id: Int
 ) {
-    val route = PokemonRoute(id)
+    val route = PokemonDetailRoute(id)
     navigate(route)
 }

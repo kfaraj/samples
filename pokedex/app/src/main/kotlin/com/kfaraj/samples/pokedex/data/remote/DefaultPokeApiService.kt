@@ -5,6 +5,9 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
+/**
+ * Provides a default implementation of [PokeApiService].
+ */
 internal class DefaultPokeApiService(
     private val httpClient: HttpClient
 ) : PokeApiService {

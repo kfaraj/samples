@@ -8,7 +8,7 @@ object Settings {
     /**
      * The theme.
      */
-    const val THEME = "theme"
+    const val KEY_THEME = "theme"
 
     /**
      * The theme is light.
