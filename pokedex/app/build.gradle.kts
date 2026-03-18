@@ -57,10 +57,6 @@ kotlin {
     }
 }
 
-ksp {
-    arg("KOIN_CONFIG_CHECK", "true")
-}
-
 room {
     schemaDirectory("$projectDir/schemas")
 }

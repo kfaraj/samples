@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.kfaraj.samples.pokedex.data.local.ApplicationDatabase
 import com.kfaraj.samples.pokedex.data.local.PokemonDao
-import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
@@ -13,7 +12,6 @@ import org.koin.core.annotation.Single
  * Provides bindings for the database.
  */
 @Module
-@Configuration
 object DatabaseModule {
 
     /**
