@@ -7,11 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.kfaraj.samples.pokedex.ui.PokemonListRoute
-import com.kfaraj.samples.pokedex.ui.navigateToPokemonDetailDestination
-import com.kfaraj.samples.pokedex.ui.pokemonDetailDestination
-import com.kfaraj.samples.pokedex.ui.pokemonListDestination
-import com.kfaraj.samples.pokedex.ui.theme.AppTheme
+import com.kfaraj.samples.pokedex.core.ui.theme.AppTheme
+import com.kfaraj.samples.pokedex.feature.pokemon.PokemonListRoute
+import com.kfaraj.samples.pokedex.feature.pokemon.navigateToPokemonDetailDestination
+import com.kfaraj.samples.pokedex.feature.pokemon.pokemonDetailDestination
+import com.kfaraj.samples.pokedex.feature.pokemon.pokemonListDestination
 
 /**
  * Contains the [NavHost].
