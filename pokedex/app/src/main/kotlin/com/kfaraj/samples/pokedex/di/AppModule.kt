@@ -6,6 +6,6 @@ import org.koin.core.annotation.Module
 /**
  * Provides bindings for the app.
  */
-@Module(includes = [CoroutinesModule::class, DatabaseModule::class, NetworkModule::class])
+@Module(includes = [DatabaseModule::class, NetworkModule::class])
 @ComponentScan("com.kfaraj.samples.pokedex")
 object AppModule

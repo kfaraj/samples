@@ -8,7 +8,7 @@ import org.koin.core.context.stopKoin
 import org.koin.ksp.generated.startKoin
 
 /**
- * Demonstrates best practices for Modern Android Development.
+ * Maintains global application state.
  */
 @KoinApplication(modules = [AppModule::class])
 class MainApplication : Application() {

@@ -37,17 +37,17 @@ import com.kfaraj.samples.pokedex.R
 import com.kfaraj.samples.pokedex.ui.theme.AppTheme
 
 /**
- * Displays the Pokémon UI state on the screen.
+ * Displays the Pokémon detail UI state on the screen.
  */
 @Composable
-fun SharedTransitionScope.PokemonScreen(
+fun SharedTransitionScope.PokemonDetailScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
-    viewModel: PokemonViewModel,
+    viewModel: PokemonDetailViewModel,
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    PokemonScreen(
+    PokemonDetailScreen(
         animatedVisibilityScope = animatedVisibilityScope,
         uiState = uiState.value,
         onNavigateUp = onNavigateUp,
@@ -56,12 +56,12 @@ fun SharedTransitionScope.PokemonScreen(
 }
 
 /**
- * Displays the Pokémon UI state on the screen.
+ * Displays the Pokémon detail UI state on the screen.
  */
 @Composable
-private fun SharedTransitionScope.PokemonScreen(
+private fun SharedTransitionScope.PokemonDetailScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
-    uiState: PokemonUiState,
+    uiState: PokemonDetailUiState,
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -130,15 +130,15 @@ private fun SharedTransitionScope.PokemonScreen(
 
 @Preview
 @Composable
-private fun PokemonScreenPreview() {
+private fun PokemonDetailScreenPreview() {
     AppTheme {
         SharedTransitionLayout {
             AnimatedVisibility(
                 visible = true
             ) {
-                PokemonScreen(
+                PokemonDetailScreen(
                     animatedVisibilityScope = this@AnimatedVisibility,
-                    uiState = PokemonUiState(
+                    uiState = PokemonDetailUiState(
                         id = 1,
                         name = "Bulbasaur",
                         sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"

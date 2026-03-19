@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.App.PreferenceFragment" parent="">
+        <item name="android:layout">@layout/fragment_preference</item>
+    </style>
+</resources>

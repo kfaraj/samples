@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 /**
  * Contains the Pokémon entity.
  */
-@Entity(tableName = "pokemons")
+@Entity(tableName = "pokemon")
 data class PokemonEntity(
     @PrimaryKey @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,

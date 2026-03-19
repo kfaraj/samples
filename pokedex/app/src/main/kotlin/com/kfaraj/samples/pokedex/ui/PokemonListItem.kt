@@ -19,12 +19,12 @@ import com.kfaraj.samples.pokedex.R
 import com.kfaraj.samples.pokedex.ui.theme.AppTheme
 
 /**
- * Displays the Pokédex item UI state on the screen.
+ * Displays the Pokémon list item UI state on the screen.
  */
 @Composable
-fun PokedexItem(
-    item: PokedexItemUiState?,
-    onItemClick: (item: PokedexItemUiState?) -> Unit,
+fun PokemonListItem(
+    item: PokemonListItemUiState?,
+    onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(
@@ -64,10 +64,10 @@ fun PokedexItem(
 
 @Preview
 @Composable
-private fun PokedexItemPreview() {
+private fun PokemonListItemPreview() {
     AppTheme {
-        PokedexItem(
-            item = PokedexItemUiState(
+        PokemonListItem(
+            item = PokemonListItemUiState(
                 id = 1,
                 name = "Bulbasaur",
                 sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"

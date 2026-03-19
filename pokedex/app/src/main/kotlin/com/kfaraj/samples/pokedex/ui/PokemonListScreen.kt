@@ -33,17 +33,17 @@ import com.kfaraj.samples.pokedex.util.plus
 import kotlinx.coroutines.flow.flowOf
 
 /**
- * Displays the Pokédex UI state on the screen.
+ * Displays the Pokémon list UI state on the screen.
  */
 @Composable
-fun SharedTransitionScope.PokedexScreen(
+fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
-    viewModel: PokedexViewModel,
-    onItemClick: (item: PokedexItemUiState?) -> Unit,
+    viewModel: PokemonListViewModel,
+    onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val lazyPagingItems = viewModel.pagingData.collectAsLazyPagingItems()
-    PokedexScreen(
+    PokemonListScreen(
         animatedVisibilityScope = animatedVisibilityScope,
         lazyPagingItems = lazyPagingItems,
         onItemClick = onItemClick,
@@ -52,13 +52,13 @@ fun SharedTransitionScope.PokedexScreen(
 }
 
 /**
- * Displays the Pokédex UI state on the screen.
+ * Displays the Pokémon list UI state on the screen.
  */
 @Composable
-private fun SharedTransitionScope.PokedexScreen(
+private fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
-    lazyPagingItems: LazyPagingItems<PokedexItemUiState>,
-    onItemClick: (item: PokedexItemUiState?) -> Unit,
+    lazyPagingItems: LazyPagingItems<PokemonListItemUiState>,
+    onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -90,7 +90,7 @@ private fun SharedTransitionScope.PokedexScreen(
                 key = lazyPagingItems.itemKey { it.id }
             ) { index ->
                 val item = lazyPagingItems[index]
-                PokedexItem(
+                PokemonListItem(
                     item = item,
                     onItemClick = {
                         onItemClick(item)
@@ -108,18 +108,18 @@ private fun SharedTransitionScope.PokedexScreen(
 
 @Preview
 @Composable
-private fun PokedexScreenPreview() {
+private fun PokemonListScreenPreview() {
     AppTheme {
         SharedTransitionLayout {
             AnimatedVisibility(
                 visible = true
             ) {
-                PokedexScreen(
+                PokemonListScreen(
                     animatedVisibilityScope = this@AnimatedVisibility,
                     lazyPagingItems = flowOf(
                         PagingData.from(
                             listOf(
-                                PokedexItemUiState(
+                                PokemonListItemUiState(
                                     id = 1,
                                     name = "Bulbasaur",
                                     sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"

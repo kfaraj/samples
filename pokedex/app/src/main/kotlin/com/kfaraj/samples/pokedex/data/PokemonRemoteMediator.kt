@@ -5,13 +5,13 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.kfaraj.samples.pokedex.data.local.PokemonEntity
-import com.kfaraj.samples.pokedex.data.local.PokemonsLocalDataSource
+import com.kfaraj.samples.pokedex.data.local.PokemonLocalDataSource
 import com.kfaraj.samples.pokedex.data.remote.NamedApiResource
 import com.kfaraj.samples.pokedex.data.remote.Pokemon.sprites
+import com.kfaraj.samples.pokedex.data.remote.PokemonRemoteDataSource
 import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.id
 import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.names
 import com.kfaraj.samples.pokedex.data.remote.PokemonSpecies.varieties
-import com.kfaraj.samples.pokedex.data.remote.PokemonsRemoteDataSource
 import io.ktor.client.plugins.ResponseException
 import java.io.IOException
 
@@ -19,9 +19,9 @@ import java.io.IOException
  * Incrementally loads Pokémon data from a remote data source into a local data source.
  */
 @ExperimentalPagingApi
-class PokemonsRemoteMediator(
-    private val pokemonsRemoteDataSource: PokemonsRemoteDataSource,
-    private val pokemonsLocalDataSource: PokemonsLocalDataSource
+class PokemonRemoteMediator(
+    private val pokemonRemoteDataSource: PokemonRemoteDataSource,
+    private val pokemonLocalDataSource: PokemonLocalDataSource
 ) : RemoteMediator<Int, PokemonEntity>() {
 
     override suspend fun load(
@@ -32,15 +32,15 @@ class PokemonsRemoteMediator(
             val offset = when (loadType) {
                 LoadType.REFRESH -> 0
                 LoadType.PREPEND -> return MediatorResult.Success(true)
-                LoadType.APPEND -> pokemonsLocalDataSource.getCount()
+                LoadType.APPEND -> pokemonLocalDataSource.getCount()
             }
-            val response = pokemonsRemoteDataSource.getPokemonSpecies(state.config.pageSize, offset)
-            val pokemons = response
+            val response = pokemonRemoteDataSource.getPokemonSpecies(state.config.pageSize, offset)
+            val pokemonEntities = response
                 .results
                 .map { result ->
                     result.toPokemonEntity()
                 }
-            pokemonsLocalDataSource.upsertAll(pokemons)
+            pokemonLocalDataSource.upsertAll(pokemonEntities)
             MediatorResult.Success(response.next == null)
         } catch (e: IOException) {
             MediatorResult.Error(e)
@@ -50,7 +50,7 @@ class PokemonsRemoteMediator(
     }
 
     override suspend fun initialize(): InitializeAction {
-        return if (pokemonsLocalDataSource.getCount() == 0) {
+        return if (pokemonLocalDataSource.getCount() == 0) {
             InitializeAction.LAUNCH_INITIAL_REFRESH
         } else {
             InitializeAction.SKIP_INITIAL_REFRESH

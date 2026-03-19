@@ -43,6 +43,7 @@
         <item name="colorSurfaceContainerHighest">@color/neutral_90</item>
         <item name="colorOutline">@color/neutral_variant_50</item>
         <item name="colorOutlineVariant">@color/neutral_variant_80</item>
+        <item name="preferenceFragmentCompatStyle">@style/Widget.App.PreferenceFragment</item>
     </style>
     <style name="Theme.App.Dark" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/primary_80</item>
@@ -87,6 +88,7 @@
         <item name="colorSurfaceContainerHighest">@color/neutral_22</item>
         <item name="colorOutline">@color/neutral_variant_60</item>
         <item name="colorOutlineVariant">@color/neutral_variant_30</item>
+        <item name="preferenceFragmentCompatStyle">@style/Widget.App.PreferenceFragment</item>
     </style>
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
 </resources>
