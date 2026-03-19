@@ -7,24 +7,26 @@ import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 /**
- * Identifies the Pokédex destination.
+ * Identifies the Pokémon list destination.
  */
 @Serializable
-data object PokedexRoute
+data object PokemonListRoute
 
 /**
- * Adds the Pokédex destination.
+ * Adds the Pokémon list destination.
  */
-fun NavGraphBuilder.pokedexDestination(
+fun NavGraphBuilder.pokemonListDestination(
     sharedTransitionScope: SharedTransitionScope,
-    onItemClick: (item: PokedexItemUiState?) -> Unit
+    onItemClick: (itemId: Int?) -> Unit
 ) {
-    composable<PokedexRoute> {
+    composable<PokemonListRoute> {
         with(sharedTransitionScope) {
-            PokedexScreen(
+            PokemonListScreen(
                 animatedVisibilityScope = this@composable,
                 viewModel = koinViewModel(),
-                onItemClick = onItemClick
+                onItemClick = { item ->
+                    onItemClick(item?.id)
+                }
             )
         }
     }

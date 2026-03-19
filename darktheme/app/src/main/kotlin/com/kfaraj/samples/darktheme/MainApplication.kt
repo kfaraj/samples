@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager
 import com.kfaraj.samples.darktheme.data.Settings
 
 /**
- * Demonstrates how to implement a dark theme.
+ * Maintains global application state.
  */
 class MainApplication : Application(),
     OnSharedPreferenceChangeListener {
@@ -31,7 +31,7 @@ class MainApplication : Application(),
      */
     private fun getNightMode(prefs: SharedPreferences): Int {
         val theme = prefs.getString(
-            Settings.THEME,
+            Settings.KEY_THEME,
             Settings.THEME_SYSTEM_DEFAULT
         )
         return when (theme) {

@@ -15,24 +15,24 @@ interface PokemonDao {
      * Inserts or updates Pokémon entities.
      */
     @Upsert
-    suspend fun upsertAll(pokemons: List<PokemonEntity>)
+    suspend fun upsertAll(pokemonEntities: List<PokemonEntity>)
 
     /**
      * Returns the Pokémon entity for the given [id].
      */
-    @Query("SELECT * FROM pokemons WHERE id = :id")
+    @Query("SELECT * FROM pokemon WHERE id = :id")
     suspend fun get(id: Int): PokemonEntity
 
     /**
      * Returns the source of paged Pokémon entities.
      */
-    @Query("SELECT * FROM pokemons")
+    @Query("SELECT * FROM pokemon")
     fun getPagingSource(): PagingSource<Int, PokemonEntity>
 
     /**
      * Returns the number of Pokémon entities.
      */
-    @Query("SELECT COUNT(*) FROM pokemons")
+    @Query("SELECT COUNT(*) FROM pokemon")
     suspend fun getCount(): Int
 
 }

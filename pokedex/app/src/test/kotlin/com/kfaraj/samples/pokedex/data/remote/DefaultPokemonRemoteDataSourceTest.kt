@@ -6,7 +6,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class PokemonsRemoteDataSourceTest {
+class DefaultPokemonRemoteDataSourceTest {
 
     @Test
     fun getPokemonSpecies() = runTest {
@@ -14,10 +14,10 @@ class PokemonsRemoteDataSourceTest {
         val pokeApiService = mockk<PokeApiService> {
             coEvery { getPokemonSpecies(1, 0) } returns response
         }
-        val pokemonsRemoteDataSource = PokemonsRemoteDataSource(
+        val pokemonRemoteDataSource = DefaultPokemonRemoteDataSource(
             pokeApiService
         )
-        val result = pokemonsRemoteDataSource.getPokemonSpecies(1, 0)
+        val result = pokemonRemoteDataSource.getPokemonSpecies(1, 0)
         assertEquals(response, result)
     }
 

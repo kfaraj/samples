@@ -17,12 +17,12 @@ import coil3.compose.AsyncImage
 import com.kfaraj.samples.pokedex.R
 
 /**
- * Displays the Pokédex item UI state on the screen.
+ * Displays the Pokémon list item UI state on the screen.
  */
 @Composable
-fun PokedexItem(
-    item: PokedexItemUiState?,
-    onItemClick: (item: PokedexItemUiState?) -> Unit,
+fun PokemonListItem(
+    item: PokemonListItemUiState?,
+    onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(

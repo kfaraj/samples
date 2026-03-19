@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "19ed40fc29a0461e38eb2a0147c134b1",
+    "identityHash": "cdad00b670b4a8c4b15d30345f59060c",
     "entities": [
       {
-        "tableName": "pokemons",
+        "tableName": "pokemon",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `sprite` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -37,7 +37,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '19ed40fc29a0461e38eb2a0147c134b1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cdad00b670b4a8c4b15d30345f59060c')"
     ]
   }
 }
