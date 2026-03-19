@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
-    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
-    alias(libs.plugins.androidx.room)
 }
 
 android {
@@ -48,20 +46,11 @@ android {
 
 kotlin {
     jvmToolchain(21)
-    compilerOptions {
-        optIn.addAll(
-            "androidx.compose.material3.ExperimentalMaterial3Api",
-            "androidx.paging.ExperimentalPagingApi",
-            "kotlinx.coroutines.ExperimentalCoroutinesApi"
-        )
-    }
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
+    implementation(project(":pokedex:core:ui"))
+    implementation(project(":pokedex:feature:pokemon"))
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -69,34 +58,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.paging.compose)
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.androidx.room.paging)
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.io.coil.compose)
-    implementation(libs.io.coil.network.ktor)
     implementation(libs.io.insert.koin.android)
     implementation(libs.io.insert.koin.androidx.compose)
     implementation(libs.io.insert.koin.annotations)
     ksp(libs.io.insert.koin.ksp.compiler)
-    implementation(libs.io.ktor.client.content.negotiation)
-    implementation(libs.io.ktor.client.core)
-    implementation(libs.io.ktor.client.okhttp)
-    implementation(libs.io.ktor.serialization.kotlinx.json)
-    implementation(libs.org.jetbrains.kotlinx.coroutines.android)
-    implementation(libs.org.jetbrains.kotlinx.serialization.json)
-    testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.androidx.test.core.ktx)
     testImplementation(libs.androidx.test.ext.junit.ktx)
-    testImplementation(libs.io.mockk)
     testImplementation(libs.junit)
-    testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
     testImplementation(libs.org.robolectric)
 }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_up">Navigate up</string>
+    <string name="number">#%1$04d</string>
+</resources>

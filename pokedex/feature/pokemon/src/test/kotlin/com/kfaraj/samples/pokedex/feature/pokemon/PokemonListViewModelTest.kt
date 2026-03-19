@@ -1,0 +1,58 @@
+package com.kfaraj.samples.pokedex.feature.pokemon
+
+import androidx.paging.LoadState
+import androidx.paging.LoadStates
+import androidx.paging.PagingData
+import androidx.paging.testing.asSnapshot
+import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
+import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
+import com.kfaraj.samples.pokedex.feature.pokemon.testutils.MainDispatcherRule
+import io.mockk.every
+import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Rule
+import org.junit.Test
+
+class PokemonListViewModelTest {
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
+
+    @Test
+    fun pagingData() = runTest {
+        val pagingData = flowOf(
+            PagingData.from(
+                listOf(BULBASAUR),
+                LoadStates(
+                    LoadState.NotLoading(true),
+                    LoadState.NotLoading(true),
+                    LoadState.NotLoading(true)
+                )
+            )
+        )
+        val pokemonRepository = mockk<PokemonRepository> {
+            every { getPagingDataStream(any()) } returns pagingData
+        }
+        val viewModel = PokemonListViewModel(
+            pokemonRepository
+        )
+        val result = viewModel.pagingData.asSnapshot()
+        assertEquals(listOf(BULBASAUR_UI_STATE), result)
+    }
+
+    companion object {
+        private val BULBASAUR = Pokemon(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
+        private val BULBASAUR_UI_STATE = PokemonListItemUiState(
+            1,
+            "Bulbasaur",
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        )
+    }
+
+}

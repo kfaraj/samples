@@ -73,6 +73,7 @@ org-robolectric = { module = "org.robolectric:robolectric", version.ref = "org-r
 [plugins]
 androidx-room = { id = "androidx.room", version.ref = "androidx-room" }
 com-android-application = { id = "com.android.application", version.ref = "com-android-tools-build-gradle" }
+com-android-library = { id = "com.android.library", version.ref = "com-android-tools-build-gradle" }
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "com-google-devtools-ksp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-plugin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "org-jetbrains-kotlin" }
