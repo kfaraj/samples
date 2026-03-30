@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "samples"
 include(":darktheme:app")
+include(":koin:app")
 include(":pokedex:app")
 include(":pokedex:core:ui")
 include(":pokedex:data:pokemon")
