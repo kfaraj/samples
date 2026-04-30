@@ -1,33 +1,39 @@
+import KMPObservableViewModelSwiftUI
 import Shared
 import SwiftUI
 
 struct PokemonDetailView: View {
-    let id: Int
-    let onNavigateUp: () -> Void
+    @StateViewModel var viewModel: PokemonDetailViewModel
 
     var body: some View {
-        PokemonDetailViewControllerRepresentable(id: id, onNavigateUp: onNavigateUp)
-            .ignoresSafeArea()
+        PokemonDetailViewSnapshot(uiState: viewModel.uiStateValue)
     }
 }
 
-struct PokemonDetailViewControllerRepresentable: UIViewControllerRepresentable {
-    let id: Int
-    let onNavigateUp: () -> Void
+struct PokemonDetailViewSnapshot: View {
+    let uiState: PokemonDetailUiState
 
-    func makeUIViewController(context: Context) -> UIViewController {
-        return PokemonDetailScreen_iosKt.PokemonDetailViewController(id: Int32(id)) {
-            onNavigateUp()
+    var body: some View {
+        ScrollView {
+            VStack {
+                AsyncImage(url: URL(string: uiState.sprite ?? "")) { phase in
+                    phase.image?.resizable()
+                }
+                .frame(width: 194, height: 194)
+                Text(uiState.id.map { String(format: "#%04d", $0.intValue) } ?? "")
+                    .font(.subheadline)
+                Text(uiState.name ?? "")
+                    .font(.body)
+            }
         }
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Do nothing.
     }
 }
 
 #Preview {
-    PokemonDetailView(id: 1) {
-        // Do nothing.
-    }
+    let uiState = PokemonDetailUiState(
+        id: 1,
+        name: "Bulbasaur",
+        sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+    )
+    PokemonDetailViewSnapshot(uiState: uiState)
 }

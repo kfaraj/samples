@@ -12,14 +12,12 @@ struct PokedexApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                PokemonListView() { itemId in
+                PokemonListView(viewModel: PokemonListViewModelFactory.shared.create()) { itemId in
                     selectedId = itemId
                 }
+                .navigationTitle("Pokédex")
                 .navigationDestination(item: $selectedId) { id in
-                    PokemonDetailView(id: id) {
-                        selectedId = nil
-                    }
-                    .navigationBarBackButtonHidden()
+                    PokemonDetailView(viewModel: PokemonDetailViewModelFactory.shared.create(id: Int32(id)))
                 }
             }
         }

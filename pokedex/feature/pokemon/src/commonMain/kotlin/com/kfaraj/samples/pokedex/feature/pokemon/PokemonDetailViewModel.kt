@@ -1,32 +1,31 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
 /**
  * Exposes the Pokémon detail UI state.
  */
 @KoinViewModel
-internal class PokemonDetailViewModel(
+public class PokemonDetailViewModel internal constructor(
     savedStateHandle: SavedStateHandle,
     pokemonRepository: PokemonRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(PokemonDetailUiState())
+    private val _uiState = MutableStateFlow(viewModelScope, PokemonDetailUiState())
 
     /**
      * The stream of Pokémon detail UI state.
      */
-    val uiState: StateFlow<PokemonDetailUiState> =
+    public val uiState: StateFlow<PokemonDetailUiState> =
         _uiState.asStateFlow()
 
     init {

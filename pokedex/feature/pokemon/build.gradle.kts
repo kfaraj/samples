@@ -32,6 +32,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel.savedstate)
                 implementation(libs.androidx.paging.common)
                 implementation(libs.androidx.paging.compose)
+                api(libs.com.rickclephas.kmp.observableviewmodel.core)
                 implementation(libs.io.coil.compose)
                 implementation(libs.io.coil.network.ktor)
                 implementation(libs.io.insert.koin.annotations)
@@ -63,6 +64,7 @@ kotlin {
     compilerOptions {
         optIn.addAll(
             "androidx.compose.material3.ExperimentalMaterial3Api",
+            "kotlinx.cinterop.ExperimentalForeignApi",
             "kotlinx.coroutines.ExperimentalCoroutinesApi"
         )
     }
