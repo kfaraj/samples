@@ -1,7 +1,7 @@
 # Pokédex
 
 This sample demonstrates best practices for
-[Modern Android Development](https://developer.android.com/modern-android-development).
+[Kotlin Multiplatform](https://kotlinlang.org/multiplatform/).
 
 ## Architecture
 
@@ -29,8 +29,8 @@ It follows the
 
 ```mermaid
 flowchart TB
-    :app --> :feature:pokemon
-    :app --> :core:ui
+    :androidApp --> :feature:pokemon
+    :androidApp --> :core:ui
     :feature:pokemon --> :data:pokemon
     :feature:pokemon --> :core:ui
 ```
