@@ -31,6 +31,9 @@ It follows the
 flowchart TB
     :androidApp --> :feature:pokemon
     :androidApp --> :core:ui
+    :iosApp --> :shared
+    :shared --> :feature:pokemon
+    :shared --> :core:ui
     :feature:pokemon --> :data:pokemon
     :feature:pokemon --> :core:ui
 ```
