@@ -1,0 +1,57 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      projectDir:
+        description: Project directory
+        type: choice
+        options:
+          - darktheme
+          - pokedex
+      buildTask:
+        description: Build task
+        type: choice
+        options:
+          - assemble
+          - bundle
+      buildType:
+        description: Build type
+        type: choice
+        options:
+          - debug
+          - release
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: jetbrains
+          cache: gradle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download
+        run: echo "$SIGNING_STORE_FILE" | base64 --decode > ${{ runner.temp }}/release.keystore
+        env:
+          SIGNING_STORE_FILE: ${{ secrets.SIGNING_STORE_FILE }}
+      - name: Build
+        run: ./gradlew ${{ inputs.buildTask }}${{ inputs.buildType }} --project-dir ${{ inputs.projectDir }}
+        env:
+          ORG_GRADLE_PROJECT_signingStoreFile: ${{ runner.temp }}/release.keystore
+          ORG_GRADLE_PROJECT_signingStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKeyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          ORG_GRADLE_PROJECT_signingKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      - name: Upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: build
+          path: |
+            **/build/outputs/apk/
+            **/build/outputs/bundle/
