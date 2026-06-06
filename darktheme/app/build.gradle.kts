@@ -17,11 +17,10 @@ android {
     }
     signingConfigs {
         register("release") {
-            val storePath = properties["signingStorePath"] as String?
-            storeFile = if (storePath != null) file(storePath) else null
-            storePassword = properties["signingStorePassword"] as String?
-            keyAlias = properties["signingKeyAlias"] as String?
-            keyPassword = properties["signingKeyPassword"] as String?
+            storeFile = properties["signingStoreFile"]?.let { file(it) }
+            storePassword = properties["signingStorePassword"] as? String
+            keyAlias = properties["signingKeyAlias"] as? String
+            keyPassword = properties["signingKeyPassword"] as? String
         }
     }
     buildTypes {

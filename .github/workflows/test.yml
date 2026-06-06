@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: jetbrains
+          cache: gradle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test
+        run: ./gradlew testDebugUnitTest
+      - name: Upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: build
+          path: |
+            **/build/reports/tests/
+            **/build/test-results/
