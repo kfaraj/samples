@@ -5,7 +5,7 @@ import com.kfaraj.samples.pokedex.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.annotation.KoinApplication
 import org.koin.core.context.stopKoin
-import org.koin.ksp.generated.startKoin
+import org.koin.plugin.module.dsl.startKoin
 
 /**
  * Maintains global application state.
@@ -15,7 +15,7 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
+        startKoin<MainApplication> {
             androidContext(this@MainApplication)
         }
     }
