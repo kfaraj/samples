@@ -17,12 +17,14 @@ public data object PokemonListRoute
  */
 public fun NavGraphBuilder.pokemonListDestination(
     sharedTransitionScope: SharedTransitionScope,
+    title: String,
     onItemClick: (itemId: Int?) -> Unit
 ) {
     composable<PokemonListRoute> {
         with(sharedTransitionScope) {
             PokemonListScreen(
                 animatedVisibilityScope = this@composable,
+                title = title,
                 viewModel = koinViewModel(),
                 onItemClick = { item ->
                     onItemClick(item?.id)

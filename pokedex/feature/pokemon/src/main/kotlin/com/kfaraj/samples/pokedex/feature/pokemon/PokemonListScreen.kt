@@ -21,7 +21,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
@@ -37,6 +36,7 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 internal fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
+    title: String,
     viewModel: PokemonListViewModel,
     onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
@@ -44,6 +44,7 @@ internal fun SharedTransitionScope.PokemonListScreen(
     val lazyPagingItems = viewModel.pagingData.collectAsLazyPagingItems()
     PokemonListScreen(
         animatedVisibilityScope = animatedVisibilityScope,
+        title = title,
         lazyPagingItems = lazyPagingItems,
         onItemClick = onItemClick,
         modifier = modifier
@@ -56,6 +57,7 @@ internal fun SharedTransitionScope.PokemonListScreen(
 @Composable
 private fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
+    title: String,
     lazyPagingItems: LazyPagingItems<PokemonListItemUiState>,
     onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
@@ -67,7 +69,7 @@ private fun SharedTransitionScope.PokemonListScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(com.kfaraj.samples.pokedex.core.ui.R.string.app_name)
+                        text = title
                     )
                 },
                 windowInsets = WindowInsets.safeDrawing.only(
@@ -115,6 +117,7 @@ private fun PokemonListScreenPreview() {
             ) {
                 PokemonListScreen(
                     animatedVisibilityScope = this@AnimatedVisibility,
+                    title = "Pokédex",
                     lazyPagingItems = flowOf(
                         PagingData.from(
                             listOf(

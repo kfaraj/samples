@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         pokemonListDestination(
                             sharedTransitionScope = this@SharedTransitionLayout,
+                            title = getString(com.kfaraj.samples.pokedex.core.ui.R.string.app_name),
                             onItemClick = { itemId ->
                                 itemId?.let {
                                     navController.navigateToPokemonDetailDestination(it)
