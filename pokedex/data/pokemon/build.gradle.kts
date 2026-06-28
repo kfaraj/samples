@@ -3,11 +3,12 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.androidx.room)
+    alias(libs.plugins.io.insert.koin.compiler.plugin)
 }
 
 android {
     namespace = "com.kfaraj.samples.pokedex.data.pokemon"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         minSdk = 26
     }
@@ -28,14 +29,12 @@ room {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.io.insert.koin.android)
     implementation(libs.io.insert.koin.annotations)
-    ksp(libs.io.insert.koin.ksp.compiler)
     implementation(libs.io.ktor.client.content.negotiation)
     implementation(libs.io.ktor.client.core)
     implementation(libs.io.ktor.client.okhttp)

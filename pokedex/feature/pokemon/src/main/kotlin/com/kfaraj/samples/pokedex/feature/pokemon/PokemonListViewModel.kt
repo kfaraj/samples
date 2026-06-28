@@ -10,7 +10,7 @@ import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 /**
  * Exposes the Pokémon list UI state.

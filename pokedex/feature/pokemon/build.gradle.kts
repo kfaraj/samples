@@ -2,17 +2,14 @@ plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
-    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.io.insert.koin.compiler.plugin)
 }
 
 android {
     namespace = "com.kfaraj.samples.pokedex.feature.pokemon"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         minSdk = 26
-    }
-    buildFeatures {
-        compose = true
     }
     testOptions {
         unitTests {
@@ -39,7 +36,6 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
@@ -53,7 +49,6 @@ dependencies {
     implementation(libs.io.insert.koin.android)
     implementation(libs.io.insert.koin.androidx.compose)
     implementation(libs.io.insert.koin.annotations)
-    ksp(libs.io.insert.koin.ksp.compiler)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.org.jetbrains.kotlinx.serialization.json)
     testImplementation(libs.androidx.paging.testing)
