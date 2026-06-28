@@ -29,7 +29,7 @@ room {
 }
 
 dependencies {
-    implementation(libs.androidx.paging.runtime)
+    api(libs.androidx.paging.runtime)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
@@ -39,7 +39,7 @@ dependencies {
     implementation(libs.io.ktor.client.core)
     implementation(libs.io.ktor.client.okhttp)
     implementation(libs.io.ktor.serialization.kotlinx.json)
-    implementation(libs.org.jetbrains.kotlinx.coroutines.android)
+    api(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.org.jetbrains.kotlinx.serialization.json)
     testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.io.mockk)
