@@ -7,7 +7,7 @@ android {
     namespace = "com.kfaraj.samples.pokedex.core.ui"
     compileSdk = 37
     defaultConfig {
-        minSdk = 26
+        minSdk = 28
     }
 }
 

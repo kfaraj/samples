@@ -9,7 +9,7 @@ android {
     namespace = "com.kfaraj.samples.pokedex.feature.pokemon"
     compileSdk = 37
     defaultConfig {
-        minSdk = 26
+        minSdk = 28
     }
     testOptions {
         unitTests {
