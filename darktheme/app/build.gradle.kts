@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId = "com.kfaraj.samples.darktheme"
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "0.1.0"
     }
