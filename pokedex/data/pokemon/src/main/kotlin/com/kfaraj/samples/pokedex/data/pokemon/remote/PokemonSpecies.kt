@@ -1,7 +1,5 @@
 package com.kfaraj.samples.pokedex.data.pokemon.remote
 
-import java.util.Locale
-
 /**
  * Contains the Pokémon species.
  */
@@ -11,7 +9,7 @@ internal object PokemonSpecies {
     val NamedApiResource.names: List<Name>
         get() = listOf(
             Name(
-                name = name.replaceFirstChar { it.titlecase(Locale.US) },
+                name = name.replaceFirstChar { it.titlecaseChar() },
                 language = NamedApiResource(
                     name = "en",
                     url = "https://pokeapi.co/api/v2/language/9/"

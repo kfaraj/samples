@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.navigation.compose.DefaultNavTransitions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.kfaraj.samples.pokedex.core.ui.theme.AppTheme
@@ -25,9 +26,23 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 SharedTransitionLayout {
                     val navController = rememberNavController()
+                    val enterTransition =
+                        DefaultNavTransitions.enterTransition
+                    val exitTransition =
+                        DefaultNavTransitions.exitTransition
+                    val popEnterTransition =
+                        DefaultNavTransitions.popEnterTransition(enterTransition)
+                    val popExitTransition =
+                        DefaultNavTransitions.popExitTransition(exitTransition)
                     NavHost(
                         navController = navController,
-                        startDestination = PokemonListRoute
+                        startDestination = PokemonListRoute,
+                        predictivePopEnterTransition = {
+                            popEnterTransition()
+                        },
+                        predictivePopExitTransition = {
+                            popExitTransition()
+                        }
                     ) {
                         pokemonListDestination(
                             sharedTransitionScope = this@SharedTransitionLayout,
