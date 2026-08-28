@@ -22,12 +22,9 @@ android {
     }
     buildTypes {
         named("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            optimization {
+                enable = true
+            }
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -42,7 +39,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.preference.ktx)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.preference)
     implementation(libs.com.google.android.material)
 }

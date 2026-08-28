@@ -4,7 +4,7 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 /**
  * Identifies the Pokémon list destination.
