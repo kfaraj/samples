@@ -1,15 +1,14 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
-import androidx.paging.LoadState
-import androidx.paging.LoadStates
-import androidx.paging.PagingData
+import androidx.paging.RemoteMediator
+import androidx.paging.testing.asPagingSourceFactory
 import androidx.paging.testing.asSnapshot
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
+import com.kfaraj.samples.pokedex.feature.pokemon.testutils.FakeRemoteMediator
 import com.kfaraj.samples.pokedex.feature.pokemon.testutils.MainDispatcherRule
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -22,18 +21,14 @@ class PokemonListViewModelTest {
 
     @Test
     fun pagingData() = runTest {
-        val pagingData = flowOf(
-            PagingData.from(
-                listOf(BULBASAUR),
-                LoadStates(
-                    LoadState.NotLoading(true),
-                    LoadState.NotLoading(true),
-                    LoadState.NotLoading(true)
-                )
-            )
+        val pagingSourceFactory = listOf(BULBASAUR).asPagingSourceFactory()
+        val pagingSource = pagingSourceFactory()
+        val remoteMediator = FakeRemoteMediator<Int, Pokemon>(
+            RemoteMediator.MediatorResult.Success(true)
         )
         val pokemonRepository = mockk<PokemonRepository> {
-            every { getPagingDataStream(any()) } returns pagingData
+            every { getPagingSource() } returns pagingSource
+            every { getRemoteMediator() } returns remoteMediator
         }
         val viewModel = PokemonListViewModel(
             pokemonRepository

@@ -1,8 +1,8 @@
 package com.kfaraj.samples.pokedex.data.pokemon
 
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.PagingSource
+import androidx.paging.RemoteMediator
 
 /**
  * Exposes Pokémon data.
@@ -15,8 +15,14 @@ public interface PokemonRepository {
     public suspend fun get(id: Int): Pokemon
 
     /**
-     * Returns the stream of paged Pokémon data.
+     * Returns the [PagingSource] of Pokémon data.
      */
-    public fun getPagingDataStream(config: PagingConfig): Flow<PagingData<Pokemon>>
+    public fun getPagingSource(): PagingSource<Int, Pokemon>
+
+    /**
+     * Returns the [RemoteMediator] of Pokémon data.
+     */
+    @ExperimentalPagingApi
+    public fun getRemoteMediator(): RemoteMediator<Int, Pokemon>
 
 }

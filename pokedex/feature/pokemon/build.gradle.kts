@@ -24,6 +24,7 @@ kotlin {
     compilerOptions {
         optIn.addAll(
             "androidx.compose.material3.ExperimentalMaterial3Api",
+            "androidx.paging.ExperimentalPagingApi",
             "kotlinx.coroutines.ExperimentalCoroutinesApi"
         )
     }
