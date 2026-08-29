@@ -1,7 +1,8 @@
 package com.kfaraj.samples.pokedex.data.pokemon.di
 
 import android.content.Context
-import androidx.room.Room
+import androidx.room3.Room
+import androidx.sqlite.driver.AndroidSQLiteDriver
 import com.kfaraj.samples.pokedex.data.pokemon.local.ApplicationDatabase
 import com.kfaraj.samples.pokedex.data.pokemon.local.PokemonDao
 import org.koin.core.annotation.Factory
@@ -21,11 +22,9 @@ internal object DatabaseModule {
     fun provideApplicationDatabase(
         applicationContext: Context
     ): ApplicationDatabase {
-        return Room.databaseBuilder(
-            applicationContext,
-            ApplicationDatabase::class.java,
-            "pokedex.db"
-        ).build()
+        return Room.databaseBuilder<ApplicationDatabase>(applicationContext, "pokedex.db")
+            .setDriver(AndroidSQLiteDriver())
+            .build()
     }
 
     /**

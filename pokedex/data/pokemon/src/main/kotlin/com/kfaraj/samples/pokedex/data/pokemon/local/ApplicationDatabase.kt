@@ -1,7 +1,7 @@
 package com.kfaraj.samples.pokedex.data.pokemon.local
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
+import androidx.room3.Database
+import androidx.room3.RoomDatabase
 
 /**
  * Exposes application data from a database.
