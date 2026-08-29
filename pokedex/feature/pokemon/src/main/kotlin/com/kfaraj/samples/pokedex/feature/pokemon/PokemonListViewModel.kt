@@ -2,6 +2,7 @@ package com.kfaraj.samples.pokedex.feature.pokemon
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -24,7 +25,13 @@ internal class PokemonListViewModel(
      * The stream of paged Pokémon list items UI states.
      */
     val pagingData: Flow<PagingData<PokemonListItemUiState>> =
-        pokemonRepository.getPagingDataStream(PagingConfig(PAGE_SIZE))
+        Pager(
+            PagingConfig(PAGE_SIZE),
+            null,
+            pokemonRepository.getRemoteMediator()
+        ) {
+            pokemonRepository.getPagingSource()
+        }.flow
             .map { pagingData ->
                 pagingData.map { pokemon ->
                     pokemon.toPokemonListItemUiState()

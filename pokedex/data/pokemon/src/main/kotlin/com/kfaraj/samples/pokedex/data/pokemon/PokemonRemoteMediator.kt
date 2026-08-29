@@ -22,11 +22,11 @@ import java.io.IOException
 internal class PokemonRemoteMediator(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource,
     private val pokemonLocalDataSource: PokemonLocalDataSource
-) : RemoteMediator<Int, PokemonEntity>() {
+) : RemoteMediator<Int, Pokemon>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PokemonEntity>
+        state: PagingState<Int, Pokemon>
     ): MediatorResult {
         return try {
             val offset = when (loadType) {

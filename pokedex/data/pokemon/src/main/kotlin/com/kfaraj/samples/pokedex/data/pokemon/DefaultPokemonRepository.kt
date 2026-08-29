@@ -1,14 +1,12 @@
 package com.kfaraj.samples.pokedex.data.pokemon
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.PagingSource
+import androidx.paging.RemoteMediator
 import com.kfaraj.samples.pokedex.data.pokemon.local.PokemonEntity
 import com.kfaraj.samples.pokedex.data.pokemon.local.PokemonLocalDataSource
 import com.kfaraj.samples.pokedex.data.pokemon.remote.PokemonRemoteDataSource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import com.kfaraj.samples.pokedex.data.pokemon.util.map
 import org.koin.core.annotation.Single
 
 /**
@@ -24,19 +22,13 @@ internal class DefaultPokemonRepository(
         return pokemonLocalDataSource.get(id).toPokemon()
     }
 
-    override fun getPagingDataStream(config: PagingConfig): Flow<PagingData<Pokemon>> {
-        return Pager(
-            config,
-            null,
-            PokemonRemoteMediator(pokemonRemoteDataSource, pokemonLocalDataSource)
-        ) {
-            pokemonLocalDataSource.getPagingSource()
-        }.flow
-            .map { pagingData ->
-                pagingData.map { pokemonEntity ->
-                    pokemonEntity.toPokemon()
-                }
-            }
+    override fun getPagingSource(): PagingSource<Int, Pokemon> {
+        return pokemonLocalDataSource.getPagingSource().map { it.toPokemon() }
+    }
+
+    @ExperimentalPagingApi
+    override fun getRemoteMediator(): RemoteMediator<Int, Pokemon> {
+        return PokemonRemoteMediator(pokemonRemoteDataSource, pokemonLocalDataSource)
     }
 
     /**
