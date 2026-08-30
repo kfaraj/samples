@@ -5,17 +5,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.SharedTransitionLayout
-import androidx.navigation.compose.DefaultNavTransitions
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.NavDisplay
+import androidx.navigation3.ui.defaultPopTransitionSpec
 import com.kfaraj.samples.pokedex.core.ui.theme.AppTheme
-import com.kfaraj.samples.pokedex.feature.pokemon.PokemonListRoute
-import com.kfaraj.samples.pokedex.feature.pokemon.navigateToPokemonDetailDestination
-import com.kfaraj.samples.pokedex.feature.pokemon.pokemonDetailDestination
-import com.kfaraj.samples.pokedex.feature.pokemon.pokemonListDestination
+import com.kfaraj.samples.pokedex.feature.pokemon.PokemonDetailKey
+import com.kfaraj.samples.pokedex.feature.pokemon.PokemonListKey
+import com.kfaraj.samples.pokedex.feature.pokemon.pokemonDetailEntryBuilder
+import com.kfaraj.samples.pokedex.feature.pokemon.pokemonListEntryBuilder
 
 /**
- * Contains the [NavHost].
+ * Contains the [NavDisplay].
  */
 class MainActivity : ComponentActivity() {
 
@@ -25,41 +30,36 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 SharedTransitionLayout {
-                    val navController = rememberNavController()
-                    val enterTransition =
-                        DefaultNavTransitions.enterTransition
-                    val exitTransition =
-                        DefaultNavTransitions.exitTransition
-                    val popEnterTransition =
-                        DefaultNavTransitions.popEnterTransition(enterTransition)
-                    val popExitTransition =
-                        DefaultNavTransitions.popExitTransition(exitTransition)
-                    NavHost(
-                        navController = navController,
-                        startDestination = PokemonListRoute,
-                        predictivePopEnterTransition = {
-                            popEnterTransition()
+                    val backStack = rememberNavBackStack(PokemonListKey)
+                    val popTransitionSpec = defaultPopTransitionSpec<NavKey>()
+                    NavDisplay(
+                        backStack = backStack,
+                        entryDecorators = listOf(
+                            rememberSaveableStateHolderNavEntryDecorator(),
+                            rememberViewModelStoreNavEntryDecorator()
+                        ),
+                        predictivePopTransitionSpec = {
+                            popTransitionSpec()
                         },
-                        predictivePopExitTransition = {
-                            popExitTransition()
-                        }
-                    ) {
-                        pokemonListDestination(
-                            sharedTransitionScope = this@SharedTransitionLayout,
-                            title = getString(R.string.app_name),
-                            onItemClick = { itemId ->
-                                itemId?.let {
-                                    navController.navigateToPokemonDetailDestination(it)
+                        entryProvider = entryProvider {
+                            pokemonListEntryBuilder(
+                                sharedTransitionScope = this@SharedTransitionLayout,
+                                title = stringResource(R.string.app_name),
+                                onItemClick = { itemId ->
+                                    itemId?.let {
+                                        val key = PokemonDetailKey(it)
+                                        backStack.add(key)
+                                    }
                                 }
-                            }
-                        )
-                        pokemonDetailDestination(
-                            sharedTransitionScope = this@SharedTransitionLayout,
-                            onNavigateUp = {
-                                navController.navigateUp()
-                            }
-                        )
-                    }
+                            )
+                            pokemonDetailEntryBuilder(
+                                sharedTransitionScope = this@SharedTransitionLayout,
+                                onNavigateUp = {
+                                    backStack.removeLastOrNull()
+                                }
+                            )
+                        }
+                    )
                 }
             }
         }
