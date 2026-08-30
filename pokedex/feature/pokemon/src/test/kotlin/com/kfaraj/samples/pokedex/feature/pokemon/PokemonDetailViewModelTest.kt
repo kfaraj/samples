@@ -1,7 +1,5 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
-import androidx.lifecycle.SavedStateHandle
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
 import com.kfaraj.samples.pokedex.feature.pokemon.testutils.MainDispatcherRule
@@ -11,9 +9,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class PokemonDetailViewModelTest {
 
     @get:Rule
@@ -21,12 +17,12 @@ class PokemonDetailViewModelTest {
 
     @Test
     fun uiState() = runTest {
-        val savedStateHandle = SavedStateHandle(mapOf("id" to 1))
+        val key = PokemonDetailKey(1)
         val pokemonRepository = mockk<PokemonRepository> {
             coEvery { get(1) } returns BULBASAUR
         }
         val viewModel = PokemonDetailViewModel(
-            savedStateHandle,
+            key,
             pokemonRepository
         )
         val result = viewModel.uiState.value

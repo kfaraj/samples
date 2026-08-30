@@ -1,14 +1,13 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.toRoute
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.koin.core.annotation.InjectedParam
 import org.koin.core.annotation.KoinViewModel
 
 /**
@@ -16,7 +15,7 @@ import org.koin.core.annotation.KoinViewModel
  */
 @KoinViewModel
 internal class PokemonDetailViewModel(
-    savedStateHandle: SavedStateHandle,
+    @InjectedParam key: PokemonDetailKey,
     pokemonRepository: PokemonRepository
 ) : ViewModel() {
 
@@ -28,8 +27,7 @@ internal class PokemonDetailViewModel(
 
     init {
         viewModelScope.launch {
-            val id = savedStateHandle.toRoute<PokemonDetailRoute>().id
-            val pokemon = pokemonRepository.get(id)
+            val pokemon = pokemonRepository.get(key.id)
             uiState.value = pokemon.toPokemonDetailUiState()
         }
     }

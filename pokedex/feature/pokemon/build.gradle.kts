@@ -11,11 +11,6 @@ android {
     defaultConfig {
         minSdk = 28
     }
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
 }
 
 kotlin {
@@ -40,8 +35,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
-    api(libs.androidx.navigation.compose)
+    api(libs.androidx.navigation3.runtime)
+    api(libs.androidx.navigation3.ui)
     implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.paging.runtime)
     implementation(libs.io.coil.compose)
@@ -52,10 +47,7 @@ dependencies {
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.org.jetbrains.kotlinx.serialization.json)
     testImplementation(libs.androidx.paging.testing)
-    testImplementation(libs.androidx.test.core.ktx)
-    testImplementation(libs.androidx.test.ext.junit.ktx)
     testImplementation(libs.io.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
-    testImplementation(libs.org.robolectric)
 }

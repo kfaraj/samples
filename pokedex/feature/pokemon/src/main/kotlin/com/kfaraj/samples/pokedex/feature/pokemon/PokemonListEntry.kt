@@ -1,29 +1,23 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
 import androidx.compose.animation.SharedTransitionScope
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import kotlinx.serialization.Serializable
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
- * Identifies the Pokémon list destination.
+ * Builds the Pokémon list entry.
  */
-@Serializable
-public data object PokemonListRoute
-
-/**
- * Adds the Pokémon list destination.
- */
-public fun NavGraphBuilder.pokemonListDestination(
+public fun EntryProviderScope<NavKey>.pokemonListEntryBuilder(
     sharedTransitionScope: SharedTransitionScope,
     title: String,
     onItemClick: (itemId: Int?) -> Unit
 ) {
-    composable<PokemonListRoute> {
+    entry<PokemonListKey> {
         with(sharedTransitionScope) {
             PokemonListScreen(
-                animatedVisibilityScope = this@composable,
+                animatedVisibilityScope = LocalNavAnimatedContentScope.current,
                 title = title,
                 viewModel = koinViewModel(),
                 onItemClick = { item ->
