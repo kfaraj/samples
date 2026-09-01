@@ -26,6 +26,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "samples"
 include(":darktheme:app")
+include(":koin-multimodule:app")
+include(":koin-multimodule:data")
+include(":koin-multimodule:feature")
+include(":koin-robolectric:app")
 include(":pokedex:app")
 include(":pokedex:core:ui")
 include(":pokedex:data:pokemon")
