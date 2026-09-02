@@ -30,6 +30,7 @@ It follows the
 ```mermaid
 flowchart TB
     :androidApp --> :shared
+    :iosApp --> :shared
     :shared --> :feature:pokemon
     :shared --> :core:ui
     :feature:pokemon --> :data:pokemon
