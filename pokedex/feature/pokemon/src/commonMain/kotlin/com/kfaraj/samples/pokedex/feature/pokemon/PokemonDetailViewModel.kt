@@ -1,12 +1,11 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import org.koin.core.annotation.InjectedParam
 import org.koin.core.annotation.KoinViewModel
 
@@ -14,7 +13,7 @@ import org.koin.core.annotation.KoinViewModel
  * Exposes the Pokémon detail UI state.
  */
 @KoinViewModel
-internal class PokemonDetailViewModel(
+public class PokemonDetailViewModel internal constructor(
     @InjectedParam key: PokemonDetailKey,
     pokemonRepository: PokemonRepository
 ) : ViewModel() {
@@ -22,8 +21,8 @@ internal class PokemonDetailViewModel(
     /**
      * The stream of Pokémon detail UI state.
      */
-    val uiState: StateFlow<PokemonDetailUiState>
-        field = MutableStateFlow(PokemonDetailUiState())
+    public val uiState: StateFlow<PokemonDetailUiState>
+        field = MutableStateFlow(viewModelScope, PokemonDetailUiState())
 
     init {
         viewModelScope.launch {
