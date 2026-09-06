@@ -12,6 +12,6 @@ This sample demonstrates how to implement a
 ## Pokédex
 
 This sample demonstrates best practices for
-[Modern Android Development](https://developer.android.com/modern-android-development).
+[Kotlin Multiplatform](https://kotlinlang.org/multiplatform/).
 
 [View on GitHub](pokedex)
