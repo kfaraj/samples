@@ -1,19 +1,26 @@
 import Shared
 import SwiftUI
 
-struct ContentView: UIViewControllerRepresentable {
+struct ContentView: View {
     let title: String
+    @State private var backStack = NavigationPath()
 
-    func makeUIViewController(context: Context) -> UIViewController {
-        return MainViewController_iosKt.MainViewController(title: title)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Do nothing.
+    var body: some View {
+        NavigationStack(path: $backStack) {
+            PokemonListView(viewModel: PokemonListViewModelFactory.shared.create()) { itemId in
+                if let itemId {
+                    let key = PokemonDetailKey(id: Int32(itemId))
+                    backStack.append(key)
+                }
+            }
+            .navigationTitle(title)
+            .navigationDestination(for: PokemonDetailKey.self) { key in
+                PokemonDetailView(viewModel: PokemonDetailViewModelFactory.shared.create(key: key))
+            }
+        }
     }
 }
 
 #Preview {
     ContentView(title: "Pokédex")
-        .ignoresSafeArea()
 }

@@ -1,30 +1,38 @@
 package com.kfaraj.samples.pokedex.feature.pokemon
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.paging.ItemSnapshotList
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingDataEvent
+import androidx.paging.PagingDataPresenter
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.kfaraj.samples.pokedex.data.pokemon.Pokemon
 import com.kfaraj.samples.pokedex.data.pokemon.PokemonRepository
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
 
 /**
  * Exposes the Pokémon list UI state.
  */
 @KoinViewModel
-internal class PokemonListViewModel(
+public class PokemonListViewModel internal constructor(
     pokemonRepository: PokemonRepository
 ) : ViewModel() {
 
     /**
      * The stream of paged Pokémon list items UI states.
      */
-    val pagingData: Flow<PagingData<PokemonListItemUiState>> =
+    public val pagingData: Flow<PagingData<PokemonListItemUiState>> =
         Pager(
             PagingConfig(PAGE_SIZE),
             null,
@@ -37,7 +45,44 @@ internal class PokemonListViewModel(
                     pokemon.toPokemonListItemUiState()
                 }
             }
-            .cachedIn(viewModelScope)
+            .cachedIn(viewModelScope.coroutineScope)
+
+    private val pagingDataPresenter = object : PagingDataPresenter<PokemonListItemUiState>() {
+        override suspend fun presentPagingDataEvent(
+            event: PagingDataEvent<PokemonListItemUiState>
+        ) {
+            updateSnapshot()
+        }
+    }
+
+    /**
+     * The stream of paged Pokémon list items UI states.
+     */
+    @NativeCoroutinesState
+    public val itemSnapshotList: StateFlow<ItemSnapshotList<PokemonListItemUiState>>
+        field = MutableStateFlow(
+            viewModelScope,
+            pagingDataPresenter.snapshot()
+        )
+
+    init {
+        viewModelScope.coroutineScope.launch {
+            pagingData.collectLatest {
+                pagingDataPresenter.collectFrom(it)
+            }
+        }
+    }
+
+    private fun updateSnapshot() {
+        itemSnapshotList.value = pagingDataPresenter.snapshot()
+    }
+
+    /**
+     * Returns the item at [index].
+     */
+    public fun getItem(index: Int): PokemonListItemUiState? {
+        return pagingDataPresenter[index]
+    }
 
     /**
      * Converts the model from the data layer to the UI layer.
@@ -50,7 +95,7 @@ internal class PokemonListViewModel(
         )
     }
 
-    companion object {
+    public companion object {
         private const val PAGE_SIZE = 50
     }
 
