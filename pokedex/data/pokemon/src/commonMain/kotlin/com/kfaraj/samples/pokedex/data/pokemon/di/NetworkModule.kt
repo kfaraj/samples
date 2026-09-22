@@ -47,7 +47,8 @@ internal object NetworkModule {
         httpClient: HttpClient
     ): PokeApiService {
         return DefaultPokeApiService(
-            httpClient
+            httpClient,
+            json
         )
     }
 
