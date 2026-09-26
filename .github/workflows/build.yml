@@ -21,6 +21,17 @@ on:
         options:
           - debug
           - release
+      project:
+        description: Project
+        type: choice
+        options:
+          - pokedex/iosApp/Pokedex.xcodeproj
+      configuration:
+        description: Configuration
+        type: choice
+        options:
+          - Debug
+          - Release
 
 jobs:
   build:
@@ -48,6 +59,8 @@ jobs:
           ORG_GRADLE_PROJECT_signingStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
           ORG_GRADLE_PROJECT_signingKeyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
           ORG_GRADLE_PROJECT_signingKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      - name: Build
+        run: xcodebuild -project ${{ inputs.project }} -configuration ${{ inputs.configuration }} -arch arm64 -sdk iphonesimulator
       - name: Upload
         uses: actions/upload-artifact@v7
         with:
@@ -55,3 +68,4 @@ jobs:
           path: |
             **/build/outputs/apk/
             **/build/outputs/bundle/
+            **/build/*-iphonesimulator/
