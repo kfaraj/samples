@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
+    alias(libs.plugins.com.rickclephas.kmp.nativecoroutines)
     alias(libs.plugins.io.insert.koin.compiler.plugin)
 }
 
@@ -32,6 +33,7 @@ kotlin {
                 api(libs.androidx.navigation3.runtime)
                 implementation(libs.androidx.paging.common)
                 implementation(libs.androidx.paging.compose)
+                api(libs.com.rickclephas.kmp.observableviewmodel.core)
                 implementation(libs.io.coil.compose)
                 implementation(libs.io.coil.network.ktor)
                 implementation(libs.io.insert.koin.annotations)
@@ -60,6 +62,8 @@ kotlin {
         optIn.addAll(
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.paging.ExperimentalPagingApi",
+            "kotlin.experimental.ExperimentalObjCName",
+            "kotlinx.cinterop.ExperimentalForeignApi",
             "kotlinx.coroutines.ExperimentalCoroutinesApi"
         )
     }

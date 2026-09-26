@@ -6,6 +6,11 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		29BAC7A83067C3A7006504D1 /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 29BAC7A73067C3A7006504D1 /* KMPObservableViewModelCore */; };
+		29BAC7AA3067C3A7006504D1 /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 29BAC7A93067C3A7006504D1 /* KMPObservableViewModelSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		292813093067BACC005CCFF7 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -35,6 +40,8 @@
 		292813063067BACC005CCFF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				29BAC7A83067C3A7006504D1 /* KMPObservableViewModelCore in Frameworks */,
+				29BAC7AA3067C3A7006504D1 /* KMPObservableViewModelSwiftUI in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -74,6 +81,10 @@
 				2928130B3067BACC005CCFF7 /* Pokedex */,
 			);
 			name = Pokedex;
+			packageProductDependencies = (
+				29BAC7A73067C3A7006504D1 /* KMPObservableViewModelCore */,
+				29BAC7A93067C3A7006504D1 /* KMPObservableViewModelSwiftUI */,
+			);
 			productName = Pokedex;
 			productReference = 292813093067BACC005CCFF7 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -102,6 +113,10 @@
 			);
 			mainGroup = 292813003067BACC005CCFF7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				29BAC7A63067C3A7006504D1 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */,
+				29BAC7AB3067C40D006504D1 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2928130A3067BACC005CCFF7 /* Products */;
 			projectDirPath = "";
@@ -357,6 +372,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29BAC7A63067C3A7006504D1 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.1.0;
+			};
+		};
+		29BAC7AB3067C40D006504D1 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		29BAC7A73067C3A7006504D1 /* KMPObservableViewModelCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29BAC7A63067C3A7006504D1 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			productName = KMPObservableViewModelCore;
+		};
+		29BAC7A93067C3A7006504D1 /* KMPObservableViewModelSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29BAC7A63067C3A7006504D1 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			productName = KMPObservableViewModelSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 292813013067BACC005CCFF7 /* Project object */;
 	validationLevel = 1;

@@ -10,7 +10,6 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -35,7 +34,7 @@ class PokemonListViewModelTest {
         val viewModel = PokemonListViewModel(
             pokemonRepository
         )
-        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+        backgroundScope.launch(mainDispatcherRule.testDispatcher) {
             viewModel.itemSnapshotList.collect()
         }
         val result = viewModel.itemSnapshotList.value

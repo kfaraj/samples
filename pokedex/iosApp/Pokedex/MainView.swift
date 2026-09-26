@@ -2,20 +2,20 @@ import Shared
 import SwiftUI
 
 struct MainView: View {
+    @State private var backStack = NavigationPath()
+
     var body: some View {
-        MainViewControllerRepresentable(title: "Pokédex")
-            .ignoresSafeArea()
-    }
-}
-
-struct MainViewControllerRepresentable: UIViewControllerRepresentable {
-    let title: String
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        return MainViewController_iosKt.MainViewController(title: title)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Do nothing.
+        NavigationStack(path: $backStack) {
+            PokemonListView(viewModel: PokemonListViewModelFactory.shared.create()) { itemId in
+                if let itemId {
+                    let key = PokemonDetailKey(id: Int32(itemId))
+                    backStack.append(key)
+                }
+            }
+            .navigationTitle("Pokédex")
+            .navigationDestination(for: PokemonDetailKey.self) { key in
+                PokemonDetailView(viewModel: PokemonDetailViewModelFactory.shared.create(key: key))
+            }
+        }
     }
 }

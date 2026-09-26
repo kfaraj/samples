@@ -14,13 +14,11 @@ import androidx.compose.foundation.layout.plus
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,9 +43,7 @@ internal fun SharedTransitionScope.PokemonListScreen(
         animatedVisibilityScope = animatedVisibilityScope,
         title = title,
         itemSnapshotList = itemSnapshotList.value,
-        onItemAccess = { itemSnapshotList, index ->
-            viewModel.itemAccessed(itemSnapshotList, index)
-        },
+        onItemAccess = { viewModel.itemAccessed(it) },
         onItemClick = onItemClick,
         modifier = modifier
     )
@@ -61,7 +57,7 @@ private fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     title: String,
     itemSnapshotList: ItemSnapshotList<PokemonListItemUiState>,
-    onItemAccess: (itemSnapshotList: ItemSnapshotList<PokemonListItemUiState>, index: Int) -> Unit,
+    onItemAccess: (index: Int) -> Unit,
     onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -83,10 +79,8 @@ private fun SharedTransitionScope.PokemonListScreen(
         },
         contentWindowInsets = WindowInsets.safeDrawing
     ) { innerPadding ->
-        val staggeredGridState = rememberLazyStaggeredGridState()
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Fixed(2),
-            state = staggeredGridState,
             contentPadding = innerPadding + PaddingValues(8.dp),
             verticalItemSpacing = 8.dp,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -95,10 +89,8 @@ private fun SharedTransitionScope.PokemonListScreen(
                 count = itemSnapshotList.size,
                 key = { itemSnapshotList[it]?.id ?: "PagingPlaceholderKey($it)" }
             ) { index ->
+                onItemAccess(index)
                 val item = itemSnapshotList[index]
-                SideEffect(itemSnapshotList, index) {
-                    onItemAccess(itemSnapshotList, index)
-                }
                 PokemonListItem(
                     item = item,
                     onItemClick = {
@@ -137,7 +129,7 @@ private fun PokemonListScreenPreview() {
                             )
                         )
                     ),
-                    onItemAccess = { _, _ -> },
+                    onItemAccess = {},
                     onItemClick = {},
                     modifier = Modifier.fillMaxSize()
                 )
