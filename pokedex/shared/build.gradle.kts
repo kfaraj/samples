@@ -20,6 +20,7 @@ kotlin {
         binaries {
             framework {
                 baseName = "Shared"
+                export(project(":pokedex:feature:pokemon"))
             }
         }
     }
