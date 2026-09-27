@@ -19,16 +19,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.paging.PagingData
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.ItemSnapshotList
 import com.kfaraj.samples.pokedex.core.ui.theme.AppTheme
-import kotlinx.coroutines.flow.flowOf
+import com.kfaraj.samples.pokedex.feature.pokemon.util.itemKey
 
 /**
  * Displays the Pokémon list UI state on the screen.
@@ -41,11 +40,12 @@ internal fun SharedTransitionScope.PokemonListScreen(
     onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val lazyPagingItems = viewModel.pagingData.collectAsLazyPagingItems()
+    val itemSnapshotList = viewModel.itemSnapshotList.collectAsStateWithLifecycle()
     PokemonListScreen(
         animatedVisibilityScope = animatedVisibilityScope,
         title = title,
-        lazyPagingItems = lazyPagingItems,
+        itemSnapshotList = itemSnapshotList.value,
+        onItemAccess = { viewModel.itemAccessed(it) },
         onItemClick = onItemClick,
         modifier = modifier
     )
@@ -58,7 +58,8 @@ internal fun SharedTransitionScope.PokemonListScreen(
 private fun SharedTransitionScope.PokemonListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     title: String,
-    lazyPagingItems: LazyPagingItems<PokemonListItemUiState>,
+    itemSnapshotList: ItemSnapshotList<PokemonListItemUiState>,
+    onItemAccess: (index: Int) -> Unit,
     onItemClick: (item: PokemonListItemUiState?) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -87,10 +88,13 @@ private fun SharedTransitionScope.PokemonListScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
-                count = lazyPagingItems.itemCount,
-                key = lazyPagingItems.itemKey { it.id }
+                count = itemSnapshotList.size,
+                key = itemSnapshotList.itemKey { it.id }
             ) { index ->
-                val item = lazyPagingItems[index]
+                val item = itemSnapshotList[index]
+                SideEffect {
+                    onItemAccess(index)
+                }
                 PokemonListItem(
                     item = item,
                     onItemClick = {
@@ -118,17 +122,18 @@ private fun PokemonListScreenPreview() {
                 PokemonListScreen(
                     animatedVisibilityScope = this@AnimatedVisibility,
                     title = "Pokédex",
-                    lazyPagingItems = flowOf(
-                        PagingData.from(
-                            listOf(
-                                PokemonListItemUiState(
-                                    id = 1,
-                                    name = "Bulbasaur",
-                                    sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-                                )
+                    itemSnapshotList = ItemSnapshotList(
+                        0,
+                        0,
+                        listOf(
+                            PokemonListItemUiState(
+                                id = 1,
+                                name = "Bulbasaur",
+                                sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
                             )
                         )
-                    ).collectAsLazyPagingItems(),
+                    ),
+                    onItemAccess = {},
                     onItemClick = {},
                     modifier = Modifier.fillMaxSize()
                 )
