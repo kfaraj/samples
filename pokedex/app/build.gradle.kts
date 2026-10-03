@@ -41,10 +41,6 @@ kotlin {
     jvmToolchain(21)
 }
 
-koinCompiler {
-    compileSafety = false
-}
-
 dependencies {
     implementation(project(":pokedex:core:ui"))
     implementation(project(":pokedex:feature:pokemon"))
