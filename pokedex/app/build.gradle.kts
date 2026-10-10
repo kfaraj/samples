@@ -33,16 +33,17 @@ android {
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
+            all {
+                it.jvmArgs(
+                    "--add-opens=java.base/jdk.internal.access=ALL-UNNAMED"
+                )
+            }
         }
     }
 }
 
 kotlin {
     jvmToolchain(21)
-}
-
-koinCompiler {
-    compileSafety = false
 }
 
 dependencies {
