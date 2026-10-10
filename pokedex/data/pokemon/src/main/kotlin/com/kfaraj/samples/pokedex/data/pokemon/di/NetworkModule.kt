@@ -3,7 +3,6 @@ package com.kfaraj.samples.pokedex.data.pokemon.di
 import com.kfaraj.samples.pokedex.data.pokemon.remote.DefaultPokeApiService
 import com.kfaraj.samples.pokedex.data.pokemon.remote.PokeApiService
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.kotlinx.json.json
@@ -29,7 +28,7 @@ internal object NetworkModule {
      */
     @Single
     fun provideHttpClient(): HttpClient {
-        return HttpClient(OkHttp) {
+        return HttpClient {
             defaultRequest {
                 url("https://pokeapi.co/api/v2/")
             }

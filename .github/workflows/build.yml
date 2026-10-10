@@ -28,15 +28,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           java-version: 21
-          distribution: jetbrains
+          distribution: temurin
           cache: gradle
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Download
         run: echo "$SIGNING_STORE_FILE" | base64 --decode > ${{ runner.temp }}/release.keystore
         env:
