@@ -9,6 +9,13 @@ This sample demonstrates how to implement a
 
 [View on GitHub](darktheme)
 
+## Koin Robolectric
+
+This sample demonstrates the issue
+[#323](https://github.com/InsertKoinIO/koin-annotations/issues/323).
+
+[View on GitHub](koin-robolectric)
+
 ## Pokédex
 
 This sample demonstrates best practices for
