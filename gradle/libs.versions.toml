@@ -2,18 +2,14 @@
 androidx-activity = "1.13.0"
 androidx-appcompat = "1.8.0"
 androidx-compose-bom = "2026.09.00"
-androidx-coordinatorlayout = "1.3.0"
 androidx-core = "1.19.1"
-androidx-fragment = "1.9.1"
 androidx-lifecycle = "2.11.0"
 androidx-navigation3 = "1.2.0"
 androidx-paging = "3.5.2"
-androidx-preference = "1.2.1"
 androidx-room3 = "3.0.3"
 androidx-test-core = "1.7.0"
 androidx-test-ext-junit = "1.3.0"
 com-android-tools-build-gradle = "9.4.1"
-com-google-android-material = "1.14.0"
 com-google-devtools-ksp = "2.3.12"
 io-coil = "3.6.3"
 io-insert-koin = "4.2.2"
@@ -34,9 +30,7 @@ androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = 
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "androidx-coordinatorlayout" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
-androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "androidx-fragment" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
@@ -46,13 +40,11 @@ androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", vers
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
 androidx-paging-testing = { module = "androidx.paging:paging-testing", version.ref = "androidx-paging" }
-androidx-preference = { module = "androidx.preference:preference", version.ref = "androidx-preference" }
 androidx-room3-compiler = { module = "androidx.room3:room3-compiler", version.ref = "androidx-room3" }
 androidx-room3-paging = { module = "androidx.room3:room3-paging", version.ref = "androidx-room3" }
 androidx-room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "androidx-room3" }
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test-core" }
 androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
-com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
 io-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "io-coil" }
 io-coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "io-coil" }
 io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "io-insert-koin" }

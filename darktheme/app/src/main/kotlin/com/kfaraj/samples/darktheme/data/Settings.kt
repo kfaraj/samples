@@ -6,6 +6,11 @@ package com.kfaraj.samples.darktheme.data
 object Settings {
 
     /**
+     * The name of the preferences.
+     */
+    const val PREFS_NAME = "settings"
+
+    /**
      * The theme.
      */
     const val KEY_THEME = "theme"

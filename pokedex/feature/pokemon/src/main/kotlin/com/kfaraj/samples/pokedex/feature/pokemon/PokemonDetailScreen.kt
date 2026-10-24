@@ -7,14 +7,10 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
@@ -43,14 +39,14 @@ import com.kfaraj.samples.pokedex.core.ui.theme.AppTheme
 internal fun SharedTransitionScope.PokemonDetailScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     viewModel: PokemonDetailViewModel,
-    onNavigateUp: () -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     PokemonDetailScreen(
         animatedVisibilityScope = animatedVisibilityScope,
         uiState = uiState,
-        onNavigateUp = onNavigateUp,
+        onBackClick = onBackClick,
         modifier = modifier
     )
 }
@@ -62,7 +58,7 @@ internal fun SharedTransitionScope.PokemonDetailScreen(
 private fun SharedTransitionScope.PokemonDetailScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     uiState: PokemonDetailUiState,
-    onNavigateUp: () -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -73,21 +69,17 @@ private fun SharedTransitionScope.PokemonDetailScreen(
                 title = {},
                 navigationIcon = {
                     IconButton(
-                        onClick = onNavigateUp
+                        onClick = onBackClick
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = stringResource(R.string.navigate_up)
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
-                windowInsets = WindowInsets.safeDrawing.only(
-                    WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-                ),
                 scrollBehavior = scrollBehavior
             )
-        },
-        contentWindowInsets = WindowInsets.safeDrawing
+        }
     ) { innerPadding ->
         val scrollState = rememberScrollState()
         Column(
@@ -143,7 +135,7 @@ private fun PokemonDetailScreenPreview() {
                         name = "Bulbasaur",
                         sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
                     ),
-                    onNavigateUp = {},
+                    onBackClick = {},
                     modifier = Modifier.fillMaxSize()
                 )
             }

@@ -1,10 +1,10 @@
 package com.kfaraj.samples.darktheme
 
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.PreferenceManager
 import com.kfaraj.samples.darktheme.data.Settings
 
 /**
@@ -15,8 +15,7 @@ class MainApplication : Application(),
 
     override fun onCreate() {
         super.onCreate()
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, true)
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val prefs = getSharedPreferences(Settings.PREFS_NAME, Context.MODE_PRIVATE)
         prefs.registerOnSharedPreferenceChangeListener(this)
         onSharedPreferenceChanged(prefs, null)
     }

@@ -1,24 +1,27 @@
 package com.kfaraj.samples.darktheme
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
-import com.kfaraj.samples.darktheme.ui.SettingsFragment
+import com.kfaraj.samples.darktheme.ui.SettingsScreen
+import com.kfaraj.samples.darktheme.ui.theme.AppTheme
 
 /**
- * Contains the [SettingsFragment].
+ * Contains the [SettingsScreen].
  */
-class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
+class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                add<SettingsFragment>(R.id.container)
-                setReorderingAllowed(true)
+        setContent {
+            AppTheme {
+                SettingsScreen(
+                    onBackClick = {
+                        onNavigateUp()
+                    }
+                )
             }
         }
     }

@@ -6,12 +6,8 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.plus
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material3.Scaffold
@@ -72,13 +68,9 @@ private fun SharedTransitionScope.PokemonListScreen(
                         text = title
                     )
                 },
-                windowInsets = WindowInsets.safeDrawing.only(
-                    WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-                ),
                 scrollBehavior = scrollBehavior
             )
-        },
-        contentWindowInsets = WindowInsets.safeDrawing
+        }
     ) { innerPadding ->
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Fixed(2),

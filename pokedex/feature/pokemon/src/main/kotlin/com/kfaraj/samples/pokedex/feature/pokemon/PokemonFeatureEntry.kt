@@ -55,7 +55,7 @@ public fun EntryProviderScope<NavKey>.pokemonFeatureEntryBuilder(
                 viewModel = koinViewModel {
                     parametersOf(key)
                 },
-                onNavigateUp = {
+                onBackClick = {
                     backStack.removeLastOrNull()
                 }
             )

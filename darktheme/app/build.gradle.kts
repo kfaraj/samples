@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.compose)
 }
 
 android {
@@ -32,14 +33,20 @@ android {
 
 kotlin {
     jvmToolchain(21)
+    compilerOptions {
+        optIn.addAll(
+            "androidx.compose.material3.ExperimentalMaterial3Api"
+        )
+    }
 }
 
 dependencies {
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core)
-    implementation(libs.androidx.fragment)
-    implementation(libs.androidx.preference)
-    implementation(libs.com.google.android.material)
 }
