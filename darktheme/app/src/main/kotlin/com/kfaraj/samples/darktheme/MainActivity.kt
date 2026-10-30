@@ -1,24 +1,29 @@
 package com.kfaraj.samples.darktheme
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
-import com.kfaraj.samples.darktheme.ui.MainFragment
+import com.kfaraj.samples.darktheme.ui.MainScreen
+import com.kfaraj.samples.darktheme.ui.theme.AppTheme
 
 /**
- * Contains the [MainFragment].
+ * Contains the [MainScreen].
  */
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                add<MainFragment>(R.id.container)
-                setReorderingAllowed(true)
+        setContent {
+            AppTheme {
+                MainScreen(
+                    onSettingsClick = {
+                        val intent = Intent(this, SettingsActivity::class.java)
+                        startActivity(intent)
+                    }
+                )
             }
         }
     }
