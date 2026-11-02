@@ -25,6 +25,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "samples"
+include(":compose-material3:app")
 include(":darktheme:app")
 include(":pokedex:app")
 include(":pokedex:core:ui")

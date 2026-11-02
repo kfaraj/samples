@@ -2,6 +2,13 @@
 
 This repository contains a collection of samples for Android.
 
+## Compose Material 3
+
+This sample demonstrates the issue
+[580757662](https://issuetracker.google.com/issues/580757662).
+
+[View on GitHub](compose-material3)
+
 ## Dark theme
 
 This sample demonstrates how to implement a
